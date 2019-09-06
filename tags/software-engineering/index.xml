@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software Engineering on Unrecognized Escape Sequence</title>
-    <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/software-engineering/</link>
+    <link>https://benp44.github.io/blog/tags/software-engineering/</link>
     <description>Recent content in Software Engineering on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 01 Jul 2019 20:05:54 +0100</lastBuildDate>
     
-	<atom:link href="https://random-walk.s3.eu-west-2.amazonaws.com/tags/software-engineering/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://benp44.github.io/blog/tags/software-engineering/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Improving your life with pre-commit</title>
-      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/pre-commit/</link>
+      <link>https://benp44.github.io/blog/posts/pre-commit/</link>
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
-      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/pre-commit/</guid>
+      <guid>https://benp44.github.io/blog/posts/pre-commit/</guid>
       <description>What is pre-commit and how can it help me? I&amp;rsquo;ve been using pre-commit for a few weeks now, prototyping it for rollout across my team. If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one a variety of tools that you can use to run a series of tests and checks on your code, at the point of committing to git. From the pre-commit site:
  [pre-commit] is a multi-language package manager for pre-commit hooks.</description>
     </item>
     
     <item>
       <title>The backlog refinery</title>
-      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/</link>
+      <link>https://benp44.github.io/blog/posts/the-backlog-refinery/</link>
       <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
       
-      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/</guid>
+      <guid>https://benp44.github.io/blog/posts/the-backlog-refinery/</guid>
       <description>tldr  It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
  Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
  This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
@@ -34,10 +34,10 @@
     
     <item>
       <title>Building without designing</title>
-      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/building-without-designing/</link>
+      <link>https://benp44.github.io/blog/posts/building-without-designing/</link>
       <pubDate>Sun, 24 Feb 2019 19:52:30 +0100</pubDate>
       
-      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/building-without-designing/</guid>
+      <guid>https://benp44.github.io/blog/posts/building-without-designing/</guid>
       <description>A quick one today, but an important one.
 When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot of is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
 This is an artifact of the growth of agile software development, and misunderstandings about agile. In waterfall-style software development, the idea of code being written without a design phase having taken place is unthinkable.</description>
@@ -45,20 +45,20 @@ This is an artifact of the growth of agile software development, and misundersta
     
     <item>
       <title>Coding styles</title>
-      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/coding-styles/</link>
+      <link>https://benp44.github.io/blog/posts/coding-styles/</link>
       <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
       
-      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/coding-styles/</guid>
+      <guid>https://benp44.github.io/blog/posts/coding-styles/</guid>
       <description>Coding style 101  Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up becoming the foundation of a production project.
 Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python.</description>
     </item>
     
     <item>
       <title>Getting started with Google Test</title>
-      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/getting-started-with-gtest/</link>
+      <link>https://benp44.github.io/blog/posts/getting-started-with-gtest/</link>
       <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
       
-      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/getting-started-with-gtest/</guid>
+      <guid>https://benp44.github.io/blog/posts/getting-started-with-gtest/</guid>
       <description>After some time working with C# and taking advantage of the variety of fantastic unit testing and mocking tools available within Microsoft&amp;rsquo;s playground, when I returned to using C++ I really wanted to ensure that the unit testing experience was &amp;ndash; as far as possible &amp;ndash; as convenient and powerful.
 Unit testing can be a little dry at times (what!? you mean you don&amp;rsquo;t get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</description>
     </item>

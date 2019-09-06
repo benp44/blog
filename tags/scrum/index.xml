@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Scrum on Unrecognized Escape Sequence</title>
-    <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/scrum/</link>
+    <link>https://benp44.github.io/blog/tags/scrum/</link>
     <description>Recent content in Scrum on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Wed, 29 May 2019 08:49:08 +0100</lastBuildDate>
     
-	<atom:link href="https://random-walk.s3.eu-west-2.amazonaws.com/tags/scrum/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://benp44.github.io/blog/tags/scrum/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>The backlog refinery</title>
-      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/</link>
+      <link>https://benp44.github.io/blog/posts/the-backlog-refinery/</link>
       <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
       
-      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/</guid>
+      <guid>https://benp44.github.io/blog/posts/the-backlog-refinery/</guid>
       <description>tldr  It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
  Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
  This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
