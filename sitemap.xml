@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/code-quality/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/pre-commit/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/linters/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/software-engineering/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/tools/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/kanban/</loc>
+    <lastmod>2019-05-29T08:49:08+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/project-management/</loc>
+    <lastmod>2019-05-29T08:49:08+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/scrum/</loc>
+    <lastmod>2019-05-29T08:49:08+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/</loc>
+    <lastmod>2019-05-29T08:49:08+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/more-unit-testing-in-python/</loc>
+    <lastmod>2019-05-21T16:40:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/simple-unit-testing-in-python/</loc>
+    <lastmod>2019-04-21T16:40:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/building-without-designing/</loc>
+    <lastmod>2019-02-24T19:52:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/.zshrc/</loc>
+    <lastmod>2018-11-17T17:22:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/linux/</loc>
+    <lastmod>2018-11-17T17:22:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/terminal/</loc>
+    <lastmod>2018-11-17T17:22:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/fzf/</loc>
+    <lastmod>2018-11-17T17:22:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/somafm-in-terminal/</loc>
+    <lastmod>2018-11-03T14:38:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/coding-styles/</loc>
+    <lastmod>2018-07-20T20:05:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/getting-started-with-gtest/</loc>
+    <lastmod>2018-06-03T15:05:19+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/unit-testing/</loc>
+    <lastmod>2018-06-03T15:05:19+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/tags/cpp/</loc>
+    <lastmod>2018-06-03T15:05:19+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/about/</loc>
+    <lastmod>2017-12-04T16:33:49+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/extracting-files-in-linux/</loc>
+    <lastmod>2017-09-01T15:44:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/living-comments/</loc>
+    <lastmod>2017-06-24T09:15:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/license/</loc>
+    <lastmod>2017-05-03T10:32:39+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/big-decisions/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/posts/unit-tests-and-logging/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://random-walk.s3.eu-west-2.amazonaws.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

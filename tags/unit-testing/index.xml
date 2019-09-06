@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unit Testing on Unrecognized Escape Sequence</title>
+    <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/unit-testing/</link>
+    <description>Recent content in Unit Testing on Unrecognized Escape Sequence</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 03 Jun 2018 15:05:19 +0100</lastBuildDate>
+    
+	<atom:link href="https://random-walk.s3.eu-west-2.amazonaws.com/tags/unit-testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting started with Google Test</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/getting-started-with-gtest/</link>
+      <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/getting-started-with-gtest/</guid>
+      <description>After some time working with C# and taking advantage of the variety of fantastic unit testing and mocking tools available within Microsoft&amp;rsquo;s playground, when I returned to using C++ I really wanted to ensure that the unit testing experience was &amp;ndash; as far as possible &amp;ndash; as convenient and powerful.
+Unit testing can be a little dry at times (what!? you mean you don&amp;rsquo;t get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</description>
+    </item>
+    
+  </channel>
+</rss>

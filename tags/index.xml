@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Unrecognized Escape Sequence</title>
+    <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/</link>
+    <description>Recent content in Tags on Unrecognized Escape Sequence</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 01 Jul 2019 20:05:54 +0100</lastBuildDate>
+    
+	<atom:link href="https://random-walk.s3.eu-west-2.amazonaws.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Code Quality</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/code-quality/</link>
+      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/code-quality/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linters</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/linters/</link>
+      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/linters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Software Engineering</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/software-engineering/</link>
+      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/software-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/tools/</link>
+      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/tools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kanban</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/kanban/</link>
+      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/kanban/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Project Management</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/project-management/</link>
+      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/project-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scrum</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/scrum/</link>
+      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/scrum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>.zshrc</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/.zshrc/</link>
+      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/.zshrc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/linux/</link>
+      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Terminal</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/terminal/</link>
+      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/terminal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unit Testing</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/unit-testing/</link>
+      <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/unit-testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cpp</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/tags/cpp/</link>
+      <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/tags/cpp/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

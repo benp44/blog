@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="An increasingly grumpy blog about software engineering">
+
+
+    <meta property="twitter:site" content="@faltermeyer">
+
+<meta property="og:site_name" content="Unrecognized Escape Sequence" />
+<meta property="og:locale" content="en-US" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/" />
+<meta property="og:title" content="The backlog refinery" />
+<meta property="twitter:title" content="The backlog refinery">
+
+    <meta property="og:image" content="https://random-walk.s3.eu-west-2.amazonaws.com/img/banner.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://random-walk.s3.eu-west-2.amazonaws.com/img/banner.png">
+
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
+
+<title>
+
+
+     Unrecognized Escape Sequence - The backlog refinery 
+
+</title>
+<link rel="canonical" href="https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/">
+
+
+<style media="screen">
+  @font-face {
+  font-family: 'Nunito';
+  src: url('https://random-walk.s3.eu-west-2.amazonaws.com/fonts/Nunito-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Droid Sans Mono';
+  src: url('https://random-walk.s3.eu-west-2.amazonaws.com/fonts/Droid-Sans-Mono.otf');
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, div.column {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+a,
+a:visited,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  color: #111111;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility !important;
+}
+.icon {
+  text-rendering: geometricPrecision !important;
+}
+section {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+div.column {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  width: 100%;
+}
+div.header .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.header .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.header .container .logo {
+  
+  max-width: 100px;
+  
+  margin-left: -2em;
+}
+div.header .name {
+  padding-top: 20px;
+  font-size: 28px;
+  font-family: 'Nunito', 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  
+  text-transform: uppercase;
+  
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+}
+div.header nav {
+  margin-bottom: 16px;
+}
+div.header nav ul {
+  list-style: none;
+  text-align: center;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-inline-flex;
+  display: inline-flex;
+}
+div.header nav ul li {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+div.header nav ul li:first-child {
+  margin-left: 0;
+}
+div.header nav ul li:last-child {
+  margin-right: 0;
+}
+div.header nav ul a {
+  color: #555555;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.header nav ul a:hover {
+  color: #111111;
+}
+div.footer .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  text-align: center;
+}
+div.footer .container a {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 6px;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.footer .container a:first-child {
+  margin-left: 0;
+}
+div.footer .container a:last-child {
+  margin-right: 0;
+}
+div.footer .container a:hover {
+  opacity: 0.8;
+}
+div.footer .container a .icon {
+  width: 16px;
+  height: 16px;
+}
+div.footer .container .copyright {
+  flex-grow: 0.5;
+  text-align: start;
+}
+div.footer .container .icons {
+  flex-grow: 0.5;
+  text-align: end;
+}
+div.main .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+div.main .content {
+  color: #111111;
+  font-size: 16px;
+}
+div.main .content .title-container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+div.main .content .posts {
+  
+  
+}
+div.main .content .page-heading {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Nunito';
+  letter-spacing: -0.005rem;
+  text-transform: uppercase;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  margin-bottom: 16px;
+}
+div.main .content .front-matter .page-heading {
+  margin-bottom: 0;
+}
+div.main .content .front-matter .meta {
+  font-size: 14px;
+  color: #666666;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-bottom: 32px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+  display: none;
+}
+div.main .content .front-matter .middot:before {
+  font-size: 6px;
+  margin: 0 6px;
+  vertical-align: middle;
+  content: "•";
+}
+div.main .content .front-matter .tags ul {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .content .front-matter .tags ul li {
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.main .content .front-matter .tags ul li:hover {
+  opacity: 0.7;
+}
+div.main .content .front-matter .tags ul li a {
+  color: #666666;
+}
+div.main .container.f04 {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.main .container.f04 .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .container.f04 .content .num {
+  margin: 30px 0px 30px 0;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 50px;
+}
+div.main .container.f04 .content .detail {
+  margin-bottom: 40px;
+}
+div.main .container .content .groupby {
+  margin-top: 1em;
+  padding-left: 0.5em;
+}
+div.main .container .content .post-item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: list-item;
+  list-style: disc inside;
+}
+div.main .container .content .post-item .meta {
+  font-size: 15px;
+  color: #666666;
+  display: none;
+  min-width: 100px;
+  text-align: right;
+  margin-right: 20px;  
+}
+div.main .container .content .see-more {
+  font-style: italic;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+  color: #313537;
+}
+div.main .container .content .see-more:hover {
+  color: #666;
+}
+section {
+  padding: 0 16px;
+}
+div.column {
+  padding: 0 16px;
+}
+div.header {
+  padding-top: 10px;
+}
+div.header-home {
+  padding-top: 36px;
+}
+div.main {
+  padding-top: 32px;
+}
+div.main .container .content .post-item .meta {
+    display: block;
+}
+div.main .container .content .post-item {
+    display: flex;
+    list-style: none;
+}
+a {
+  color: #428bca;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+a:hover {
+  color: #2a6496;
+}
+img {
+  max-width: 100%;
+}
+div.main .content {
+    width: 100%;
+}
+div.main .content .markdown {
+  font-size: 1.1em;
+  line-height: 1.2em;
+  color: #313537;
+  font-family: serif;
+}
+div.main .content .markdown h1,
+div.main .content .markdown h2,
+div.main .content .markdown h3,
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 22px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  font-weight: 700;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  text-transform: none;
+  margin-top: 1.75rem;
+}
+div.main .content .markdown h1 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+div.main .content .markdown h3 {
+  font-size: 1em;
+  margin-bottom: 1rem;
+}
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: none;
+}
+div.main .content .markdown code,
+div.main .content .markdown pre {
+  font-family: 'Droid Sans Mono', monospace;
+  font-size: 0.98rem;
+  background-color: #f7f7f7;
+}
+div.main .content .markdown code {
+  /* enclosed by single backtick (`) */
+  padding: .15em .5em;
+  border-radius: 2px;
+}
+div.main .content .markdown pre {
+  /* Hugo specific: consider using the 'highlight' shortcode */
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  line-height: 1.5em;
+  white-space: pre;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+div.main .content .markdown pre code {
+  /* enclosed by 4 backticks (````) */
+  padding: 0;
+  font-size: 0.9rem;
+}
+div.main .content .markdown a code {
+  color: #428bca !important;
+}
+div.main .content .markdown a code:hover {
+  text-decoration: underline;
+}
+div.main .content .markdown p {
+  
+  text-align: left;
+  
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+div.main .content .markdown ul,
+div.main .content .markdown ol,
+div.main .content .markdown dl {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown dt {
+  font-weight: bold;
+}
+div.main .content .markdown dd {
+  margin-bottom: .5rem;
+}
+div.main .content .markdown ul {
+  list-style-type: square;
+  list-style-position: outside;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown ol {
+  list-style-type: decimal;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown li {
+  margin-left: 2em;
+  padding-left: 0.5em;
+}
+div.main .content .markdown em {
+  font-style: italic;
+}
+div.main .content .markdown strong {
+  font-weight: 700;
+}
+div.main .content .markdown hr {
+  position: relative;
+  margin: 1.75rem 0;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-top: 1px solid #999999;
+}
+div.main .content .markdown abbr {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666666;
+  text-transform: uppercase;
+}
+div.main .content .markdown abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #808080;
+}
+div.main .content .markdown blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #4a4a4a;
+  border-left: .25rem solid #e5e5e5;
+}
+div.main .content .markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+div.main .content .markdown figure {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 1em;
+}
+div.main .content .markdown figure img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  position: static;
+  margin: auto;
+}
+div.main .content .markdown table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+div.main .content .markdown td,
+div.main .content .markdown th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+div.main .content .markdown tbody tr:nth-child(odd) td,
+div.main .content .markdown tbody tr:nth-child(odd) th {
+  background-color: #f7f7f7;
+}
+div.main .content .markdown .footnotes ol {
+  list-style-type: decimal;
+  margin-left: 16px;
+}
+div.main .content .markdown .footnotes li {
+  list-style-type: unset;
+}
+div.main .content .markdown .footnote-ref {
+  font-size: 0.7em;
+}
+div.main .content .navigation {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 2em;
+}
+div.main .content .navigation div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-top: 1em;
+}
+div.main .content .navigation .icon {
+  width: 16px;
+  height: 16px;
+}
+div.main .content .navigation a {
+  width: 250px;
+  margin: 0 1em;
+  text-align: center;
+  font-style: italic;
+  color: #313537;
+}
+div.main .content .share, div.main .content .share div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+div.main .content .share {
+  background-color: rgba(152, 152, 152, 0.07);
+  padding: 1em 0;
+}
+div.main .content .share a {
+  margin: 0 6px;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Fonts */
+
+
+.wf-raleway-n4-active body, 
+.wf-raleway-n4-active div.header nav ul a,
+.wf-raleway-n7-active div.main .content .page-heading,
+.wf-raleway-n2-active div.main .container.f04 .content .num,
+.wf-raleway-n7-active div.main .content .markdown h1,
+.wf-raleway-n7-active div.main .content .markdown h2,
+.wf-raleway-n7-active div.main .content .markdown h3,
+.wf-raleway-n7-active div.main .content .markdown h4,
+.wf-raleway-n7-active div.main .content .markdown h5,
+.wf-raleway-n7-active div.main .content .markdown h6 {
+      font-family: 'Nunito';
+}
+
+.wf-nunito-n3-active div.main .content .markdown {
+      font-family: 'Nunito';
+}
+
+.wf-ubuntu-mono-n4-active div.main .content .markdown code,
+.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
+      font-family: 'Ubuntu Mono';
+}
+
+
+</style>
+<style media="(min-width: 600px)">
+  body {
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+justify-content: center;
+}
+.non-narrow.zero-top-spacing {
+padding-top: 0 !important;
+}
+section {
+padding: 0 16px;
+margin-left: 100px;
+margin-right: 100px;
+
+max-width: 850px;
+
+}
+div.column {
+padding: 0 16px;
+
+max-width: 850px;
+
+}
+div.header {
+background-color: transparent;
+}
+div.header .container {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.header .container .logo {
+margin: 0;
+}
+div.header-home .container .logo {
+max-width: 216px;
+margin-left: 24px;
+}
+div.header-home .name-home {
+padding-top: 30px;
+font-size: 40px;
+}
+div.header-home nav ul a {
+font-size: 18px;
+}
+div.header .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.header .name {
+color: #333333;
+}
+div.header nav {
+font-size: 14px;
+margin-bottom: 0;
+}
+div.header nav ul {
+text-align: left;
+}
+div.header nav ul a {
+color: #666666;
+}
+div.header nav ul a:hover {
+color: #333333;
+}
+div.footer {
+background-color: transparent;
+}
+div.footer .container {
+flex-direction: row;
+}
+div.footer .container a {
+margin-left: 3px;
+margin-right: 3px;
+color: #666666;
+}
+div.footer .container a:hover {
+color: #333333;
+}
+div.footer .container a .icon {
+font-size: 18px;
+}
+div.footer .container a .icon.larger {
+font-size: 20px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+display: initial;
+}
+div.main .container.f04 {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.main .container.f04 .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.main .container.f04 .content .num {
+margin: 0 0 10px 0;
+font-size: 32px;
+}
+div.main .container.f04 .content .detail {
+margin-bottom: 30px;
+}
+.container {
+padding: 0 30px;
+}
+div.header {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.footer {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.main {
+padding-top: 0;
+}
+div.main .content {
+  
+  font-size: 16px;
+  
+}
+div.main .container .content .post-item {
+display: flex;
+list-style: none;
+padding-left: 1.5em;
+}
+div.main .container .content .post-item .meta {
+display: block;
+}
+div.main .content .markdown blockquote {
+padding-right: 5rem;
+padding-left: 1.25rem;
+}
+div.main .content .navigation {
+-webkit-flex-direction: row;
+-moz-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+}
+div.main .content .navigation div {
+margin-top: 0em;
+}
+
+</style>
+<style media="(min-width: 769px)">
+  div.main .content .markdown figure {
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown img {
+max-width: 110%;
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown pre {
+width: 110%;
+margin-left: -4%;
+}
+
+</style>
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
+</noscript>
+
+
+  <style type="text/css" media="screen">
+    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+  </style>
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="../../img/logo.png"
+
+>
+
+
+
+
+</head>
+
+
+<body>
+
+
+<div class="header column">
+
+    <div class="container">
+        
+        <a href="https://random-walk.s3.eu-west-2.amazonaws.com/"><img class="logo" src="../../images/moe.png" alt="logo"></a>
+        
+        <div class="content">
+            <a href="../../"><div class="name"><h1>Unrecognized Escape Sequence</h1></div></a>
+            <h2 style="padding-bottom: 10px; font-size: 13pt">An increasingly grumpy blog about software engineering</h2>
+            <nav>
+                <ul>
+                    
+                    
+                        
+                            
+                            <li><a href="../../posts">posts</a></li>
+                            
+                        
+                    
+                    
+                        
+                            <li><a href="../../about/">About</a></li>
+                        
+                    
+                        
+                    
+                </ul>
+            </nav>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="main column">
+    <div class="container">
+        <div class="content">
+            <div class="page-heading">
+
+    
+    The backlog refinery
+    
+
+</div>
+
+            <div class="markdown">
+                
+    
+    
+
+<h2 id="tldr">tldr</h2>
+
+<ol>
+<li><p>It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.</p></li>
+
+<li><p>Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.</p></li>
+
+<li><p>This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &lsquo;refining&rsquo; them. This might be turning raw ideas into user stories, or turning user stories into estimated, prioritised technical tasks.</p></li>
+</ol>
+
+<h2 id="in-the-beginning">In the beginning&hellip;</h2>
+
+<p>One of the recent frustrations that our agile team has had is around the wooliness of our process concerning the backlog. As is fairly typical, we had a &ldquo;Backlog&rdquo; column on our Kanban board in which there was a mix of all kinds of stuff. Stuff like:</p>
+
+<ul>
+<li>Prioritised, estimated and ready-to-go-into-a-sprint technical tasks</li>
+<li>Early-stage, half-defined stories from the product owner</li>
+<li>Mixed-priority bugs</li>
+<li>IOU-style cards describing technical-debt</li>
+<li>Absolutely nonsensical, not even half-formed cards from various sources</li>
+</ul>
+
+<p>Our existing process concerning the backlog involved a <strong>backlog grooming</strong> meeting each week (twice a sprint), during which cards in the backlog are cleaned-up, broken-down and given a rough estimation. You know, what we like to call &ldquo;grooming&rdquo;. We also have a <strong>release planning</strong> meeting once in a while, during which cards are selected from those in the backlog and moved into a column called &ldquo;Release shortlist&rdquo;. From here cards are selected to be worked on during our <strong>sprint planning</strong> meeting.</p>
+
+<p>We also had several problems consistently coming up in sprint retrospectives which seemed to be related to this part of our process, the more serious of which were likely affecting performance and overall throughput of the team:</p>
+
+<ul>
+<li>Developers starting work on a cards, then realising more design / research / thought / external input was required to begin coding, so the card immediately becomes blocked.</li>
+<li>Long and dry sprint meetings with a lack of focus</li>
+</ul>
+
+<p>As a quick aside, the latter of these is something that I&rsquo;ve experienced in various jobs and seen how badly it can affect agile teams. The lack of focus leads to drawn-out, boring meetings. This leads to disengagement, which in turn leads to lower output, negativity during meetings, and exacerbates the initial problem. It is <em>really</em> important to engage with the fact that &ndash; by nature &ndash; coders want to be coding, not planning or discussing what to code, designing the best way to code, or testing code. As a result it is crucial to make it as <strong>easy as possible to do these other activities</strong>, so they still happen effectively.</p>
+
+<p>To try and resolve these two problems, I formed a plan to attempt to clarify our process surrounding the backlog and our meetings related to it. It seemed a glaring inconsistency to me that we had several columns on our kanban board dedicated to the flow of cards within a sprint, but a single &ldquo;Backlog&rdquo; column for the entire phase of creation and refinement leading up to each sprint. To encourage a different way of thinking about the backlog, I&rsquo;ve started to use the metaphor of an oil refinery for the work of processing cards in the backlog. The &ldquo;raw&rdquo; cards (new stories, bugs, ideas) are &ldquo;refined&rdquo; into useful outputs (estimated, prioritised stories, then technical tasks), via a series of intermediary stages and processes, with the cards taking a different form at each.</p>
+
+<h2 id="the-stratified-backlog">The stratified backlog</h2>
+
+<p>The first step we decided to take was to split out the backlog into multiple columns. The following diagram shows the columns we decided on for our first iteration of this experiment. This may seem pretty verbose, but we wanted to try be quite granular to start with and then, if necessary, merge some of these together.</p>
+
+<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://random-walk.s3.eu-west-2.amazonaws.com/images/diagrams/backlog-refinery-1.png" src="https://random-walk.s3.eu-west-2.amazonaws.com/images/diagrams/low/backlog-refinery-1.png" alt="The Kanban columns" /></p></figure>
+
+<p>Although we&rsquo;re focusing on the backlog, I&rsquo;ve drawn our full board for context. A couple of further points of context:</p>
+
+<ul>
+<li><p>We are currently using <a href="https://zube.io/">Zube</a> to manage our board, which has a couple of nice features to help with this. Firstly, it has the in-built concept of a <strong>Triage</strong> column, into which new cards are created by default. This makes for a useful starting place for all cards, no matter how well defined.</p></li>
+
+<li><p>Another nice feature of Zube that helps with this system is that it allows for viewing the board in various ways. Thus when working with the backlog we can use a view that only shows the <strong>Backlog</strong> columns, and when we are doing sprint planning or day-to-day card management we can hide the backlog and show only the <strong>Sprint</strong> columns. The <strong>Release Shortlist</strong> column is left visible in both views to help bring the two halves of the process together.</p></li>
+
+<li><p>If you&rsquo;re using another tool to manage your work, then labels or tags would also probably work fine for the purpose of splitting up the backlog into various levels of refinement.</p></li>
+</ul>
+
+<h2 id="sprint-meetings-as-backlog-refinement">Sprint meetings as &ldquo;backlog refinement&rdquo;</h2>
+
+<p>I might be overusing the metaphor a little at this stage.</p>
+
+<p>The selection of these columns is not arbitrary, but to engage with the second of the two problems I highlighted earlier, a lack of focus in sprint meetings. The idea is that each movement of cards from one column to the next is associated with a sprint meeting:</p>
+
+<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://random-walk.s3.eu-west-2.amazonaws.com/images/diagrams/backlog-refinery-2.png" src="https://random-walk.s3.eu-west-2.amazonaws.com/images/diagrams/low/backlog-refinery-2.png" alt="Sprint meetings" /></p></figure>
+
+<p>Now, the focus of each meeting is very clear, almost algorithmic:</p>
+
+<ol>
+<li>Take a card from one column (&ldquo;input&rdquo;)</li>
+<li>Discuss/analyse/improve the card, then update or replace it (&ldquo;refine&rdquo;)</li>
+<li>Put it in the next column (&ldquo;output&rdquo;)</li>
+<li>Repeat until no <em>input</em> cards remain, or time runs out</li>
+</ol>
+
+<p>And we can breakdown and define sprint meetings by their input, output, and refining process:</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Meeting</strong></th>
+<th align="center"><strong>Input Column</strong></th>
+<th align="center"><strong>Output Column</strong></th>
+<th><strong>Activities (refining process)</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><span style="background-color:#FBE6D0">Triage Grooming</span></td>
+<td align="center"><span style="background-color:#D9EAD3">Triage</span></td>
+<td align="center"><span style="background-color:#D9EAD3">Stories Defined</span></td>
+<td>&#8227; Understand and categorise cards<br/>&#8227; Identify epics<br/>&#8227; Improve clarity/definition<br/>&#8227; Add labels<br/>&#8227; High-level estimation<br/>&#8227; Identify research areas<br/>&#8227; Identify major external dependencies</td>
+</tr>
+
+<tr>
+<td align="center"><span style="background-color:#FBE6D0">Design</span></td>
+<td align="center"><span style="background-color:#D9EAD3">Stories Defined</span></td>
+<td align="center"><span style="background-color:#D9EAD3">Tasks Defined</span></td>
+<td>&#8227; Software architecture/design<br/>&#8227; Break-out individual tasks<br/>&#8227; Low-level estimation</td>
+</tr>
+
+<tr>
+<td align="center"><span style="background-color:#FBE6D0">Release Planning</span></td>
+<td align="center"><span style="background-color:#D9EAD3">Tasks Defined</span></td>
+<td align="center"><span style="background-color:#CFE2F3">Release Shortlist</span></td>
+<td>&#8227; Prioritisation of epics<br/>&#8227; Establish release timelines</td>
+</tr>
+
+<tr>
+<td align="center"><span style="background-color:#FBE6D0">Sprint Planning</span></td>
+<td align="center"><span style="background-color:#CFE2F3">Release Shortlist</span></td>
+<td align="center"><span style="background-color:#B4A7D6">Sprint Backlog</span></td>
+<td>&#8227; Selection and prioritisation of tasks<br/>&#8227; Establish sprint capacity/workload</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="buy-in-from-the-rest-of-the-team">Buy-in from the rest of the team</h2>
+
+<p>The other change we&rsquo;ve made is to really emphasize the importance that these backlog meetings need input from people outside of the development team. Of course product owners. But also UX/UI designers, and sometimes others. If these meetings are run efficiently their importance should be self-evident to all attendees, and the use of time is justifiable.</p>
+
+<h2 id="being-flexible">Being flexible</h2>
+
+<p>To those who worry that this is pinning things down too much, it&rsquo;s worth repeating that this is just a model. In special circumstances, it is still possible to move cards wherever the team want to move them. The aim of this model is not to nail down an algorithmic process for our Kanban board, but to support the way our agile team works and to try and iron-out empirically identified problems.</p>
+
+<blockquote>
+<p>Individuals and interactions over processes and tools</p>
+</blockquote>
+
+<p>Alike all process changes, this is still an on-going experiment and I hope to report good things as we continue to use and adapt these ideas.</p>
+
+<h2 id="updates">Updates</h2>
+
+<h4 id="almost-immediately">Almost immediately</h4>
+
+<p>The first problem identified was that our product owner immediately felt uncomfortable that it might take several meetings to get a card from the backlog straight into the release shortlist. We agreed that an approach that might work in these cases would be to have ad-hoc escalation meetings in which we essential move a card through all the columns in one go - to get an urgent hotfix or feature in the the current release.</p>
+
+<h4 id="a-couple-of-weeks-later">A couple of weeks later&hellip;</h4>
+
+<p>After a couple of weeks with the new system, a couple of problems became apparent. It was noticed that for most stories things worked smoothly, but some more unusual cards became stuck in certain columns. I suspect these cards would have had the same problem in the old, monolithic backlog, and perhaps this new system allowed us to notice the problem better. These cards typically were hard to deal with because they had external dependencies or required a lot of analysis.</p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="footer column">
+    <div class="container">
+
+        
+
+        <div class="copyright">
+
+        
+            
+                <a href="https://random-walk.s3.eu-west-2.amazonaws.com/license">Copyright © 2019 Ben Pring</a>
+            
+        
+
+        </div>
+        <div class="icons">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://github.com/benp44" rel=me target="_blank">
+                <img class="icon" src="https://random-walk.s3.eu-west-2.amazonaws.com/img/github.svg" alt="github" />
+            </a>
+        
+
+        
+            <a href="https://twitter.com/faltermeyer" rel=me target="_blank">
+                <img class="icon" src="https://random-walk.s3.eu-west-2.amazonaws.com/img/twitter.svg" alt="twitter" />
+            </a>
+        
+
+        
+            <a href="https://www.linkedin.com/in/ben" rel=me target="_blank">
+                <img class="icon" src="https://random-walk.s3.eu-west-2.amazonaws.com/img/linkedin.svg" alt="linkedin" />
+            </a>
+        
+
+        
+
+        
+            <a href="mailto:ben.pring@gmail.com">
+                <img class="icon" src="https://random-walk.s3.eu-west-2.amazonaws.com/img/email.svg" alt="email" />
+            </a>
+        
+
+        
+            <a href="https://random-walk.s3.eu-west-2.amazonaws.com/index.xml">
+                <img class="icon" src="https://random-walk.s3.eu-west-2.amazonaws.com/img/rss.svg" alt="rss" />
+            </a>
+        
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Raleway:400,600,700', 'Nunito:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+    }
+  });
+</script>
+
+
+
+  <script src="https://random-walk.s3.eu-west-2.amazonaws.com/js/highlight.min.js" defer></script>
+  
+
+
+
+  <script src="https://random-walk.s3.eu-west-2.amazonaws.com/js/progressively.min.js" defer></script>
+
+
+
+
+
+
+
+
+<script>
+  window.onload = function() {
+    
+      hljs.initHighlighting();
+    
+    
+      progressively.init({delay: 30, throttle: 50});
+    
+    
+  };
+</script>
+
+
+
+
+</body>
+</html>
+

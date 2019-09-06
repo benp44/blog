@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unrecognized Escape Sequence</title>
+    <link>https://random-walk.s3.eu-west-2.amazonaws.com/</link>
+    <description>Recent content on Unrecognized Escape Sequence</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 01 Jul 2019 20:05:54 +0100</lastBuildDate>
+    
+	<atom:link href="https://random-walk.s3.eu-west-2.amazonaws.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Improving your life with pre-commit</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/pre-commit/</link>
+      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/pre-commit/</guid>
+      <description>What is pre-commit and how can it help me? I&amp;rsquo;ve been using pre-commit for a few weeks now, prototyping it for rollout across my team. If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one a variety of tools that you can use to run a series of tests and checks on your code, at the point of committing to git. From the pre-commit site:
+ [pre-commit] is a multi-language package manager for pre-commit hooks.</description>
+    </item>
+    
+    <item>
+      <title>The backlog refinery</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/</link>
+      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/the-backlog-refinery/</guid>
+      <description>tldr  It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
+ Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
+ This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
+    </item>
+    
+    <item>
+      <title>More Python mocking fun</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/more-unit-testing-in-python/</link>
+      <pubDate>Tue, 21 May 2019 16:40:25 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/more-unit-testing-in-python/</guid>
+      <description>Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor  Now we have effectively mocked all actual file I/O in our tests
+Mocking in-built methods and file I/O class ConfigEditorTestCase(unittest.TestCase): def setUp(self): # Create the object to test self.config_editor = ConfigEditor(&amp;quot;/test/file.config&amp;quot;) self.mock_input_file = StringIO(&amp;quot;# Title\n&amp;quot; &amp;quot;#turn_on_rocket_launcher=123\n&amp;quot; &amp;quot;### turn_on_piranha_launcher=123\n&amp;quot; &amp;quot;\n&amp;quot; &amp;quot;enable_flamethrower=true\n&amp;quot; &amp;quot;enable_a_thing=laser_beam\n&amp;quot; &amp;quot;#enable_a_thing=blaster_power=500\n&amp;quot; &amp;quot;enable_a_thing=photon_beam\n&amp;quot; &amp;quot;\n&amp;quot; &amp;quot;###############################\n&amp;quot; &amp;quot;# Some random comment\n&amp;quot; &amp;quot;###############################\n&amp;quot; &amp;quot;set_this=thing_to=50000\n&amp;quot;) # Create an empty stream for the output file which we can then inspect self.</description>
+    </item>
+    
+    <item>
+      <title>Unit testing in Python with dependency injection</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/simple-unit-testing-in-python/</link>
+      <pubDate>Sun, 21 Apr 2019 16:40:25 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/simple-unit-testing-in-python/</guid>
+      <description>Foreword on this approach to unit testing in Python Python is a very flexible language, and while the creators of Python tried to follow the guiding principle &amp;ldquo;there should be one, and preferably only one, obvious way to do things&amp;rdquo;, this flexibility inevitably means that there are &amp;ndash; in fact &amp;ndash; lots of ways to do things, some good, some bad.
+Unit testing in Python is no exception to this.</description>
+    </item>
+    
+    <item>
+      <title>Building without designing</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/building-without-designing/</link>
+      <pubDate>Sun, 24 Feb 2019 19:52:30 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/building-without-designing/</guid>
+      <description>A quick one today, but an important one.
+When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot of is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
+This is an artifact of the growth of agile software development, and misunderstandings about agile. In waterfall-style software development, the idea of code being written without a design phase having taken place is unthinkable.</description>
+    </item>
+    
+    <item>
+      <title>Using and meddling with fzf</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/fzf/</link>
+      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/fzf/</guid>
+      <description>What is fzf? If you&amp;rsquo;re not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and finding files, commands and other things in the terminal. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
+    </item>
+    
+    <item>
+      <title>Somafm in the terminal</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/somafm-in-terminal/</link>
+      <pubDate>Sat, 03 Nov 2018 14:38:35 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/somafm-in-terminal/</guid>
+      <description>Recently I&amp;rsquo;ve been working at home with a loud infant in the next room. As a result, I&amp;rsquo;ve needed to wear headphones to concentrate. This raises the issue of finding a good source of continuous, ambient, non-commercial and enjoyable music. On this front, I&amp;rsquo;m a big fan of somafm, which meets exactly those criteria. Soma is ad-free on the basis that it&amp;rsquo;s funded by donations, so if you enjoy, I hope you&amp;rsquo;ll find time to donate yourself and keep this awesome service going.</description>
+    </item>
+    
+    <item>
+      <title>Coding styles</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/coding-styles/</link>
+      <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/coding-styles/</guid>
+      <description>Coding style 101  Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up becoming the foundation of a production project.
+Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python.</description>
+    </item>
+    
+    <item>
+      <title>Getting started with Google Test</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/getting-started-with-gtest/</link>
+      <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/getting-started-with-gtest/</guid>
+      <description>After some time working with C# and taking advantage of the variety of fantastic unit testing and mocking tools available within Microsoft&amp;rsquo;s playground, when I returned to using C++ I really wanted to ensure that the unit testing experience was &amp;ndash; as far as possible &amp;ndash; as convenient and powerful.
+Unit testing can be a little dry at times (what!? you mean you don&amp;rsquo;t get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/about/</link>
+      <pubDate>Mon, 04 Dec 2017 16:33:49 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/about/</guid>
+      <description>My name is Ben and I&amp;rsquo;m a software engineer. I currently live in Cambridge, with my partner and son. I have survived 15 years (and counting) working in software, mostly as an engineer but also occasionally as an architect and technologist.
+The first thing I programmed was a version of &amp;ldquo;worm&amp;rdquo; in BASIC on a 386 DOC PC, at my best guess around 1994. Following that, I moved on to get a BEng and MSc in Computer Science and have written software for medical, legal, educational and cultural organisations.</description>
+    </item>
+    
+    <item>
+      <title>Painless file extraction</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/extracting-files-in-linux/</link>
+      <pubDate>Fri, 01 Sep 2017 15:44:30 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/extracting-files-in-linux/</guid>
+      <description>Obligatory xkcd on the difficulties working with archives in Linux:
+For most cases, the following function can be plonked into your .bashrc or .zshrc etc. to make extracting files a little easier.
+# ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;quot;$1&amp;quot; ] ; then case &amp;quot;$1&amp;quot; in *.tar.bz2) tar xvjf &amp;quot;$1&amp;quot; ;; *.tar.gz) tar xvzf &amp;quot;$1&amp;quot; ;; *.bz2) bunzip2 &amp;quot;$1&amp;quot; ;; *.rar) unrar x &amp;quot;$1&amp;quot; ;; *.</description>
+    </item>
+    
+    <item>
+      <title>Living comments</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/living-comments/</link>
+      <pubDate>Sat, 24 Jun 2017 09:15:09 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/living-comments/</guid>
+      <description>Have you ever noticed that comments usually appear greyed out or pale in most coder colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don&amp;rsquo;t think very much of comments. Comments are equivalent to a footnote in a book &amp;ndash; an optional extra that doesn&amp;rsquo;t really need to be read. I mean, almost the first thing a compiler does is remove all the comments.</description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/license/</link>
+      <pubDate>Wed, 03 May 2017 10:32:39 +0100</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/license/</guid>
+      <description>All content on this website, unless otherwise noted, is copyright © 2017-2019 Ben Pring and licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+All code on this website, unless otherwise noted, is copyright © 2017-2019 Ben Pring and licensed under the MIT license.
+All registered trademarks mentioned on this website belong to their rightful owners.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/big-decisions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/big-decisions/</guid>
+      <description>Don&amp;rsquo;t end up in a position where you&amp;rsquo;re saying &amp;ldquo;this major direction change happened by accident&amp;rdquo;, or &amp;ldquo;we didn&amp;rsquo;t really choose this language/platform/tech, it just happened&amp;rdquo;
+Areas where decision making should be considered carefully:
+Platform Language
+These have major feedback in
+Hiring Publishing/deployment Performance Certification Security
+Really basic hierarchy of how to make decisions
+== Artifact/Object
+Build Prototype Wireframe Conceptualise
+== Feedback
+User Testing Internal Testing User/Internal Preview Comparison with existing data Intuitive predictions</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://random-walk.s3.eu-west-2.amazonaws.com/posts/unit-tests-and-logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://random-walk.s3.eu-west-2.amazonaws.com/posts/unit-tests-and-logging/</guid>
+      <description>Unit tests for logging? Mocking loggers? How about just mock to redirect logs to the unit test output - can be really useful</description>
+    </item>
+    
+  </channel>
+</rss>
