@@ -17,8 +17,8 @@
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/pre-commit/</guid>
-      <description>What is pre-commit and how can it help me? I&amp;rsquo;ve been using pre-commit for a few weeks now, prototyping it for rollout across my team. If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one a variety of tools that you can use to run a series of tests and checks on your code, at the point of committing to git. From the pre-commit site:
- [pre-commit] is a multi-language package manager for pre-commit hooks.</description>
+      <description>What is pre-commit and how can it help me? If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
+ [pre-commit] is a multi-language package manager for pre-commit hooks. You specify a list of hooks you want and pre-commit manages the installation and execution of any hook written in any language before every commit</description>
     </item>
     
     <item>
@@ -38,8 +38,9 @@
       <pubDate>Tue, 21 May 2019 16:40:25 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</guid>
-      <description>Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor  Now we have effectively mocked all actual file I/O in our tests
-Mocking in-built methods and file I/O class ConfigEditorTestCase(unittest.TestCase): def setUp(self): # Create the object to test self.config_editor = ConfigEditor(&amp;quot;/test/file.config&amp;quot;) self.mock_input_file = StringIO(&amp;quot;# Title\n&amp;quot; &amp;quot;#turn_on_rocket_launcher=123\n&amp;quot; &amp;quot;### turn_on_piranha_launcher=123\n&amp;quot; &amp;quot;\n&amp;quot; &amp;quot;enable_flamethrower=true\n&amp;quot; &amp;quot;enable_a_thing=laser_beam\n&amp;quot; &amp;quot;#enable_a_thing=blaster_power=500\n&amp;quot; &amp;quot;enable_a_thing=photon_beam\n&amp;quot; &amp;quot;\n&amp;quot; &amp;quot;###############################\n&amp;quot; &amp;quot;# Some random comment\n&amp;quot; &amp;quot;###############################\n&amp;quot; &amp;quot;set_this=thing_to=50000\n&amp;quot;) # Create an empty stream for the output file which we can then inspect self.</description>
+      <description>This post is a collection of python unit testing &amp;lsquo;gotchas&amp;rsquo;.
+Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor  Now we have effectively mocked all actual file I/O in our tests
+Mocking in-built methods and file I/O Super useful if you want to test a unit that uses the builtin open method.</description>
     </item>
     
     <item>
@@ -48,7 +49,7 @@ Mocking in-built methods and file I/O class ConfigEditorTestCase(unittest.TestCa
       <pubDate>Sun, 21 Apr 2019 16:40:25 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/simple-unit-testing-in-python/</guid>
-      <description>Foreword on this approach to unit testing in Python Python is a very flexible language, and while the creators of Python tried to follow the guiding principle &amp;ldquo;there should be one, and preferably only one, obvious way to do things&amp;rdquo;, this flexibility inevitably means that there are &amp;ndash; in fact &amp;ndash; lots of ways to do things, some good, some bad.
+      <description>A foreword on this approach to unit testing in Python Python is a very flexible language, and while the creators of Python tried to follow the guiding principle &amp;ldquo;there should be one, and preferably only one, obvious way to do things&amp;rdquo;, this flexibility inevitably means that there are &amp;ndash; in fact &amp;ndash; lots of ways to do things, some good, some bad.
 Unit testing in Python is no exception to this.</description>
     </item>
     
@@ -59,8 +60,8 @@ Unit testing in Python is no exception to this.</description>
       
       <guid>https://benp44.github.io/blog/posts/building-without-designing/</guid>
       <description>A quick one today, but an important one.
-When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot of is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
-This is an artifact of the growth of agile software development, and misunderstandings about agile. In waterfall-style software development, the idea of code being written without a design phase having taken place is unthinkable.</description>
+When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
+I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&amp;rdquo; as an excuse to drop some of the less tangibly essential aspects of software development and &amp;ldquo;just smash out some code&amp;rdquo;.</description>
     </item>
     
     <item>
@@ -69,7 +70,7 @@ This is an artifact of the growth of agile software development, and misundersta
       <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/fzf/</guid>
-      <description>What is fzf? If you&amp;rsquo;re not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and finding files, commands and other things in the terminal. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
+      <description>What is fzf? If you&amp;rsquo;re a linux terminal user and not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
     </item>
     
     <item>
@@ -87,8 +88,8 @@ This is an artifact of the growth of agile software development, and misundersta
       <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/coding-styles/</guid>
-      <description>Coding style 101  Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up becoming the foundation of a production project.
-Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python.</description>
+      <description>Coding style 101  Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up being re-used in a production project.
+Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python. Google&amp;rsquo;s C++ style is pretty agreeable.</description>
     </item>
     
     <item>
@@ -97,8 +98,8 @@ Not sure where to start? Have a look at some coding styles that have been create
       <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/getting-started-with-gtest/</guid>
-      <description>After some time working with C# and taking advantage of the variety of fantastic unit testing and mocking tools available within Microsoft&amp;rsquo;s playground, when I returned to using C++ I really wanted to ensure that the unit testing experience was &amp;ndash; as far as possible &amp;ndash; as convenient and powerful.
-Unit testing can be a little dry at times (what!? you mean you don&amp;rsquo;t get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</description>
+      <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&amp;rsquo;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
+Unit testing can be a little dry at times (what!</description>
     </item>
     
     <item>
@@ -113,39 +114,12 @@ For most cases, the following function can be plonked into your .bashrc or .zshr
     </item>
     
     <item>
-      <title>Living comments</title>
+      <title>Bad comments</title>
       <link>https://benp44.github.io/blog/posts/living-comments/</link>
       <pubDate>Sat, 24 Jun 2017 09:15:09 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/living-comments/</guid>
-      <description>Have you ever noticed that comments usually appear greyed out or pale in most coder colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don&amp;rsquo;t think very much of comments. Comments are equivalent to a footnote in a book &amp;ndash; an optional extra that doesn&amp;rsquo;t really need to be read. I mean, almost the first thing a compiler does is remove all the comments.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://benp44.github.io/blog/posts/big-decisions/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://benp44.github.io/blog/posts/big-decisions/</guid>
-      <description>Don&amp;rsquo;t end up in a position where you&amp;rsquo;re saying &amp;ldquo;this major direction change happened by accident&amp;rdquo;, or &amp;ldquo;we didn&amp;rsquo;t really choose this language/platform/tech, it just happened&amp;rdquo;
-Areas where decision making should be considered carefully:
-Platform Language
-These have major feedback in
-Hiring Publishing/deployment Performance Certification Security
-Really basic hierarchy of how to make decisions
-== Artifact/Object
-Build Prototype Wireframe Conceptualise
-== Feedback
-User Testing Internal Testing User/Internal Preview Comparison with existing data Intuitive predictions</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://benp44.github.io/blog/posts/unit-tests-and-logging/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://benp44.github.io/blog/posts/unit-tests-and-logging/</guid>
-      <description>Unit tests for logging? Mocking loggers? How about just mock to redirect logs to the unit test output - can be really useful</description>
+      <description>Have you ever noticed that comments usually appear greyed out or pale in most IDE colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don&amp;rsquo;t think very much of comments. Comments are equivalent to a footnote in a book &amp;ndash; an optional extra that doesn&amp;rsquo;t really need to be read. I mean, almost the first thing a compiler does is remove all the comments.</description>
     </item>
     
   </channel>

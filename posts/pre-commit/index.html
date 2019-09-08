@@ -1051,17 +1051,21 @@ margin-left: -4%;
 
 <h3 id="what-is-pre-commit-and-how-can-it-help-me">What is pre-commit and how can it help me?</h3>
 
-<p>I&rsquo;ve been using pre-commit for a few weeks now, prototyping it for rollout across my team. If you&rsquo;re not aware of pre-commit, it&rsquo;s one a variety of tools that you can use to run a series of tests and checks on your code, at the point of committing to git. From <a href="https://pre-commit.com/">the pre-commit site</a>:</p>
+<p>If you&rsquo;re not aware of pre-commit, it&rsquo;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From <a href="https://pre-commit.com/">the pre-commit site</a>:</p>
 
 <blockquote>
 <p>[pre-commit] is a multi-language package manager for pre-commit hooks. You specify a list of hooks you want and pre-commit manages the installation and execution of any hook written in any language before every commit</p>
 </blockquote>
 
-<p>The big takeaway here is that pre-commit offers you a way of cleaning and standardising your code before it ever gets into a repository. You can banish forever those commits with messages like &ldquo;Fix formatting&rdquo;, &ldquo;Apply coding standard&rdquo; or &ldquo;Run linter&rdquo;. Now all these things are done automatically <em>before</em> a dodgy commit is made. Nice eh? What&rsquo;s more, you can define a coding style and have pre-commit enforce it. This is somewhat more of a minefield given the politics around coding styles, but in many cases this is really, really useful.</p>
+<p>To paraphrase, pre-commit offers you a way of cleaning and standardising commits to your codebase before they actually get into a repository. You can banish forever those commits with messages like &ldquo;Fix formatting&rdquo;, &ldquo;Apply coding standard&rdquo; or &ldquo;Run linter&rdquo;. Now these mistakes can be automatically prevented <em>before</em> the commit is made.</p>
+
+<p>Not bad right? What&rsquo;s more, if you want to go to the next level you can even define a coding style and have pre-commit enforce it. Of course this is somewhat more of a minefield given the politics around coding styles, but used correctly, this can really, really help improve the cleanliness/consistency of your codebase.</p>
+
+<p>I&rsquo;ve turned some notes I took when testing pre-commit into a short tutorial.</p>
 
 <h3 id="getting-started-with-pre-commit">Getting started with pre-commit</h3>
 
-<p>Here&rsquo;s an walkthrough getting pre-commit up and running on a repository:</p>
+<p>Here&rsquo;s an walkthrough getting pre-commit up and running on a git repository. Note you will need Python3 and pip3 installed.</p>
 
 <ol>
 <li><p><strong>Installing pre-commit locally</strong></p>
@@ -1097,10 +1101,6 @@ Fixing &lt;filename not shown&gt;
 Fixing &lt;filename not shown&gt;
 Fixing &lt;filename not shown&gt;
 Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
 
 Fix End of Files.........................................................Failed
 hookid: end-of-file-fixer
@@ -1112,27 +1112,21 @@ Fixing &lt;filename not shown&gt;
 Fixing &lt;filename not shown&gt;
 Fixing &lt;filename not shown&gt;
 Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
-Fixing &lt;filename not shown&gt;
 
 Check Yaml...........................................(no files to check)Skipped
 Check for added large files..............................................Passed
 
 </code></pre>
 
-<p>Wow! So many issues. OK they&rsquo;re relatively small-fry, but then all I&rsquo;m running here is the default, sample set of linters. As you can see, what&rsquo;s being caught here are whitesapce issues: I&rsquo;ve left trailing whitespace on some lines, and in some cases I&rsquo;m not ending my files with exactly one line break (a <a href="https://stackoverflow.com/a/729795/408642">Posix standard</a> if you&rsquo;re not aware). And as a good linter should these simple, unambiguous things have been fixed for me.</p>
+<p>Yikes! So many issues. Thankfully they&rsquo;re relatively small-fry. But then all I&rsquo;m running here is the default sample set of linters. As you can see, what&rsquo;s being caught here are largely whitespace issues: I&rsquo;ve left trailing whitespace on some lines, and in some cases I&rsquo;m not ending my files with exactly one line break (a <a href="https://stackoverflow.com/a/729795/408642">Posix standard</a> if you weren&rsquo;t aware).</p>
 
-<p>I ran this command manually for the sake of this example, but the real point of pre-commit is that you don&rsquo;t actually need to run this command. As a git hook, it is run automatically whenever I commit to this repo. Before the actual commit happens. You know, &ldquo;pre-commit&rdquo;.</p></li>
+<p>And as a good linter should these simple, unambiguous things have been fixed for me. I just need to re-stage the files and re-commit.</p>
+
+<p>Note that I ran this command manually for the sake of an example, but the real point of pre-commit is that you don&rsquo;t actually need to run this command. As a git hook, it is run automatically whenever I commit to this repo. Before the actual commit happens. You know, &ldquo;pre-commit&rdquo;.</p></li>
 
 <li><p><strong>Adding some more useful tools</strong></p>
 
-<p>Next step is to modify <code>.pre-commit-config.yaml</code> for this repo, and add some more specific linters.</p>
+<p>Next let&rsquo;s modify the <code>.pre-commit-config.yaml</code> for this repo, and add some more specific linters.</p>
 
 <p>The current, default config file looks like this:**</p>
 
@@ -1181,7 +1175,7 @@ repos:
     - id: autopep8
 </code></pre>
 
-<p>I&rsquo;ve added a couple of shellscript linters, <code>shellcheck</code>, <code>shfmt</code> and <code>shell-lint</code>. I&rsquo;ve also added a symlink checker as the repo has a few of those knocking around, and god knows they can cause havoc when they go awry.</p>
+<p>I&rsquo;ve added a couple of shellscript linters, <code>shellcheck</code>, <code>shfmt</code> and <code>shell-lint</code>. I&rsquo;ve also added a symlink checker as the repo may end up with a few of those knocking around, and god knows they can cause havoc when they go awry.</p>
 
 <p>More interesting is the autopep8 linter which checks my Python code conforms to the <a href="https://www.python.org/dev/peps/pep-0008/">PEP8 standard</a>.</p>
 
@@ -1213,13 +1207,17 @@ hookid: autopep8
 Files were modified by this hook.
 </code></pre>
 
-<p>At first I thought it might be overkill adding various shell script linters, but as you can see shellcheck passed, but shfmt failed. Unfortunately not all hooks work in the same way, and here I have to run the provided command to find and fix the exact problem.</p>
+<p>At first I thought it might be overkill adding various shell script linters, but as you can see <code>shellcheck</code> passed, but <code>shfmt</code> failed. Unfortunately not all hooks work in the same way, and here I have to run the provided command to find and fix the exact problem.</p>
 
-<p>Next up, we can see that <code>autopep8</code> has run and made some automatic fixes to my python code. Neat! There&rsquo;s just one problem. PEP8 is a pretty good code standard to my mind, however I&rsquo;ve always found that a couple of the rules are a bit aggressive. I&rsquo;m not keen on the rather severe line length limit, so I usually disable that, but more of a problem here is that one of the changes <code>autopep8</code> is making is breaking my unit tests.</p>
+<p>Next up, we can see that <code>autopep8</code> has run and made some automatic fixes to my python code. Neat!</p>
 
-<p>Briefly, in Python unit tests sometimes you want to mock a whole module before it gets imported. As a result you sometimes have some code to do this <em>before</em> the import. This breaks <a href="https://lintlyci.github.io/Flake8Rules/rules/E402.html">PEP8 rule E402</a>.</p>
+<p>There&rsquo;s just one problem. PEP8 is a pretty good code standard to my mind, however I&rsquo;ve always found that a couple of the rules are a bit aggressive. I&rsquo;m not keen on the rather severe line length limit, so I usually disable that, but more of a problem here is that one of the changes <code>autopep8</code> is making is breaking my unit tests.</p>
 
-<p>My current workaround for this is to give the unit test files a little more slack than the production code, by running <code>autopep8</code> in two diffent modes. The default (strict) settings are used on my production code, and then slightly relaxed settings are used for the files containing unit tests.</p>
+<p>As a brief aside, in Python unit tests sometimes you want to mock a whole module before it gets imported. As a result you sometimes have some code to do this <em>before</em> the import. This breaks <a href="https://lintlyci.github.io/Flake8Rules/rules/E402.html">PEP8 rule E402</a>.</p>
+
+<p>This seems a bit of a nasty problem, as now I have no way to commit my code without these PEP8 changes breaking my unit tests.</p>
+
+<p>So here&rsquo;s my workaround for this. I&rsquo;ve reconfigured the PEP8 linter to give my unit tests a little more slack than the production code, by running <code>autopep8</code> in two diffent modes. The default (strict) settings are used on my production code, and then slightly relaxed settings are used for the files containing unit tests.</p>
 
 <pre><code class="language-plain">-   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.4.4
@@ -1235,6 +1233,8 @@ Files were modified by this hook.
     name: autopep8-unit-tests
     args: [&quot;-i&quot;, &quot;--ignore=E226,E24,W50,W690,E402&quot;]
 </code></pre>
+
+<p>Notice that the first entry excludes the <code>tests</code> directory, and the second entry ignores some of the default PEP8 warnings.</p>
 
 <p>Now when I run pre-commit, we&rsquo;re looking good:</p>
 
@@ -1253,16 +1253,14 @@ autopep8-unit-tests......................................................Passed
 
 <li><p><strong>Getting others involved</strong></p>
 
-<p>After committing all these changes to the repo, the next step is to get other developers using it, and then finally to run <code>pre-commit</code> as part of the continuous integration build system (in my case simply add a call to pre-commit in my Jenkinsfile).</p></li>
+<p>After committing all these changes to the repo, the next step is to get other developers using it, and then finally to run <code>pre-commit</code> as part of the continuous integration build system (in my case simply add a call to pre-commit into my CI system on Jenkins).</p></li>
 </ol>
 
 <h3 id="conclusion">Conclusion</h3>
 
-<p>Linters and other means of checking your code should be an essential part of any software development process, but they are an easy thing to forget or to ignore. Using pre-commit is a simple and powerful way to improve the quality of all your code. What&rsquo;s not to like?</p>
+<p>Linters and other automatic means of checking your code should be an essential part of any software development process, but they are an easy thing to forget or to ignore. Using pre-commit is a simple and powerful way to improve the quality of your code. What&rsquo;s not to like? The key is getting agreement across the team on which linters and rules to use, and evolving the configuration over time.</p>
 
-<p>My next steps are to investigate what C++ hooks are available and then start running pre-commit on my C++ repos, and see what errors come up.</p>
-
-<p>The real work begins&hellip;</p>
+<p>My next steps are to investigate what C++ hooks are available and then start running pre-commit on my C++ repos, and see what errors come up there. The real work begins&hellip;</p>
 
 
             </div>
@@ -1311,7 +1309,7 @@ autopep8-unit-tests......................................................Passed
         
 
         
-            <a href="https://www.linkedin.com/in/ben" rel=me target="_blank">
+            <a href="https://www.linkedin.com/in/benp44" rel=me target="_blank">
                 <img class="icon" src="https://benp44.github.io/blog/img/linkedin.svg" alt="linkedin" />
             </a>
         

@@ -1051,13 +1051,13 @@ margin-left: -4%;
 
 <h3 id="what-is-fzf">What is fzf?</h3>
 
-<p>If you&rsquo;re not familiar with <strong>fzf</strong>, I would highly recommend giving it a try. I&rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&rsquo;s <a href="https://github.com/junegunn/fzf">github page</a>. But in short, fzf a search tool used for listing and finding files, commands and other things in the terminal. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</p>
+<p>If you&rsquo;re a linux terminal user and not familiar with <strong>fzf</strong>, I would highly recommend giving it a try. I&rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&rsquo;s <a href="https://github.com/junegunn/fzf">github page</a>. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</p>
 
-<p>For example, fzf replaces the standard <code>reverse-i-search</code> behaviour (triggered by pressing <strong>Ctrl+R</strong> in most terminals), with a superior alternative that shows a list of the most recent commands that match with the inputted search string, and allows for &ldquo;fuzzy&rdquo; text searching to further refine this list.</p>
+<p>For example, fzf replaces the standard <code>reverse-i-search</code> behaviour (typically triggered by pressing <strong>Ctrl+R</strong>), with a superior alternative that shows a list of the most recent commands that match with the inputted search string, and allows for &ldquo;fuzzy&rdquo; text searching to further refine this list.</p>
 
 <p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/fzf/command.gif" src="https://benp44.github.io/blog/images/fzf/low/command.gif" alt="Listing command history" /></p></figure>
 
-<p>Probably more useful than searching the command history is fzf&rsquo;s file searching. This can be invoked various ways, but the easiest to demonstrate is simply by pressing <code>Ctrl+T</code>. This starts the fuzzy search for files and directories under the current path.</p>
+<p>Maybe even more useful than searching the command history is fzf&rsquo;s file searching. This can be invoked various ways,but the easiest to demonstrate is simply by pressing <code>Ctrl+T</code>. This starts the fuzzy search for files and directories under the current path.</p>
 
 <p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/fzf/files.gif" src="https://benp44.github.io/blog/images/fzf/low/files.gif" alt="Listing command history" /></p></figure>
 
@@ -1065,26 +1065,19 @@ margin-left: -4%;
 
 <h3 id="customising-the-search">Customising the search</h3>
 
-<p>Usefully, fzf allows you to use your own commands to perform the actual searching, and following the recommendation in the author, I&rsquo;m using <code>fd</code> for this, which makes things even faster. To do this I&rsquo;ve added the following to my <code>.zshrc</code>:</p>
+<p>Usefully, fzf allows you to use your own commands to perform the actual searching, and following the recommendation of the author, I&rsquo;m using <code>fd</code> for this, which makes things even faster. To do this I&rsquo;ve added the following to my <code>.zshrc</code>:</p>
 
 <pre><code class="language-bash"># Use fd to list files for fzf
 _fzf_compgen_path() {
     fd --hidden --follow --exclude &quot;.git&quot; . &quot;${1}&quot;
 }
-
-# Use fd to list dirs for fzf
-_fzf_compgen_dir() {
-    fd --type d --hidden --follow --exclude &quot;.git&quot; . &quot;${1}&quot;
-}
 </code></pre>
-
-<p>The second function here is really only for the sake of completeness as I&rsquo;m not currently using the <em>search for directory</em> feature (by default <code>Alt+C</code>). This is because I&rsquo;m happy enough finding directories using the <code>Ctrl+R</code> file search, then double-tapping enter to <code>cd</code> to them.</p>
 
 <h3 id="previews">Previews</h3>
 
-<p>Another nice feature of fzf is the ability to show a preview pane for the file you have highlighted in the search result. The typical configuration for this will show text-based files using cat in the preview pane. As this seemed a useful feature, I thought I would drill-down into the configuration of this, and try to get a bit more out of it.</p>
+<p>Another nice feature of fzf is the ability to show a preview pane for the file you have highlighted in the search result. The typical configuration for this will show text-based files using <code>cat</code> in the preview pane. While exploring the features of fzf I thought I would drill-down into the configuration of this, and try to get a bit more out of it.</p>
 
-<p>So in my <code>.zshrc</code> I&rsquo;m telling fzf to use the <code>fzf-preview.sh</code> script to preview the selected search result:</p>
+<p>So in my <code>.zshrc</code> I&rsquo;m now telling fzf to use the <code>fzf-preview.sh</code> script to preview the selected search result:</p>
 
 <pre><code class="language-bash"># Call script to preview files
 export FZF_CTRL_T_OPTS=&quot; --preview '~/path/to/fzf-preview.sh {}'&quot;
@@ -1122,6 +1115,8 @@ fi
 <p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/fzf/preview.gif" src="https://benp44.github.io/blog/images/fzf/low/preview.gif" alt="Listing command history" /></p></figure>
 
 <p>There&rsquo;s still a few issues with this, but I&rsquo;ll expand the functionality here to do more as and when I come across other ideas for how to preview different files.</p>
+
+<p>Anyway, enough said about fzf, but if you&rsquo;ve not tried it already I highly recommend you give it a go.</p>
 
 
             </div>
@@ -1170,7 +1165,7 @@ fi
         
 
         
-            <a href="https://www.linkedin.com/in/ben" rel=me target="_blank">
+            <a href="https://www.linkedin.com/in/benp44" rel=me target="_blank">
                 <img class="icon" src="https://benp44.github.io/blog/img/linkedin.svg" alt="linkedin" />
             </a>
         

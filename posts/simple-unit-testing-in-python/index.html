@@ -1049,15 +1049,15 @@ margin-left: -4%;
     
     
 
-<h3 id="foreword-on-this-approach-to-unit-testing-in-python">Foreword on this approach to unit testing in Python</h3>
+<h3 id="a-foreword-on-this-approach-to-unit-testing-in-python">A foreword on this approach to unit testing in Python</h3>
 
 <p>Python is a very flexible language, and while the creators of Python tried to follow the guiding principle &ldquo;there should be one, and preferably only one, obvious way to do things&rdquo;, this flexibility inevitably means that there are &ndash; in fact &ndash; lots of ways to do things, some good, some bad.</p>
 
 <p>Unit testing in Python is no exception to this. One of these <em>flexibilties</em> arises from the fact that Python is a dynamically-typed language in which meta-programming and reflection are trivial and commonly used. As a result, you can get up and running with your unit test as simply as, for example, re-assigning a class member to a stub or mock as and when required. Moreover, as Python has no enforced member access modifiers (e.g. strictly public or private functions), one of the classic problems of unit testing, summarised by the question &ldquo;How do I test a private method?&rdquo;, can be answered as simply as &ldquo;just call it&rdquo;.</p>
 
-<p>However this can lead to problems arising from the old trap that developers often fall into: forgetting what unit tests are for. In many cases unit testing is as much about maintaining code modularity than it is about verifying the behaviour of code. The length of rope that Python gives you to make unit testing &ldquo;easier&rdquo; is more than enough to hang yourself at the alter of the latter, while totally ignoring the former.</p>
+<p>However this can lead to problems arising from the old trap of forgetting what unit tests are for. In many cases unit testing is as much about maintaining code modularity than it is about verifying the behaviour of code. The length of rope that Python gives you to make unit testing &ldquo;easier&rdquo; is more than enough to hang yourself at the alter of the latter, while totally ignoring the former.</p>
 
-<p>I&rsquo;m still a relative newcomer to Python, and when I started writing production code I followed an approach to unit-testing based on dependency injection, as one would in a strongly-typed language such as C++. This was more force of habit under time pressure than a reasoned decision, but in time I came to realise the benefits of sticking to this pattern as the project grew in complexity. To my eyes, this approach &ndash; while being quite verbose and possibly non-&ldquo;pythonic&rdquo; &ndash; ensures that code modularity is still actively <em>enforced</em> by the practice of consciously breaking out explicit dependencies.</p>
+<p>Although I&rsquo;ve written quite a lot of Python, I wouldn&rsquo;t call myself an expert on the language. When I started writing production code in Python I followed an approach to unit-testing based on dependency injection, as one would in a strongly-typed language such as C++. In some ways this was more force of habit under time pressure than a reasoned decision, but in time I came to realise the benefits of sticking to this pattern as the project grew in complexity. To my eyes, this approach &ndash; while being quite verbose and possibly non-&ldquo;pythonic&rdquo; &ndash; ensures that code modularity is still actively encouraged (if not enforced) by the practice of consciously breaking out explicit dependencies.</p>
 
 <p>All this is not to say that the aforementioned features of the language aren&rsquo;t extremely useful when it comes to unit testing, and in certain circumstances we are empowered to grease the cogs when we need to. Compared with static-typed, older-generation languages, as long as one takes care to establish an approach to avoid some of the pitfalls, writing unit tests in Python can be clean and easy.</p>
 
@@ -1098,7 +1098,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 
 <p><em>That&rsquo;s it.</em></p>
 
-<p>Having done a lot of unit testing in C++, my mind is already blown.</p>
+<p>Having done a lot of unit testing in C++, the first time I saw this my mind was blown.</p>
 
 <p>But it gets better. Let&rsquo;s look a our first test, which can be described as: <em>&ldquo;If an internet connection is available, but we&rsquo;ve already checked for updates today, we don&rsquo;t check again.&rdquo;</em></p>
 
@@ -1124,7 +1124,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 
 <p><code>mock_network_model.check_for_internet_connection.return_value = True</code></p>
 
-<p>How fucking incredible is that? There&rsquo;s nothing hidden here, we simply tell the framework that there&rsquo;s a method called <code>check_for_internet_connection</code> on the network model, and if and when it is called, it should return <code>True</code>. The magic of Python.</p>
+<p>How freaking incredible is that? There&rsquo;s nothing hidden here, we simply tell the framework that there&rsquo;s a method called <code>check_for_internet_connection</code> on the network model, and if and when it is called, it should return <code>True</code>. The magic of Python.</p>
 
 <p>Asserting the behaviour of the controller is equally simple:</p>
 
@@ -1223,7 +1223,7 @@ class UpdateControllerTestCase(unittest.TestCase):
         
 
         
-            <a href="https://www.linkedin.com/in/ben" rel=me target="_blank">
+            <a href="https://www.linkedin.com/in/benp44" rel=me target="_blank">
                 <img class="icon" src="https://benp44.github.io/blog/img/linkedin.svg" alt="linkedin" />
             </a>
         

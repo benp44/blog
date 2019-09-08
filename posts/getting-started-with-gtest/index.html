@@ -1049,35 +1049,35 @@ margin-left: -4%;
     
     
 
-<p>After some time working with C# and taking advantage of the variety of fantastic unit testing and <a href="https://github.com/Moq/moq4/wiki/Quickstart">mocking tools</a> available within Microsoft&rsquo;s playground, when I returned to using C++ I <em>really</em> wanted to ensure that the unit testing experience was &ndash; as far as possible &ndash; as convenient and powerful.</p>
+<h3 id="unit-testing-in-c">Unit testing in C++</h3>
 
-<p>Unit testing can be a little dry at times (<em>what!? you mean you don&rsquo;t get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</em>), and if it&rsquo;s made more difficult or over-complicated by the framework, that can really add to the malaise one experiences while trying to implement some simple functionality and finding writing the tests is taking several times longer than the production code.</p>
+<p>I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and <a href="https://github.com/Moq/moq4/wiki/Quickstart">mocking tools</a> available within the cosy Microsoft playground. But in the last few years I&rsquo;ve found myself working with C++ a lot more, and I <em>really</em> wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.</p>
 
-<p>Thankfully, the good people down at Google have done some fantastic work in this area and released the <a href="https://github.com/google/googletest"><strong>Google Test</strong></a> framework, which I&rsquo;m going to refer to as gtest from here on.</p>
+<p>Unit testing can be a little dry at times (<em>what!? you mean you don&rsquo;t get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</em>), so in particular when trying to teach and express the value of unit testing to an inexperienced team, it&rsquo;s essential that the framework doesn&rsquo;t make the task any slower or more difficult.</p>
 
-<p>I thought it might be worth my documenting my some examples and experiences I&rsquo;ve had using this framework.</p>
+<p>Thankfully, the good people down at Google have done some fantastic work in this area and created the <a href="https://github.com/google/googletest"><strong>Google Test</strong></a> framework, which I&rsquo;m going to refer to as gtest from here on. I thought it might be worth my documenting my some examples and experiences I&rsquo;ve had using this framework.</p>
 
 <p>Two things to note:</p>
 
 <ul>
-<li><p><strong>This is not a tutorial</strong>, but a demonstration of how to use abstract unit-testing concepts in the gtest framework. To get much out of it, you&rsquo;ll need to be familiar with unit testing, mocking, dependency injection, etc.</p></li>
+<li><p><strong>This is not really meant to be a tutorial</strong>. It&rsquo;s more a demonstration of how to use abstract unit-testing concepts in the gtest framework. To get much out of it, you&rsquo;ll need to be familiar with unit testing, mocking, dependency injection, etc.</p></li>
 
-<li><p>Google&rsquo;s documentation is pretty good. A very useful primer is available on the project github page <a href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md">here</a>, and similarly useful is a <a href="https://github.com/google/googletest/blob/master/googlemock/docs/CheatSheet.md">cheatsheet</a> for syntactic reference.</p></li>
+<li><p>If you are looking for a tutorial, Google&rsquo;s own documentation is pretty good. A very useful primer is available on the project github page <a href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md">here</a>, and similarly useful is a <a href="https://github.com/google/googletest/blob/master/googlemock/docs/CheatSheet.md">cheatsheet</a> for syntactic reference.</p></li>
 
-<li><p>I also happen to be using the Qt framework in these examples, so I&rsquo;m using a few Qt core classes e.g. <code>&lt;QString&gt;</code>. This shouldn&rsquo;t detract too much from the general approach - there&rsquo;s nothing reliant on Qt here, it&rsquo;s just basic stuff.</p></li>
+<li><p>I also happen to be using the Qt framework in these examples, so you&rsquo;ll notice a few Qt core classes e.g. <code>&lt;QString&gt;</code>. This shouldn&rsquo;t detract too much from the general approach - there&rsquo;s nothing reliant on Qt here, it&rsquo;s just basic stuff. And if you&rsquo;re playing with the code I expect you should be able to swap out <code>QString</code> for a <code>std:string</code> without too much difficulty.</p></li>
 </ul>
 
 <hr />
 
-<h3 id="background">Background</h3>
+<h3 id="an-example-project">An example project</h3>
 
-<p>To give some context, in this example, I&rsquo;m working on an application that displays a series of <em>screens</em> in a wizard-like system to perform initial configuration of the system. One of these screens allows the user to apply localisation settings, and the wireframes show the user selecting a locale from a list which is then used to update the system configuration.</p>
+<p>To give some context, in this example, I&rsquo;m working on an application that displays a series of <em>screens</em> in a wizard-like system. One of these screens allows the user to apply localisation settings, and the design wireframes show the user selecting a locale from a list which is then used to update the system configuration.</p>
 
 <p>Classes in this project are structured along the lines of MVC, with views calling methods on controllers (such as <code>onPageDisplayed</code> and <code>pageCompleted</code>), and the controllers interacting with underlying models. I&rsquo;m going to use a class called <strong>LocalisationScreenController</strong> for an example, and test it using <strong>TestLocalisationScreenController</strong></p>
 
 <h3 id="setup">Setup</h3>
 
-<p>I&rsquo;m not going to go into more detail on the structure of my project because this is a tad complex and very specific to my setup (submodules etc). But if you&rsquo;re getting started with gtest, predictably the key to setup is that you are going to need to link to the gtest libraries, `#include&rsquo; the appropriate header(s) and lift the boilerplate code from the primer in the framework documentation.</p>
+<p>I&rsquo;m not going to go into more detail on the structure of my project because this is a tad complex and very specific to my setup (git submodules etc). But if you&rsquo;re getting started with gtest, predictably the key to setup is that you are going to need to link to the gtest libraries, `#include&rsquo; the appropriate header(s) and lift the boilerplate code from the primer in the framework documentation.</p>
 
 <p><strong>The class being tested</strong></p>
 
@@ -1097,9 +1097,7 @@ protected:
 private:
 
     void setupLocaleSelection();
-    void setupWifiCountrySelection();
     void setSystemLocale();
-    void setSystemWifiCountry();
 
     ILocalisationModel* m_localisationModel;
 };
@@ -1170,7 +1168,7 @@ namespace
 
 <h3 id="mocks">Mocks</h3>
 
-<p>While mocks in gtest are not &ldquo;configuration-free&rdquo;, they are impressively light, given the amount of actual magic that is happening under the hood of these things. Each mock needs to be defined along the lines of the following, which is my mock for the <code>Screen</code> class. You can see <code>IScreen</code> is a view with typical methods to show and hide it, and to set and get properties from the UI.</p>
+<p>While mocks in gtest are not &ldquo;configuration-free&rdquo;, they are impressively light given the amount of magic that is happening under the hood. Each mock needs to be defined along the lines of the following example, which is my mock for the <code>Screen</code> class. You can see <code>IScreen</code> is a view with typical methods to show and hide it, and to set and get properties from the UI.</p>
 
 <pre><code class="language-cpp">#include &quot;screen.h&quot;
 #include &quot;gmock/gmock.h&quot;
@@ -1189,7 +1187,7 @@ public:
 
 </code></pre>
 
-<p>Each method on the mocked interface needs to be enumerated inside a <code>MOCK_METHOD</code> macro, and the whole mock can be generated fairly easily. I feel like Google got within a hair&rsquo;s breadth of not needing this class at all, and with future versions of C++ may be able to eliminate it.</p>
+<p>Each method on the mocked interface needs to be enumerated inside a <code>MOCK_METHOD</code> macro, and the whole mock can be generated fairly easily. It feels like the team developing gtest got very close to not needing these headers at all,and with future versions of the C++ standard I wonder if they may be able to eliminate it altogether.</p>
 
 <h3 id="a-simple-test">A simple test</h3>
 
@@ -1237,9 +1235,9 @@ public:
 
 </code></pre>
 
-<p>This tells the mock to expect a single call to setProperty with the strings <code>&quot;comboLocale&quot;</code>, <code>&quot;currentIndex&quot;</code> and the variant <code>3</code>. We&rsquo;re expecting the controller to set the <em>currentIndex</em> property on the <em>comboLocale</em> UI component to a value of <em>3</em>.</p>
+<p>This tells the mock to expect a single call to <code>setProperty</code> with the strings <code>&quot;comboLocale&quot;</code>, <code>&quot;currentIndex&quot;</code> and the variant <code>3</code>. We&rsquo;re expecting the controller to set the <em>currentIndex</em> property on the <em>comboLocale</em> UI component to a value of <em>3</em>.</p>
 
-<p><strong>Note</strong> unfortunately, there are a few type issues using Qt core classes such as <code>QString</code>, so I&rsquo;ve had to add constructors around each of these.</p>
+<p><strong>Note</strong> unfortunately, there are a few type-conversion issues using Qt core classes such as <code>QString</code>, so I&rsquo;ve had to add constructors around each of these.</p>
 
 <p>It is also important to notice the other expectation:</p>
 
@@ -1247,7 +1245,7 @@ public:
 
 </code></pre>
 
-<p>This tells the mock to expect two other calls to setProperty, with any values for the parameters. This is because other properties are being set on the view during the call to <code>onShow</code>, which are not relevent to this test, but are happening nonetheless. We need to let the framework know about these other calls, otherwise the test rightly fails.</p>
+<p>This tells the mock to expect two other calls to setProperty, with any (<code>_</code>) value for each of the parameters. This is because other properties are being set on the view during the call to <code>onShow</code>, which are not relevent to this test, but are happening nonetheless. We need to let the framework know about these other calls, otherwise the test rightly fails.</p>
 
 <h3 id="inspecting-the-mock">Inspecting the mock</h3>
 
@@ -1281,7 +1279,7 @@ public:
 
 </code></pre>
 
-<p>So we pass a local variable by reference to the <code>SaveArg&lt;2&gt;</code> method, which tells the mock to copy whatever gets passed to the specified method into the variable. This allows us then to use the typical assert equal macro <code>ASSERT_EQ</code> which does what you&rsquo;d expect.</p>
+<p>So we pass a local variable by reference to the <code>SaveArg&lt;2&gt;</code> method, which tells the mock to copy whatever gets passed to the specified method into the variable. This allows us then to use the an &ldquo;assert equal&rdquo; macro <code>ASSERT_EQ</code> to validate our expectation of what is passed here.</p>
 
 <h3 id="summing-up-for-now">Summing up (for now)</h3>
 
@@ -1334,7 +1332,7 @@ public:
         
 
         
-            <a href="https://www.linkedin.com/in/ben" rel=me target="_blank">
+            <a href="https://www.linkedin.com/in/benp44" rel=me target="_blank">
                 <img class="icon" src="https://benp44.github.io/blog/img/linkedin.svg" alt="linkedin" />
             </a>
         

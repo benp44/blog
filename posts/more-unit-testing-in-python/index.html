@@ -1049,6 +1049,8 @@ margin-left: -4%;
     
     
 
+<p>This post is a collection of python unit testing &lsquo;gotchas&rsquo;.</p>
+
 <h3 id="mocking-external-packages">Mocking external packages</h3>
 
 <pre><code class="language-python">import sys
@@ -1065,6 +1067,8 @@ from config_editor import ConfigEditor
 <p>Now we have effectively mocked all actual file I/O in our tests</p>
 
 <h3 id="mocking-in-built-methods-and-file-i-o">Mocking in-built methods and file I/O</h3>
+
+<p>Super useful if you want to test a unit that uses the builtin <code>open</code> method. The following example is a class for modifyinh a system config file, but the unit tests never need touch the file system. The <code>setUp</code> defines the initial state of the file, and then each test can evaluate its expected and final state.</p>
 
 <pre><code class="language-python">class ConfigEditorTestCase(unittest.TestCase):
 
@@ -1102,11 +1106,27 @@ from config_editor import ConfigEditor
 
 <h3 id="patching-objects">Patching objects</h3>
 
-<p>Patching like this as opposed to <code>with patch()</code> or decorator</p>
+<p>Python offers a few ways of patching objects so that they can be used for unit testing. Often you see the <code>with patch()</code> notation to achieve this in a local scope:</p>
+
+<pre><code class="language-python">    with patch('module.Foo') as mock:
+        instance = mock.return_value
+        instance.method.return_value = 'the result'
+        result = some_function()
+        assert result == 'the result'
+</code></pre>
+
+<p>Or sometimes in the form of a method decorator:</p>
+
+<pre><code class="language-python">    @mock.patch(&quot;os.listdir&quot;, mock.MagicMock(return_value=&quot;some_directory_name&quot;))
+    def test1():
+        assert &quot;some_directory_name&quot; == os.listdir()
+</code></pre>
+
+<p>But sometimes you want to patch an object for whole fixture without decorating every test in the same way. Here&rsquo;s one way to achieve that:</p>
 
 <pre><code class="language-python">    def setUp(self):
 
-        # Now patch the close method of the two stream, so we can check they are closed correctly
+        # Patch the close method of the two stream, so we can check they are closed correctly
 
         self.mock_close_input_stream = Mock()
         self.patch_input_stream_close_method = patch.object(self.mock_input_file, &quot;close&quot;, self.mock_close_input_stream)
@@ -1122,9 +1142,9 @@ from config_editor import ConfigEditor
         self.patch_input_stream_close_method.stop()
 </code></pre>
 
-<h3 id="testing-in-teardown">Testing in tearDown</h3>
+<h3 id="making-assertions-in-the-teardown">Making assertions in the tearDown</h3>
 
-<p>Testing certain things that should be the case for all tests</p>
+<p>When you&rsquo;ve written a few tests which duplicate an assertion, it can be cleaner to put this in the tearDown. This can be especially useful for stuff like resource de-allocation, or ensuring that files handles are closed etc.</p>
 
 <pre><code class="language-python">    def tearDown(self):
 
@@ -1190,7 +1210,7 @@ from config_editor import ConfigEditor
         
 
         
-            <a href="https://www.linkedin.com/in/ben" rel=me target="_blank">
+            <a href="https://www.linkedin.com/in/benp44" rel=me target="_blank">
                 <img class="icon" src="https://benp44.github.io/blog/img/linkedin.svg" alt="linkedin" />
             </a>
         

@@ -17,7 +17,7 @@
       <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/fzf/</guid>
-      <description>What is fzf? If you&amp;rsquo;re not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and finding files, commands and other things in the terminal. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
+      <description>What is fzf? If you&amp;rsquo;re a linux terminal user and not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
     </item>
     
     <item>
