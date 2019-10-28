@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://benp44.github.io/blog/tags/code-quality/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -16,55 +15,46 @@
   <url>
     <loc>https://benp44.github.io/blog/tags/linters/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/posts/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/software-engineering/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/tools/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/kanban/</loc>
     <lastmod>2019-05-29T08:49:08+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/project-management/</loc>
     <lastmod>2019-05-29T08:49:08+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/scrum/</loc>
     <lastmod>2019-05-29T08:49:08+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -90,19 +80,16 @@
   <url>
     <loc>https://benp44.github.io/blog/tags/.zshrc/</loc>
     <lastmod>2018-11-17T17:22:35+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/linux/</loc>
     <lastmod>2018-11-17T17:22:35+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/tags/terminal/</loc>
     <lastmod>2018-11-17T17:22:35+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -121,6 +108,11 @@
   </url>
   
   <url>
+    <loc>https://benp44.github.io/blog/tags/cpp/</loc>
+    <lastmod>2018-06-03T15:05:19+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://benp44.github.io/blog/posts/getting-started-with-gtest/</loc>
     <lastmod>2018-06-03T15:05:19+01:00</lastmod>
   </url>
@@ -128,13 +120,6 @@
   <url>
     <loc>https://benp44.github.io/blog/tags/unit-testing/</loc>
     <lastmod>2018-06-03T15:05:19+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/cpp/</loc>
-    <lastmod>2018-06-03T15:05:19+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -159,7 +144,6 @@
   
   <url>
     <loc>https://benp44.github.io/blog/categories/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>
