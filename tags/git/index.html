@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Unrecognized Escape Sequence" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://benp44.github.io/blog/posts/nightmare-of-versioning/" />
-<meta property="og:title" content="On the nightmare of software versioning" />
-<meta property="twitter:title" content="On the nightmare of software versioning">
+<meta property="og:url" content="https://benp44.github.io/blog/tags/git/" />
+<meta property="og:title" content="git" />
+<meta property="twitter:title" content="git">
 
     <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Unrecognized Escape Sequence - On the nightmare of software versioning 
+     Unrecognized Escape Sequence - git 
 
 </title>
-<link rel="canonical" href="https://benp44.github.io/blog/posts/nightmare-of-versioning/">
+<link rel="canonical" href="https://benp44.github.io/blog/tags/git/">
 
 
 <style media="screen">
@@ -991,6 +991,8 @@ margin-left: -4%;
 
 
 
+  <link href="https://benp44.github.io/blog/tags/git/index.xml" rel="alternate" type="application/rss+xml" title="Unrecognized Escape Sequence" />
+
 
 </head>
 
@@ -998,7 +1000,7 @@ margin-left: -4%;
 <body>
 
 
-<div class="header column">
+<div class="header header-home column">
 
     <div class="container">
         
@@ -1031,78 +1033,26 @@ margin-left: -4%;
     </div>
 </div>
 
-
-
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="page-heading">
-
+            <div class="posts">
+                <div class="page-heading">Posts about git</div>
+                <ul>
+                    
+                        <li class="post-item">
+    <span class="meta">Sep 5, 2019</span>
     
-    On the nightmare of software versioning
+    <a href="../../posts/nightmare-of-versioning/"><span>On the nightmare of software versioning</span></a>
     
+</li>
 
-</div>
-
-            <div class="markdown">
-                
-    
-    
-
-<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/danger.jpg" src="https://benp44.github.io/blog/images/low/danger.jpg" alt="Danger" /></p></figure>
-
-<h2 id="if-you-ll-indulge-me-a-metaphor">If you&rsquo;ll indulge me, a metaphor&hellip;</h2>
-
-<p>Software versioning always seems to be one of the hard problems of software engineering, and my reasoning can be explained by the following metaphor.</p>
-
-<p>Think of a large software project you&rsquo;ve been familiar with. Now think about some of the details of that software; e.g. some of the complicated parts of the code, some of the known issues and bugs; some of the concurrency that might be involved; some of those places in the code that are best left untouched. We could describe the project as a <strong>landscape</strong>, something you can look across and identify the features - the safe, easy, difficult and dangerous terrains.</p>
-
-<p>Once you&rsquo;ve been working on a large project like this for a while, your brain builds up an abstraction - a mental model of this landscape in a kind of mid-term memory. In our landscape metaphor, we could relate this mental model to <strong>map</strong>. Having this map in your head allows you to navigate the landscape without too many problems.</p>
-
-<p>Now, as a software engineer you also want to modify the landscape. Fortunately when you do this, you can also modify the map in order to keep it up to date. Let&rsquo;s assume that if you are working in collaboration with others, you have decent lines of communication. When others make changes to the landscape, or discover new features, everyone can update their maps. Maybe not precisely, but at least with some marker or note.</p>
-
-<h3 id="but-what-does-all-this-have-to-do-with-software-versioning">&ldquo;But what does all this have to do with software versioning?&rdquo;</h3>
-
-<p>Now, what happens when we start versioning a project. In our landscape metaphor, a version of the software is a marker in time, at which point we essentially take the current landscape and copy it somewhere else (for want of a better metaphor I guess). Not only that, but we maybe want to do this a few times as we make more versions. But between each copy we make, we have modified the landscape. Each copy is different, from each other and from the current landscape.</p>
-
-<p>But the problem is that when we do this we are confusing our map of the landscape - in fact we now have to have <em>multiple</em> maps to keep track of each version of the landscape if we wish to navigate them. And we do wish to do this - not necessarily out of choice, but because we need to maintain the landscapes we create. We&rsquo;ve added an extra dimension to our landscape - how it changes over time - but given a large landscape, this is exponentially more information for us to map and navigate.</p>
-
-<p>The metaphor is straining a bit now, but I hope you get the point. Unlike software stored in a version control system, our brains don&rsquo;t have a perfect recollection of every change and version of the software that exists. But then the version control system does not provide the abstraction we built in our heads. At least not an easily re-collectable one. We as humans have fixed limits on our cognitive load and what we can usefully remember, and these don&rsquo;t scale well when it comes to exponential growth.</p>
-
-<h2 id="so-what-s-the-solution">So&hellip; what&rsquo;s the solution?</h2>
-
-<p>There is no easy solution to this problem. We certainly can&rsquo;t just chuck away the concept of versioning. But there are steps we can take. Here&rsquo;s a few ideas:</p>
-
-<h3 id="try-to-avoid-unnecessary-versioning">Try to avoid unnecessary versioning</h3>
-
-<p>While we can&rsquo;t avoid versioning, we can try to reduce the proliferation of versions. Remember that when we talk about versions, this includes branches and tags. Try to be mindful about how you use your source control system. I would always advocate trying to stay close to the master (main, development, etc) branch. It&rsquo;s easy for a feature branch to end up drifting away from master. Commit often is a well-known idiom, but it also pays to merge (rebase!) to master often too.</p>
-
-<p>I&rsquo;ve heard experienced developers boast of the small set of <strong>git</strong> commands they use - essentially <code>pull</code>, <code>commit</code> and <code>push</code>. If you are using advanced versions of your SCS often, it may be a warning sign that things are getting too complicated.</p>
-
-<h3 id="why-have-multiple-repositories-when-one-will-do">Why have multiple repositories when one will do?</h3>
-
-<p>When using a SCS like Github, it&rsquo;s so easy and seemingly correct to put each project into its own repository (in my current job I work with something like 50 of them). But if projects have hard or soft dependencies between them, it can actually pay to keep them all together in a single repo, just using subdirectories to separate them. This way you pick up other&rsquo;s changes much sooner and know much sooner when you break something. You can also see an interwoven timeline of changes across projects by listing commits in the root - and still see a projects changes independently by listing in each sub-directory.</p>
-
-<p>This isn&rsquo;t always going to work - for sure there are lots of good reasons for modularity - but it&rsquo;s worth consideration.</p>
-
-<h3 id="agile-does-not-mean-no-documentation-at-all">Agile does not mean no documentation at all</h3>
-
-<p>We can aid our memories by writing documentation. In fact this is the default solution to this problem - as analogous as we can get to keeping and maintaining multiple &ldquo;maps&rdquo;. But then in our agile software development world, producing large quantities of documentation is not desirable. But producing some documentation certainly is. The mistake often made by engineer-led companies and teams is to use agile as an excuse to avoid that most boring of tasks, documentation.</p>
-
-<h3 id="version-documentation-alongside-code">Version documentation alongside code</h3>
-
-<p>What documentation you do have should be versioned just like code. Now when you need to patch some old version of your project, you know where to look for the documentation relevant to that version of the code.</p>
-
-<p>Commit messages are a special case of this. If you haven&rsquo;t learned to write good commit messages yet, you will do soon. Squash and re-write if necessary.</p>
-
-
+                    
+                </ul>
             </div>
         </div>
     </div>
 </div>
-
-
-
 <div class="footer column">
     <div class="container">
 
