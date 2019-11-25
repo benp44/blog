@@ -491,6 +491,15 @@ a:hover {
 img {
   max-width: 100%;
 }
+
+img[alt$="20%"] {
+  width: 20% !important;
+}
+
+img[alt$="50%"] {
+  width: 50% !important;
+}
+
 div.main .content {
     width: 100%;
 }
@@ -1077,9 +1086,20 @@ margin-left: -4%;
 
 <h3 id="try-to-avoid-unnecessary-versioning">Try to avoid unnecessary versioning</h3>
 
-<p>While we can&rsquo;t avoid versioning, we can try to reduce the proliferation of versions. Remember that when we talk about versions, this includes branches and tags. Try to be mindful about how you use your source control system. I would always advocate trying to stay close to the master (main, development, etc) branch. It&rsquo;s easy for a feature branch to end up drifting away from master. Commit often is a well-known idiom, but it also pays to merge (rebase!) to master often too.</p>
+<p>While we can&rsquo;t avoid versioning, we can try to reduce the proliferation of versions. Remember that when we talk about versions, this includes branches and tags. Try to be mindful about how you use your source control system. I would always advocate trying to stay close to the master branch wherever possible. It&rsquo;s all too easy for branches to drift away from master resulting in conflicts and confusion when the time does come to merge. &ldquo;Commit often&rdquo; is a well-known idiom, but it also pays to merge often too.</p>
 
 <p>I&rsquo;ve heard experienced developers boast of the small set of <strong>git</strong> commands they use - essentially <code>pull</code>, <code>commit</code> and <code>push</code>. If you are using advanced versions of your source control system often, it may be a warning sign that things are getting too complicated.</p>
+
+<h3 id="rebase-to-improve-commit-history">Rebase to improve commit history</h3>
+
+<p>Lots has been said about this <a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">elsewhere</a>. But included here to flog the horse one more time.</p>
+
+<p><figure>
+    <img src="../../images/mvr.png"
+         alt="Rebasing 50%"/> 
+</figure>
+
+<em>Commit history with branches merged using merge commits (left) and rebased (right)</em></p>
 
 <h3 id="why-have-multiple-repositories-when-one-will-do">Why have multiple repositories when one will do?</h3>
 
