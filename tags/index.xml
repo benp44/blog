@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 01 Jul 2019 20:05:54 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 05 Sep 2019 15:05:19 +0100</lastBuildDate>
     
 	<atom:link href="https://benp44.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Software Engineering</title>
+      <link>https://benp44.github.io/blog/tags/software-engineering/</link>
+      <pubDate>Thu, 05 Sep 2019 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/software-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Source Control</title>
+      <link>https://benp44.github.io/blog/tags/source-control/</link>
+      <pubDate>Thu, 05 Sep 2019 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/source-control/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SVC</title>
+      <link>https://benp44.github.io/blog/tags/svc/</link>
+      <pubDate>Thu, 05 Sep 2019 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/svc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Versioning</title>
+      <link>https://benp44.github.io/blog/tags/versioning/</link>
+      <pubDate>Thu, 05 Sep 2019 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/versioning/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Code Quality</title>
@@ -26,15 +62,6 @@
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/tags/linters/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Software Engineering</title>
-      <link>https://benp44.github.io/blog/tags/software-engineering/</link>
-      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/software-engineering/</guid>
       <description></description>
     </item>
     
