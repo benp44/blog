@@ -17,7 +17,7 @@
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/pre-commit/</guid>
-      <description>What is pre-commit and how can it help me? If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
+      <description>What is pre-commit and how can it help me? If you&#39;re not aware of pre-commit, it&#39;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
  [pre-commit] is a multi-language package manager for pre-commit hooks. You specify a list of hooks you want and pre-commit manages the installation and execution of any hook written in any language before every commit</description>
     </item>
     

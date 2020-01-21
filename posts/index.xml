@@ -17,8 +17,8 @@
       <pubDate>Thu, 05 Sep 2019 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/nightmare-of-versioning/</guid>
-      <description>If you&amp;rsquo;ll indulge me, a metaphor&amp;hellip; Software versioning has always seemed to me to be one of the thorniest issues of software engineering. I&amp;rsquo;ll try to explain why using a metaphor.
-Think of a large software project you&amp;rsquo;re familiar with. Now think about some of the details of that software; e.g. the different classes, modules, etc; some of the simpler and more complicated parts of the code; some of the known issues and bugs; any concurrency that might be involved; and of course some of those dark places in the code that are best left untouched.</description>
+      <description>If you&#39;ll indulge me, a metaphor&amp;hellip; Software versioning has always seemed to me to be one of the thorniest issues of software engineering. I&#39;ll try to explain why using a metaphor.
+Think of a large software project you&#39;re familiar with. Now think about some of the details of that software; e.g. the different classes, modules, etc; some of the simpler and more complicated parts of the code; some of the known issues and bugs; any concurrency that might be involved; and of course some of those dark places in the code that are best left untouched.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@ Think of a large software project you&amp;rsquo;re familiar with. Now think abou
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/pre-commit/</guid>
-      <description>What is pre-commit and how can it help me? If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
+      <description>What is pre-commit and how can it help me? If you&#39;re not aware of pre-commit, it&#39;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
  [pre-commit] is a multi-language package manager for pre-commit hooks. You specify a list of hooks you want and pre-commit manages the installation and execution of any hook written in any language before every commit</description>
     </item>
     
@@ -37,9 +37,9 @@ Think of a large software project you&amp;rsquo;re familiar with. Now think abou
       <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/the-backlog-refinery/</guid>
-      <description>tldr  It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
- Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
- This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
+      <description>tldr   It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
+  Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
+  This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
     </item>
     
     <item>
@@ -49,7 +49,7 @@ Think of a large software project you&amp;rsquo;re familiar with. Now think abou
       
       <guid>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</guid>
       <description>This post is a collection of python unit testing &amp;lsquo;gotchas&amp;rsquo;.
-Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor  Now we have effectively mocked all actual file I/O in our tests
+Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;#34;os&amp;#34;] = mock_os from config_editor import ConfigEditor Now we have effectively mocked all actual file I/O in our tests
 Mocking in-built methods and file I/O Super useful if you want to test a unit that uses the builtin open method.</description>
     </item>
     
@@ -70,7 +70,7 @@ Unit testing in Python is no exception to this.</description>
       
       <guid>https://benp44.github.io/blog/posts/building-without-designing/</guid>
       <description>A quick one today, but an important one.
-When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
+When working at startups and in small development teams, something I&#39;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
 I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&amp;rdquo; as an excuse to drop some of the less tangibly essential aspects of software development and &amp;ldquo;just smash out some code&amp;rdquo;.</description>
     </item>
     
@@ -80,7 +80,7 @@ I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&a
       <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/fzf/</guid>
-      <description>What is fzf? If you&amp;rsquo;re a linux terminal user and not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
+      <description>What is fzf? If you&#39;re a linux terminal user and not familiar with fzf, I would highly recommend giving it a try. I&#39;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&#39;s github page. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&a
       <pubDate>Sat, 03 Nov 2018 14:38:35 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/somafm-in-terminal/</guid>
-      <description>Recently I&amp;rsquo;ve been working at home with a loud infant in the next room. As a result, I&amp;rsquo;ve needed to wear headphones to concentrate. This raises the issue of finding a good source of continuous, ambient, non-commercial and enjoyable music. On this front, I&amp;rsquo;m a big fan of somafm, which meets exactly those criteria. Soma is ad-free on the basis that it&amp;rsquo;s funded by donations, so if you enjoy, I hope you&amp;rsquo;ll find time to donate yourself and keep this awesome service going.</description>
+      <description>Recently I&#39;ve been working at home with a loud infant in the next room. As a result, I&#39;ve needed to wear headphones to concentrate. This raises the issue of finding a good source of continuous, ambient, non-commercial and enjoyable music. On this front, I&#39;m a big fan of somafm, which meets exactly those criteria. Soma is ad-free on the basis that it&#39;s funded by donations, so if you enjoy, I hope you&#39;ll find time to donate yourself and keep this awesome service going.</description>
     </item>
     
     <item>
@@ -98,8 +98,8 @@ I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&a
       <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/coding-styles/</guid>
-      <description>Coding style 101  Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up being re-used in a production project.
-Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python. Google&amp;rsquo;s C++ style is pretty agreeable.</description>
+      <description>Coding style 101   Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&#39;re working on - code that can seem throwaway at first may end up being re-used in a production project.
+Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python. Google&#39;s C++ style is pretty agreeable.</description>
     </item>
     
     <item>
@@ -108,7 +108,7 @@ Not sure where to start? Have a look at some coding styles that have been create
       <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/getting-started-with-gtest/</guid>
-      <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&amp;rsquo;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
+      <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&#39;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
 Unit testing can be a little dry at times (what!</description>
     </item>
     
@@ -120,7 +120,7 @@ Unit testing can be a little dry at times (what!</description>
       <guid>https://benp44.github.io/blog/posts/extracting-files-in-linux/</guid>
       <description>Obligatory xkcd on the difficulties working with archives in Linux:
 For most cases, the following function can be plonked into your .bashrc or .zshrc etc. to make extracting files a little easier.
-# ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;quot;$1&amp;quot; ] ; then case &amp;quot;$1&amp;quot; in *.tar.bz2) tar xvjf &amp;quot;$1&amp;quot; ;; *.tar.gz) tar xvzf &amp;quot;$1&amp;quot; ;; *.bz2) bunzip2 &amp;quot;$1&amp;quot; ;; *.rar) unrar x &amp;quot;$1&amp;quot; ;; *.</description>
+# ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;#34;$1&amp;#34; ] ; then case &amp;#34;$1&amp;#34; in *.tar.bz2) tar xvjf &amp;#34;$1&amp;#34; ;; *.tar.gz) tar xvzf &amp;#34;$1&amp;#34; ;; *.bz2) bunzip2 &amp;#34;$1&amp;#34; ;; *.rar) unrar x &amp;#34;$1&amp;#34; ;; *.</description>
     </item>
     
     <item>
@@ -129,7 +129,25 @@ For most cases, the following function can be plonked into your .bashrc or .zshr
       <pubDate>Sat, 24 Jun 2017 09:15:09 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/living-comments/</guid>
-      <description>Have you ever noticed that comments usually appear greyed out or pale in most IDE colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don&amp;rsquo;t think very much of comments. Comments are equivalent to a footnote in a book &amp;ndash; an optional extra that doesn&amp;rsquo;t really need to be read. I mean, almost the first thing a compiler does is remove all the comments.</description>
+      <description>Have you ever noticed that comments usually appear greyed out or pale in most IDE colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don&#39;t think very much of comments. Comments are equivalent to a footnote in a book &amp;ndash; an optional extra that doesn&#39;t really need to be read. I mean, almost the first thing a compiler does is remove all the comments.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://benp44.github.io/blog/posts/acceptance-testing-first/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://benp44.github.io/blog/posts/acceptance-testing-first/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://benp44.github.io/blog/posts/developer-creativity/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://benp44.github.io/blog/posts/developer-creativity/</guid>
+      <description></description>
     </item>
     
   </channel>

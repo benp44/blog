@@ -1056,42 +1056,50 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    
-
-<h2 id="coding-style-101">Coding style 101</h2>
-
+    <h2 id="coding-style-101">Coding style 101</h2>
 <ol>
-<li><p><strong>Have a coding style and follow it</strong>. Consistency is really important for code readability. And this goes for whatever code you&rsquo;re working on - code that can seem throwaway at first may end up being re-used in a production project.</p>
-
-<p>Not sure where to start? Have a look at some <a href="https://github.com/Kristories/awesome-guidelines">coding styles that have been created for you</a>. PEP8 is a good start for Python. <a href="https://google.github.io/styleguide/cppguide.html">Google&rsquo;s C++ style</a> is pretty agreeable.</p></li>
-
-<li><p><strong>Use a linter</strong> to help maintain the code style. Even if it&rsquo;s just run locally. It makes conforming to good practices easy, and can prevent bugs. When you are writing code, you shouldn&rsquo;t be too worried about the fine points of the style, e.g. whitespace. Computers are much better than humans at catching this stuff. But remember to commit your code locally first, then run the linter and check the diff. Sometimes linters do bad things.</p></li>
-
-<li><p><strong>Use common sense</strong>. There&rsquo;s no coding style that works perfectly for all people all the time. When there&rsquo;s some ambiguity about what the style dictates, use common sense to pick the most <em>readable</em> approach. If the linter wants to do something that makes the code harder to read, then consider disabling the relevant rule/option. Computers are much worse than humans at knowing what&rsquo;s readable to a human.</p></li>
+<li>
+<p><strong>Have a coding style and follow it</strong>. Consistency is really important for code readability. And this goes for whatever code you're working on - code that can seem throwaway at first may end up being re-used in a production project.</p>
+<p>Not sure where to start? Have a look at some <a href="https://github.com/Kristories/awesome-guidelines">coding styles that have been created for you</a>. PEP8 is a good start for Python. <a href="https://google.github.io/styleguide/cppguide.html">Google's C++ style</a> is pretty agreeable.</p>
+</li>
+<li>
+<p><strong>Use a linter</strong> to help maintain the code style. Even if it's just run locally. It makes conforming to good practices easy, and can prevent bugs. When you are writing code, you shouldn't be too worried about the fine points of the style, e.g. whitespace. Computers are much better than humans at catching this stuff. But remember to commit your code locally first, then run the linter and check the diff. Sometimes linters do bad things.</p>
+</li>
+<li>
+<p><strong>Use common sense</strong>. There's no coding style that works perfectly for all people all the time. When there's some ambiguity about what the style dictates, use common sense to pick the most <em>readable</em> approach. If the linter wants to do something that makes the code harder to read, then consider disabling the relevant rule/option. Computers are much worse than humans at knowing what's readable to a human.</p>
+</li>
 </ol>
-
 <h2 id="some-random-collected-thoughts-on-coding-styles">Some random collected thoughts on coding styles</h2>
-
 <ul>
-<li><p>I&rsquo;m often surprised when I see coding styles that seem to treat vertical whitespace like it&rsquo;s a limited resource. A line-break here or there can really help to separate code into related blocks. Just like a gap between paragraphs in English text.</p></li>
-
-<li><p>I also find it frustrating where coding styles have arbitrary numbers in them. I mean, we&rsquo;re programmers - we should treat all magic numbers with suspicion right? A good example is a rule about maximum line length. About every year or two, the screens I use for development get bigger the resolution higher. And yet you still have people using some low and arbitrary max line length, like 100 characters or something. I&rsquo;m not advocating crazy-long lines, but I am advocating common sense on behalf of the coder. IMHO a line has to get pretty long before it becomes less readable (by scrolling right a little), than when it is awkwardly broken into multiple lines.</p></li>
-
-<li><p>Consistency is key. It&rsquo;s hard to come up with a heuristic for readability because your idea of clarity is likely to be different to the next person&rsquo;s. I once worked with a developer who advocated three-space tabs. Crazy I know, but I&rsquo;m sure if you&rsquo;ve been using that for a few years, everything else looks bad.</p></li>
-
-<li><p>My personal guidelines to measure readability:</p>
-
+<li>
+<p>I'm often surprised when I see coding styles that seem to treat vertical whitespace like it's a limited resource. A line-break here or there can really help to separate code into related blocks. Just like a gap between paragraphs in English text.</p>
+</li>
+<li>
+<p>I also find it frustrating where coding styles have arbitrary numbers in them. I mean, we're programmers - we should treat all magic numbers with suspicion right? A good example is a rule about maximum line length. About every year or two, the screens I use for development get bigger the resolution higher. And yet you still have people using some low and arbitrary max line length, like 100 characters or something. I'm not advocating crazy-long lines, but I am advocating common sense on behalf of the coder. IMHO a line has to get pretty long before it becomes less readable (by scrolling right a little), than when it is awkwardly broken into multiple lines.</p>
+</li>
+<li>
+<p>Consistency is key. It's hard to come up with a heuristic for readability because your idea of clarity is likely to be different to the next person's. I once worked with a developer who advocated three-space tabs. Crazy I know, but I'm sure if you've been using that for a few years, everything else looks bad.</p>
+</li>
+<li>
+<p>My personal guidelines to measure readability:</p>
 <ul>
-<li><p><strong>Consistent</strong> is better than inconsistent</p></li>
-
-<li><p><strong>Symmetric</strong> is better than asymmetric</p></li>
-
-<li><p><strong>Spacious</strong> is better than cramped</p></li>
-
-<li><p><strong>Concise</strong> is better than verbose, which is better than sparse</p></li>
-</ul></li>
-
-<li><p>As an English speaker, I often think about the way that the English language is written &ndash; the phrases, sentences, paragraphs and how those are phrased, formed and separated &ndash; and how this can be applied to a programming language to make reading the code more natural. While the compiler contrains you from making your code anything close to a natural language, you can use underscores, spaces, tabs and vertical whitespace to form &ldquo;sentences&rdquo; and &ldquo;paragraphs&rdquo;.</p></li>
+<li>
+<p><strong>Consistent</strong> is better than inconsistent</p>
+</li>
+<li>
+<p><strong>Symmetric</strong> is better than asymmetric</p>
+</li>
+<li>
+<p><strong>Spacious</strong> is better than cramped</p>
+</li>
+<li>
+<p><strong>Concise</strong> is better than verbose, which is better than sparse</p>
+</li>
+</ul>
+</li>
+<li>
+<p>As an English speaker, I often think about the way that the English language is written &ndash; the phrases, sentences, paragraphs and how those are phrased, formed and separated &ndash; and how this can be applied to a programming language to make reading the code more natural. While the compiler contrains you from making your code anything close to a natural language, you can use underscores, spaces, tabs and vertical whitespace to form &ldquo;sentences&rdquo; and &ldquo;paragraphs&rdquo;.</p>
+</li>
 </ul>
 
 

@@ -1056,243 +1056,194 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    
-
-<h3 id="unit-testing-in-c">Unit testing in C++</h3>
-
-<p>I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and <a href="https://github.com/Moq/moq4/wiki/Quickstart">mocking tools</a> available within the cosy Microsoft playground. But in the last few years I&rsquo;ve found myself working with C++ a lot more, and I <em>really</em> wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.</p>
-
-<p>Unit testing can be a little dry at times (<em>what!? you mean you don&rsquo;t get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</em>), so in particular when trying to teach and express the value of unit testing to an inexperienced team, it&rsquo;s essential that the framework doesn&rsquo;t make the task any slower or more difficult.</p>
-
-<p>Thankfully, the good people down at Google have done some fantastic work in this area and created the <a href="https://github.com/google/googletest"><strong>Google Test</strong></a> framework, which I&rsquo;m going to refer to as gtest from here on. I thought it might be worth my documenting my some examples and experiences I&rsquo;ve had using this framework.</p>
-
+    <h3 id="unit-testing-in-c">Unit testing in C++</h3>
+<p>I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and <a href="https://github.com/Moq/moq4/wiki/Quickstart">mocking tools</a> available within the cosy Microsoft playground. But in the last few years I've found myself working with C++ a lot more, and I <em>really</em> wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.</p>
+<p>Unit testing can be a little dry at times (<em>what!? you mean you don't get a rush from each incremental increase in the automated verifiability of correctness and modularity of your code?</em>), so in particular when trying to teach and express the value of unit testing to an inexperienced team, it's essential that the framework doesn't make the task any slower or more difficult.</p>
+<p>Thankfully, the good people down at Google have done some fantastic work in this area and created the <a href="https://github.com/google/googletest"><strong>Google Test</strong></a> framework, which I'm going to refer to as gtest from here on. I thought it might be worth my documenting my some examples and experiences I've had using this framework.</p>
 <p>Two things to note:</p>
-
 <ul>
-<li><p><strong>This is not really meant to be a tutorial</strong>. It&rsquo;s more a demonstration of how to use abstract unit-testing concepts in the gtest framework. To get much out of it, you&rsquo;ll need to be familiar with unit testing, mocking, dependency injection, etc.</p></li>
-
-<li><p>If you are looking for a tutorial, Google&rsquo;s own documentation is pretty good. A very useful primer is available on the project github page <a href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md">here</a>, and similarly useful is a <a href="https://github.com/google/googletest/blob/master/googlemock/docs/CheatSheet.md">cheatsheet</a> for syntactic reference.</p></li>
-
-<li><p>I also happen to be using the Qt framework in these examples, so you&rsquo;ll notice a few Qt core classes e.g. <code>&lt;QString&gt;</code>. This shouldn&rsquo;t detract too much from the general approach - there&rsquo;s nothing reliant on Qt here, it&rsquo;s just basic stuff. And if you&rsquo;re playing with the code I expect you should be able to swap out <code>QString</code> for a <code>std:string</code> without too much difficulty.</p></li>
+<li>
+<p><strong>This is not really meant to be a tutorial</strong>. It's more a demonstration of how to use abstract unit-testing concepts in the gtest framework. To get much out of it, you'll need to be familiar with unit testing, mocking, dependency injection, etc.</p>
+</li>
+<li>
+<p>If you are looking for a tutorial, Google's own documentation is pretty good. A very useful primer is available on the project github page <a href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md">here</a>, and similarly useful is a <a href="https://github.com/google/googletest/blob/master/googlemock/docs/CheatSheet.md">cheatsheet</a> for syntactic reference.</p>
+</li>
+<li>
+<p>I also happen to be using the Qt framework in these examples, so you'll notice a few Qt core classes e.g. <code>&lt;QString&gt;</code>. This shouldn't detract too much from the general approach - there's nothing reliant on Qt here, it's just basic stuff. And if you're playing with the code I expect you should be able to swap out <code>QString</code> for a <code>std:string</code> without too much difficulty.</p>
+</li>
 </ul>
-
-<hr />
-
+<hr>
 <h3 id="an-example-project">An example project</h3>
-
-<p>To give some context, in this example, I&rsquo;m working on an application that displays a series of <em>screens</em> in a wizard-like system. One of these screens allows the user to apply localisation settings, and the design wireframes show the user selecting a locale from a list which is then used to update the system configuration.</p>
-
-<p>Classes in this project are structured along the lines of MVC, with views calling methods on controllers (such as <code>onPageDisplayed</code> and <code>pageCompleted</code>), and the controllers interacting with underlying models. I&rsquo;m going to use a class called <strong>LocalisationScreenController</strong> for an example, and test it using <strong>TestLocalisationScreenController</strong></p>
-
+<p>To give some context, in this example, I'm working on an application that displays a series of <em>screens</em> in a wizard-like system. One of these screens allows the user to apply localisation settings, and the design wireframes show the user selecting a locale from a list which is then used to update the system configuration.</p>
+<p>Classes in this project are structured along the lines of MVC, with views calling methods on controllers (such as <code>onPageDisplayed</code> and <code>pageCompleted</code>), and the controllers interacting with underlying models. I'm going to use a class called <strong>LocalisationScreenController</strong> for an example, and test it using <strong>TestLocalisationScreenController</strong></p>
 <h3 id="setup">Setup</h3>
-
-<p>I&rsquo;m not going to go into more detail on the structure of my project because this is a tad complex and very specific to my setup (git submodules etc). But if you&rsquo;re getting started with gtest, predictably the key to setup is that you are going to need to link to the gtest libraries, `#include&rsquo; the appropriate header(s) and lift the boilerplate code from the primer in the framework documentation.</p>
-
+<p>I'm not going to go into more detail on the structure of my project because this is a tad complex and very specific to my setup (git submodules etc). But if you're getting started with gtest, predictably the key to setup is that you are going to need to link to the gtest libraries, `#include&rsquo; the appropriate header(s) and lift the boilerplate code from the primer in the framework documentation.</p>
 <p><strong>The class being tested</strong></p>
-
-<p>The class we&rsquo;re testing has a signature that looks like this:</p>
-
-<pre><code class="language-cpp">class LocalisationScreenController : public ScreenControllerBase
+<p>The class we're testing has a signature that looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LocalisationScreenController</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> ScreenControllerBase
 {
-public:
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
 
-    LocalisationScreenController(IScreen* screen, ILocalisationModel* localisationModel);
+    LocalisationScreenController(IScreen<span style="color:#f92672">*</span> screen, ILocalisationModel<span style="color:#f92672">*</span> localisationModel);
 
-protected:
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
 
-    virtual void onShow();
-    virtual void onComplete();
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> onShow();
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onComplete</span>();
 
-private:
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
 
-    void setupLocaleSelection();
-    void setSystemLocale();
+    <span style="color:#66d9ef">void</span> setupLocaleSelection();
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setSystemLocale</span>();
 
-    ILocalisationModel* m_localisationModel;
+    ILocalisationModel<span style="color:#f92672">*</span> m_localisationModel;
 };
-</code></pre>
-
-<p>The two injected dependencies are <code>IScreen*</code> which is the view for this controller, and <code>ILocalisationModel*</code> which is a model for managing localisation. Yes! This is a nice and straight-forward example. The <code>ILocalisationModel*</code> is stored as a member of the class, the <code>IScreen*</code> is actually stored as a member of the base class, which otherwise isn&rsquo;t of much relevance here.</p>
-
+</code></pre></div><p>The two injected dependencies are <code>IScreen*</code> which is the view for this controller, and <code>ILocalisationModel*</code> which is a model for managing localisation. Yes! This is a nice and straight-forward example. The <code>ILocalisationModel*</code> is stored as a member of the class, the <code>IScreen*</code> is actually stored as a member of the base class, which otherwise isn't of much relevance here.</p>
 <h3 id="the-test-fixture">The test fixture</h3>
-
-<p>I&rsquo;m going to focus on a couple of unit tests that exercise the <code>onShow</code> method, which is called by the framework I&rsquo;ve created when the user arrives at this page. So let&rsquo;s look at what the unit test class looks like:</p>
-
-<pre><code class="language-cpp">#include &quot;gtest/gtest.h&quot;
-#include &quot;localisation_screen_controller.h&quot;
-#include &quot;mock_localisation_model.h&quot;
-#include &quot;mock_screen.h&quot;
-
-namespace
+<p>I'm going to focus on a couple of unit tests that exercise the <code>onShow</code> method, which is called by the framework I've created when the user arrives at this page. So let's look at what the unit test class looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;gtest/gtest.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;localisation_screen_controller.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;mock_localisation_model.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;mock_screen.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span>
 {
-    class TestLocalisationScreenController : public Test
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestLocalisationScreenController</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Test
     {
-    protected:
+    <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
         TestLocalisationScreenController() {}
 
-        virtual ~TestLocalisationScreenController() {}
+        <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>TestLocalisationScreenController() {}
 
-        virtual void SetUp()
+        <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SetUp</span>()
         {
-            m_mockScreen = new NiceMock&lt;MockScreen&gt;();
-            m_mockLocalisationModel = new NiceMock&lt;MockLocalisationModel&gt;();
-            m_localisationScreenController = new LocalisationScreenController(m_mockScreen, m_mockLocalisationModel);
+            m_mockScreen <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NiceMock<span style="color:#f92672">&lt;</span>MockScreen<span style="color:#f92672">&gt;</span>();
+            m_mockLocalisationModel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NiceMock<span style="color:#f92672">&lt;</span>MockLocalisationModel<span style="color:#f92672">&gt;</span>();
+            m_localisationScreenController <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LocalisationScreenController(m_mockScreen, m_mockLocalisationModel);
         }
 
-        virtual void TearDown()
+        <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">TearDown</span>()
         {
-            delete m_localisationScreenController;
-            delete m_mockLocalisationModel;
-            delete m_mockScreen;
+            <span style="color:#66d9ef">delete</span> m_localisationScreenController;
+            <span style="color:#66d9ef">delete</span> m_mockLocalisationModel;
+            <span style="color:#66d9ef">delete</span> m_mockScreen;
         }
 
-        NiceMock&lt;MockScreen&gt;* m_mockScreen;
-        NiceMock&lt;MockLocalisationModel&gt;* m_mockLocalisationModel;
-        LocalisationScreenController* m_localisationScreenController;
+        NiceMock<span style="color:#f92672">&lt;</span>MockScreen<span style="color:#f92672">&gt;</span><span style="color:#f92672">*</span> m_mockScreen;
+        NiceMock<span style="color:#f92672">&lt;</span>MockLocalisationModel<span style="color:#f92672">&gt;</span><span style="color:#f92672">*</span> m_mockLocalisationModel;
+        LocalisationScreenController<span style="color:#f92672">*</span> m_localisationScreenController;
     };
 
     TEST_F(TestLocalisationScreenController, onShow_setsLocaleModel)
     {
-        // To follow
-    }
+        <span style="color:#75715e">// To follow
+</span><span style="color:#75715e"></span>    }
 
     TEST_F(TestLocalisationScreenController, onShow_setsCurrentlySelectedLocale)
     {
-        // To follow
-    }
+        <span style="color:#75715e">// To follow
+</span><span style="color:#75715e"></span>    }
 
-</code></pre>
-
-<p>A few things to cover here:</p>
-
+</code></pre></div><p>A few things to cover here:</p>
 <ul>
-<li><p>Strangely, gtest test fixtures use the base class <code>Test</code>, but I&rsquo;m not complaining too much.</p></li>
-
-<li><p>I&rsquo;m using <code>SetUp</code> and <code>TearDown</code> overrides to create the object being tested and the mocks. These methods are run before and after each test (rather than before and after the whole fixture)</p></li>
-
-<li><p>Mocks are created as a templated class called <code>NiceMock&lt;T&gt;</code>. There are three types of mocks in gtest, <code>NiceMock</code>, <code>NaggyMock</code> and <code>StrictMock</code>. The differences between these are described <a href="https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#the-nice-the-strict-and-the-naggy">here</a>.</p></li>
+<li>
+<p>Strangely, gtest test fixtures use the base class <code>Test</code>, but I'm not complaining too much.</p>
+</li>
+<li>
+<p>I'm using <code>SetUp</code> and <code>TearDown</code> overrides to create the object being tested and the mocks. These methods are run before and after each test (rather than before and after the whole fixture)</p>
+</li>
+<li>
+<p>Mocks are created as a templated class called <code>NiceMock&lt;T&gt;</code>. There are three types of mocks in gtest, <code>NiceMock</code>, <code>NaggyMock</code> and <code>StrictMock</code>. The differences between these are described <a href="https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#the-nice-the-strict-and-the-naggy">here</a>.</p>
+</li>
 </ul>
-
 <p>Before we go any further, we need to look at how mocks work in gtest.</p>
-
 <h3 id="mocks">Mocks</h3>
-
 <p>While mocks in gtest are not &ldquo;configuration-free&rdquo;, they are impressively light given the amount of magic that is happening under the hood. Each mock needs to be defined along the lines of the following example, which is my mock for the <code>Screen</code> class. You can see <code>IScreen</code> is a view with typical methods to show and hide it, and to set and get properties from the UI.</p>
-
-<pre><code class="language-cpp">#include &quot;screen.h&quot;
-#include &quot;gmock/gmock.h&quot;
-
-class MockScreen : public IScreen
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;screen.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;gmock/gmock.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MockScreen</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> IScreen
 {
-public:
-    MOCK_METHOD0(show, void());
-    MOCK_METHOD0(hide, void());
-    MOCK_METHOD2(getPropertyString, QString(const QString&amp;, const QString&amp;));
-    MOCK_METHOD2(getPropertyInt, int(const QString&amp;, const QString&amp;));
-    MOCK_METHOD2(getPropertyBool, bool(const QString&amp;, const QString&amp;));
-    MOCK_METHOD3(setProperty, void(const QString&amp;, const QString&amp;, const QVariant&amp;));
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    MOCK_METHOD0(show, <span style="color:#66d9ef">void</span>());
+    MOCK_METHOD0(hide, <span style="color:#66d9ef">void</span>());
+    MOCK_METHOD2(getPropertyString, QString(<span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>, <span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>));
+    MOCK_METHOD2(getPropertyInt, <span style="color:#66d9ef">int</span>(<span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>, <span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>));
+    MOCK_METHOD2(getPropertyBool, <span style="color:#66d9ef">bool</span>(<span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>, <span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>));
+    MOCK_METHOD3(setProperty, <span style="color:#66d9ef">void</span>(<span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>, <span style="color:#66d9ef">const</span> QString<span style="color:#f92672">&amp;</span>, <span style="color:#66d9ef">const</span> QVariant<span style="color:#f92672">&amp;</span>));
     MOCK_METHOD0(getScreenId, ScreenId());
 };
 
-</code></pre>
-
-<p>Each method on the mocked interface needs to be enumerated inside a <code>MOCK_METHOD</code> macro, and the whole mock can be generated fairly easily. It feels like the team developing gtest got very close to not needing these headers at all,and with future versions of the C++ standard I wonder if they may be able to eliminate it altogether.</p>
-
+</code></pre></div><p>Each method on the mocked interface needs to be enumerated inside a <code>MOCK_METHOD</code> macro, and the whole mock can be generated fairly easily. It feels like the team developing gtest got very close to not needing these headers at all,and with future versions of the C++ standard I wonder if they may be able to eliminate it altogether.</p>
 <h3 id="a-simple-test">A simple test</h3>
-
-<p>So putting all this together, here&rsquo;s what a basic unit test looks like:</p>
-
-<pre><code class="language-cpp">TEST_F(TestLocalisationScreenController, onShow_setsCurrentlySelectedLocale)
+<p>So putting all this together, here's what a basic unit test looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">TEST_F(TestLocalisationScreenController, onShow_setsCurrentlySelectedLocale)
 {
-    ON_CALL(*m_mockLocalisationModel, getSystemLocaleCode()).WillByDefault(Return(&quot;es_AR&quot;));
+    ON_CALL(<span style="color:#f92672">*</span>m_mockLocalisationModel, getSystemLocaleCode()).WillByDefault(Return(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">es_AR</span><span style="color:#e6db74">&#34;</span>));
 
-    EXPECT_CALL(*m_mockScreen, setProperty(_, _, _)).Times(Exactly(2));
-    EXPECT_CALL(*m_mockScreen, setProperty(QString(&quot;comboLocale&quot;), QString(&quot;currentIndex&quot;), QVariant(3))).Times(Exactly(1));
+    EXPECT_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(_, _, _)).Times(Exactly(<span style="color:#ae81ff">2</span>));
+    EXPECT_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">comboLocale</span><span style="color:#e6db74">&#34;</span>), QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">currentIndex</span><span style="color:#e6db74">&#34;</span>), QVariant(<span style="color:#ae81ff">3</span>))).Times(Exactly(<span style="color:#ae81ff">1</span>));
 
-    m_localisationScreenController-&gt;onShow();
+    m_localisationScreenController<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>onShow();
 }
 
-</code></pre>
-
-<p>To dissect this, we can see the typical parts of a unit test, albeit with the gtest syntax:</p>
-
+</code></pre></div><p>To dissect this, we can see the typical parts of a unit test, albeit with the gtest syntax:</p>
 <ul>
-<li><p>We&rsquo;re setting up some behaviour for the <code>MockLocalisationModel</code>, so that when the <code>getSystemLocaleCode</code> method is called, it will return <code>&quot;es_AR&quot;</code>.</p></li>
-
-<li><p>We set some expectations on the mock, i.e. we&rsquo;re expecting a few calls to <code>setProperty</code>. More on this in a minute.</p></li>
-
-<li><p>We call the method we&rsquo;re testing, in this case <code>onShow</code>.</p></li>
+<li>
+<p>We're setting up some behaviour for the <code>MockLocalisationModel</code>, so that when the <code>getSystemLocaleCode</code> method is called, it will return <code>&quot;es_AR&quot;</code>.</p>
+</li>
+<li>
+<p>We set some expectations on the mock, i.e. we're expecting a few calls to <code>setProperty</code>. More on this in a minute.</p>
+</li>
+<li>
+<p>We call the method we're testing, in this case <code>onShow</code>.</p>
+</li>
 </ul>
-
 <p>I like that the framework supports a sentence-style naming system, so the statements each give a roughly readable sentence of their intention:</p>
-
 <blockquote>
-<p>On <em>[a]</em> call <em>[to]</em> m_mockScreen&rsquo;s getSystemLocaleCode <em>[method]</em>, <em>[I]</em> will by default return &ldquo;es_AR&rdquo;</p>
+<p>On <em>[a]</em> call <em>[to]</em> m_mockScreen's getSystemLocaleCode <em>[method]</em>, <em>[I]</em> will by default return &ldquo;es_AR&rdquo;</p>
 </blockquote>
-
 <p>and</p>
-
 <blockquote>
-<p>Expect <em>[a]</em> call <em>[to]</em> m_mockScreen&rsquo;s setProperty <em>[method]</em> <em>[with any parameters]</em> exactly 2 times</p>
+<p>Expect <em>[a]</em> call <em>[to]</em> m_mockScreen's setProperty <em>[method]</em> <em>[with any parameters]</em> exactly 2 times</p>
 </blockquote>
-
-<p>OK, it&rsquo;s not quite 100%, but it&rsquo;s good enough once you&rsquo;re used to it.</p>
-
+<p>OK, it's not quite 100%, but it's good enough once you're used to it.</p>
 <p>You specify the expected parameters to be passed to mocked methods, so the key expectation in this example is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">EXPECT_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">comboLocale</span><span style="color:#e6db74">&#34;</span>), QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">currentIndex</span><span style="color:#e6db74">&#34;</span>), QVariant(<span style="color:#ae81ff">3</span>))).Times(Exactly(<span style="color:#ae81ff">1</span>));
 
-<pre><code class="language-cpp">EXPECT_CALL(*m_mockScreen, setProperty(QString(&quot;comboLocale&quot;), QString(&quot;currentIndex&quot;), QVariant(3))).Times(Exactly(1));
-
-</code></pre>
-
-<p>This tells the mock to expect a single call to <code>setProperty</code> with the strings <code>&quot;comboLocale&quot;</code>, <code>&quot;currentIndex&quot;</code> and the variant <code>3</code>. We&rsquo;re expecting the controller to set the <em>currentIndex</em> property on the <em>comboLocale</em> UI component to a value of <em>3</em>.</p>
-
-<p><strong>Note</strong> unfortunately, there are a few type-conversion issues using Qt core classes such as <code>QString</code>, so I&rsquo;ve had to add constructors around each of these.</p>
-
+</code></pre></div><p>This tells the mock to expect a single call to <code>setProperty</code> with the strings <code>&quot;comboLocale&quot;</code>, <code>&quot;currentIndex&quot;</code> and the variant <code>3</code>. We're expecting the controller to set the <em>currentIndex</em> property on the <em>comboLocale</em> UI component to a value of <em>3</em>.</p>
+<p><strong>Note</strong> unfortunately, there are a few type-conversion issues using Qt core classes such as <code>QString</code>, so I've had to add constructors around each of these.</p>
 <p>It is also important to notice the other expectation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">EXPECT_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(_, _, _)).Times(Exactly(<span style="color:#ae81ff">2</span>));
 
-<pre><code class="language-cpp">EXPECT_CALL(*m_mockScreen, setProperty(_, _, _)).Times(Exactly(2));
-
-</code></pre>
-
-<p>This tells the mock to expect two other calls to setProperty, with any (<code>_</code>) value for each of the parameters. This is because other properties are being set on the view during the call to <code>onShow</code>, which are not relevent to this test, but are happening nonetheless. We need to let the framework know about these other calls, otherwise the test rightly fails.</p>
-
+</code></pre></div><p>This tells the mock to expect two other calls to setProperty, with any (<code>_</code>) value for each of the parameters. This is because other properties are being set on the view during the call to <code>onShow</code>, which are not relevent to this test, but are happening nonetheless. We need to let the framework know about these other calls, otherwise the test rightly fails.</p>
 <h3 id="inspecting-the-mock">Inspecting the mock</h3>
-
 <p>In this example, we want to test that the correct data is being passed from the model to the view, specifically that a list component in the view contains the correct elements.</p>
-
-<pre><code class="language-cpp">TEST_F(TestLocalisationScreenController, onShow_setsLocaleModel)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">TEST_F(TestLocalisationScreenController, onShow_setsLocaleModel)
 {
     QStringList sortedLocales;
-    sortedLocales.append(&quot;English (GB)&quot;);
-    sortedLocales.append(&quot;Spanish (Argentina)&quot;);
-    sortedLocales.append(&quot;Spanish (Spain)&quot;);
+    sortedLocales.append(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">English (GB)</span><span style="color:#e6db74">&#34;</span>);
+    sortedLocales.append(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Spanish (Argentina)</span><span style="color:#e6db74">&#34;</span>);
+    sortedLocales.append(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Spanish (Spain)</span><span style="color:#e6db74">&#34;</span>);
 
     QVariant actualSetLocales;
-    ON_CALL(*m_mockScreen, setProperty(QString(&quot;&quot;), QString(&quot;localesModel&quot;), _)).WillByDefault(SaveArg&lt;2&gt;(&amp;actualSetLocales));
+    ON_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>), QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">localesModel</span><span style="color:#e6db74">&#34;</span>), _)).WillByDefault(SaveArg<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span>(<span style="color:#f92672">&amp;</span>actualSetLocales));
 
-    EXPECT_CALL(*m_mockScreen, setProperty(_, _, _)).Times(Exactly(2));
-    EXPECT_CALL(*m_mockScreen, setProperty(QString(&quot;&quot;), QString(&quot;localesModel&quot;), _)).Times(Exactly(1));
+    EXPECT_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(_, _, _)).Times(Exactly(<span style="color:#ae81ff">2</span>));
+    EXPECT_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>), QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">localesModel</span><span style="color:#e6db74">&#34;</span>), _)).Times(Exactly(<span style="color:#ae81ff">1</span>));
 
-    m_localisationScreenController-&gt;onShow();
+    m_localisationScreenController<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>onShow();
 
     ASSERT_EQ(actualSetLocales.toStringList(), sortedLocales);
 }
 
-</code></pre>
-
-<p>Here we can demonstrate a couple of other pieces of syntax of the framework.</p>
-
+</code></pre></div><p>Here we can demonstrate a couple of other pieces of syntax of the framework.</p>
 <p>We can find out what has been passed to a mocked function (in this instance the method being tested is manipulating some data from the model and passing it to the view):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">ON_CALL(<span style="color:#f92672">*</span>m_mockScreen, setProperty(QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>), QString(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">localesModel</span><span style="color:#e6db74">&#34;</span>), _)).WillByDefault(SaveArg<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span>(<span style="color:#f92672">&amp;</span>actualSetLocales));
 
-<pre><code class="language-cpp">ON_CALL(*m_mockScreen, setProperty(QString(&quot;&quot;), QString(&quot;localesModel&quot;), _)).WillByDefault(SaveArg&lt;2&gt;(&amp;actualSetLocales));
-
-</code></pre>
-
-<p>So we pass a local variable by reference to the <code>SaveArg&lt;2&gt;</code> method, which tells the mock to copy whatever gets passed to the specified method into the variable. This allows us then to use the an &ldquo;assert equal&rdquo; macro <code>ASSERT_EQ</code> to validate our expectation of what is passed here.</p>
-
+</code></pre></div><p>So we pass a local variable by reference to the <code>SaveArg&lt;2&gt;</code> method, which tells the mock to copy whatever gets passed to the specified method into the variable. This allows us then to use the an &ldquo;assert equal&rdquo; macro <code>ASSERT_EQ</code> to validate our expectation of what is passed here.</p>
 <h3 id="summing-up-for-now">Summing up (for now)</h3>
-
-<p>Hopefully this is a useful if brief tour of what gtest looks like in practice, and although I&rsquo;ve only scratched the surface of the tools available in the framework, hopefully these examples cover quite a large set of basic use cases if you&rsquo;re getting started with or evaluating gtest.</p>
+<p>Hopefully this is a useful if brief tour of what gtest looks like in practice, and although I've only scratched the surface of the tools available in the framework, hopefully these examples cover quite a large set of basic use cases if you're getting started with or evaluating gtest.</p>
 
 
             </div>

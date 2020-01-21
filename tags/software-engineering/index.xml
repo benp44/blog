@@ -17,8 +17,8 @@
       <pubDate>Thu, 05 Sep 2019 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/nightmare-of-versioning/</guid>
-      <description>If you&amp;rsquo;ll indulge me, a metaphor&amp;hellip; Software versioning has always seemed to me to be one of the thorniest issues of software engineering. I&amp;rsquo;ll try to explain why using a metaphor.
-Think of a large software project you&amp;rsquo;re familiar with. Now think about some of the details of that software; e.g. the different classes, modules, etc; some of the simpler and more complicated parts of the code; some of the known issues and bugs; any concurrency that might be involved; and of course some of those dark places in the code that are best left untouched.</description>
+      <description>If you&#39;ll indulge me, a metaphor&amp;hellip; Software versioning has always seemed to me to be one of the thorniest issues of software engineering. I&#39;ll try to explain why using a metaphor.
+Think of a large software project you&#39;re familiar with. Now think about some of the details of that software; e.g. the different classes, modules, etc; some of the simpler and more complicated parts of the code; some of the known issues and bugs; any concurrency that might be involved; and of course some of those dark places in the code that are best left untouched.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@ Think of a large software project you&amp;rsquo;re familiar with. Now think abou
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/pre-commit/</guid>
-      <description>What is pre-commit and how can it help me? If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
+      <description>What is pre-commit and how can it help me? If you&#39;re not aware of pre-commit, it&#39;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
  [pre-commit] is a multi-language package manager for pre-commit hooks. You specify a list of hooks you want and pre-commit manages the installation and execution of any hook written in any language before every commit</description>
     </item>
     
@@ -37,9 +37,9 @@ Think of a large software project you&amp;rsquo;re familiar with. Now think abou
       <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/the-backlog-refinery/</guid>
-      <description>tldr  It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
- Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
- This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
+      <description>tldr   It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
+  Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
+  This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
     </item>
     
     <item>
@@ -49,7 +49,7 @@ Think of a large software project you&amp;rsquo;re familiar with. Now think abou
       
       <guid>https://benp44.github.io/blog/posts/building-without-designing/</guid>
       <description>A quick one today, but an important one.
-When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
+When working at startups and in small development teams, something I&#39;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
 I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&amp;rdquo; as an excuse to drop some of the less tangibly essential aspects of software development and &amp;ldquo;just smash out some code&amp;rdquo;.</description>
     </item>
     
@@ -59,8 +59,8 @@ I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&a
       <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/coding-styles/</guid>
-      <description>Coding style 101  Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up being re-used in a production project.
-Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python. Google&amp;rsquo;s C++ style is pretty agreeable.</description>
+      <description>Coding style 101   Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&#39;re working on - code that can seem throwaway at first may end up being re-used in a production project.
+Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python. Google&#39;s C++ style is pretty agreeable.</description>
     </item>
     
     <item>
@@ -69,7 +69,7 @@ Not sure where to start? Have a look at some coding styles that have been create
       <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/getting-started-with-gtest/</guid>
-      <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&amp;rsquo;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
+      <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&#39;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
 Unit testing can be a little dry at times (what!</description>
     </item>
     

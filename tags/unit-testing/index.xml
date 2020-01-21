@@ -17,7 +17,7 @@
       <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/posts/getting-started-with-gtest/</guid>
-      <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&amp;rsquo;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
+      <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&#39;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
 Unit testing can be a little dry at times (what!</description>
     </item>
     

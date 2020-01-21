@@ -1056,133 +1056,101 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    
-
-<h3 id="a-foreword-on-this-approach-to-unit-testing-in-python">A foreword on this approach to unit testing in Python</h3>
-
+    <h3 id="a-foreword-on-this-approach-to-unit-testing-in-python">A foreword on this approach to unit testing in Python</h3>
 <p>Python is a very flexible language, and while the creators of Python tried to follow the guiding principle &ldquo;there should be one, and preferably only one, obvious way to do things&rdquo;, this flexibility inevitably means that there are &ndash; in fact &ndash; lots of ways to do things, some good, some bad.</p>
-
-<p>Unit testing in Python is no exception to this. One of these <em>flexibilties</em> arises from the fact that Python is a dynamically-typed language in which meta-programming and reflection are trivial and commonly used. As a result, you can get up and running with your unit test as simply as, for example, re-assigning a class member to a stub or mock as and when required. Moreover, as Python has no enforced member access modifiers (e.g. strictly public or private functions), one of the classic problems of unit testing, summarised by the question &ldquo;How do I test a private method?&rdquo;, can be answered as simply as &ldquo;just call it&rdquo;.</p>
-
+<p>Unit testing in Python is no exception to this. One of these <em>flexibilties</em> arises from the fact that Python is a dynamically-typed language in which meta-programming and reflection are trivial and commonly used. As a result, you can get up and running with your unit test as simply as, for example, re-assigning a class member to a stub or mock as and when required. Moreover, as Python has no enforced member access modifiers (e.g. strictly public or private functions), one of the classic problems of unit testing, summarised by the question &ldquo;How do I test a private method?&quot;, can be answered as simply as &ldquo;just call it&rdquo;.</p>
 <p>However this can lead to problems arising from the old trap of forgetting what unit tests are for. In many cases unit testing is as much about maintaining code modularity than it is about verifying the behaviour of code. The length of rope that Python gives you to make unit testing &ldquo;easier&rdquo; is more than enough to hang yourself at the alter of the latter, while totally ignoring the former.</p>
-
-<p>Although I&rsquo;ve written quite a lot of Python, I wouldn&rsquo;t call myself an expert on the language. When I started writing production code in Python I followed an approach to unit-testing based on dependency injection, as one would in a strongly-typed language such as C++. In some ways this was more force of habit under time pressure than a reasoned decision, but in time I came to realise the benefits of sticking to this pattern as the project grew in complexity. To my eyes, this approach &ndash; while being quite verbose and possibly non-&ldquo;pythonic&rdquo; &ndash; ensures that code modularity is still actively encouraged (if not enforced) by the practice of consciously breaking out explicit dependencies.</p>
-
-<p>All this is not to say that the aforementioned features of the language aren&rsquo;t extremely useful when it comes to unit testing, and in certain circumstances we are empowered to grease the cogs when we need to. Compared with static-typed, older-generation languages, as long as one takes care to establish an approach to avoid some of the pitfalls, writing unit tests in Python can be clean and easy.</p>
-
+<p>Although I've written quite a lot of Python, I wouldn't call myself an expert on the language. When I started writing production code in Python I followed an approach to unit-testing based on dependency injection, as one would in a strongly-typed language such as C++. In some ways this was more force of habit under time pressure than a reasoned decision, but in time I came to realise the benefits of sticking to this pattern as the project grew in complexity. To my eyes, this approach &ndash; while being quite verbose and possibly non-&ldquo;pythonic&rdquo; &ndash; ensures that code modularity is still actively encouraged (if not enforced) by the practice of consciously breaking out explicit dependencies.</p>
+<p>All this is not to say that the aforementioned features of the language aren't extremely useful when it comes to unit testing, and in certain circumstances we are empowered to grease the cogs when we need to. Compared with static-typed, older-generation languages, as long as one takes care to establish an approach to avoid some of the pitfalls, writing unit tests in Python can be clean and easy.</p>
 <h3 id="setting-up-a-test-case">Setting up a test case</h3>
-
-<p>This example is based on a MVC-style controller class used in an software update application. This controller contains some of the business logic of the application, for example determining whether a check for software updates can and should be made, based on whether there&rsquo;s an internet connection available, and when the last check as performed.</p>
-
-<p>To get started, here&rsquo;s the test case <code>setUp</code> method:</p>
-
-<pre><code class="language-python">import unittest
-from unittest.mock import patch, call, Mock
-from update_controller import UpdateController
+<p>This example is based on a MVC-style controller class used in an software update application. This controller contains some of the business logic of the application, for example determining whether a check for software updates can and should be made, based on whether there's an internet connection available, and when the last check as performed.</p>
+<p>To get started, here's the test case <code>setUp</code> method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> unittest
+<span style="color:#f92672">from</span> unittest.mock <span style="color:#f92672">import</span> patch, call, Mock
+<span style="color:#f92672">from</span> update_controller <span style="color:#f92672">import</span> UpdateController
 
 
-class UpdateControllerTestCase(unittest.TestCase):
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UpdateControllerTestCase</span>(unittest<span style="color:#f92672">.</span>TestCase):
 
-    def setUp(self):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(self):
 
-        # Mock objects and methods
+        <span style="color:#75715e"># Mock objects and methods</span>
 
-        self.mock_logger = Mock()
-        self.mock_network_model = Mock()
-        self.mock_update_model = Mock()
-        self.mock_view_manager = Mock()
+        self<span style="color:#f92672">.</span>mock_logger <span style="color:#f92672">=</span> Mock()
+        self<span style="color:#f92672">.</span>mock_network_model <span style="color:#f92672">=</span> Mock()
+        self<span style="color:#f92672">.</span>mock_update_model <span style="color:#f92672">=</span> Mock()
+        self<span style="color:#f92672">.</span>mock_view_manager <span style="color:#f92672">=</span> Mock()
 
-        # Create the object under test
+        <span style="color:#75715e"># Create the object under test</span>
 
-        self.update_controller = UpdateController(
-            self.mock_logger,
-            self.mock_update_model,
-            self.mock_network_model,
-            self.mock_view_manager,
+        self<span style="color:#f92672">.</span>update_controller <span style="color:#f92672">=</span> UpdateController(
+            self<span style="color:#f92672">.</span>mock_logger,
+            self<span style="color:#f92672">.</span>mock_update_model,
+            self<span style="color:#f92672">.</span>mock_network_model,
+            self<span style="color:#f92672">.</span>mock_view_manager,
         )
 
-</code></pre>
-
-<p>The first thing to mention here is how simple it is to create the mocks. We import the in-built <code>Mock</code> class, create our mock dependencies using it, and inject them into the controller instance being tested.</p>
-
-<p><em>That&rsquo;s it.</em></p>
-
+</code></pre></div><p>The first thing to mention here is how simple it is to create the mocks. We import the in-built <code>Mock</code> class, create our mock dependencies using it, and inject them into the controller instance being tested.</p>
+<p><em>That's it.</em></p>
 <p>Having done a lot of unit testing in C++, the first time I saw this my mind was blown.</p>
+<p>But it gets better. Let's look a our first test, which can be described as: <em>&ldquo;If an internet connection is available, but we've already checked for updates today, we don't check again.&quot;</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_checks_for_updates_only_if_not_checked_so_far_today</span>(self):
 
-<p>But it gets better. Let&rsquo;s look a our first test, which can be described as: <em>&ldquo;If an internet connection is available, but we&rsquo;ve already checked for updates today, we don&rsquo;t check again.&rdquo;</em></p>
+        <span style="color:#75715e"># Setup</span>
 
-<pre><code class="language-python">
-    def test_checks_for_updates_only_if_not_checked_so_far_today(self):
+        self<span style="color:#f92672">.</span>mock_network_model<span style="color:#f92672">.</span>check_for_internet_connection<span style="color:#f92672">.</span>return_value <span style="color:#f92672">=</span> True
+        self<span style="color:#f92672">.</span>mock_update_model<span style="color:#f92672">.</span>has_checked_today<span style="color:#f92672">.</span>return_value <span style="color:#f92672">=</span> True
 
-        # Setup
+        <span style="color:#75715e"># Run</span>
 
-        self.mock_network_model.check_for_internet_connection.return_value = True
-        self.mock_update_model.has_checked_today.return_value = True
+        self<span style="color:#f92672">.</span>update_controller<span style="color:#f92672">.</span>start()
 
-        # Run
+        <span style="color:#75715e"># Test</span>
 
-        self.update_controller.start()
+        self<span style="color:#f92672">.</span>mock_update_model<span style="color:#f92672">.</span>check_for_updates<span style="color:#f92672">.</span>assert_not_called()
 
-        # Test
-
-        self.mock_update_model.check_for_updates.assert_not_called()
-
-</code></pre>
-
-<p>So the first thing:</p>
-
+</code></pre></div><p>So the first thing:</p>
 <p><code>mock_network_model.check_for_internet_connection.return_value = True</code></p>
-
-<p>How freaking incredible is that? There&rsquo;s nothing hidden here, we simply tell the framework that there&rsquo;s a method called <code>check_for_internet_connection</code> on the network model, and if and when it is called, it should return <code>True</code>. The magic of Python.</p>
-
+<p>How freaking incredible is that? There's nothing hidden here, we simply tell the framework that there's a method called <code>check_for_internet_connection</code> on the network model, and if and when it is called, it should return <code>True</code>. The magic of Python.</p>
 <p>Asserting the behaviour of the controller is equally simple:</p>
-
 <p><code>mock_update_model.check_for_updates.assert_not_called()</code></p>
+<p>Let's look at a slightly more complicated example. The controller contains a method called <code>wait_or_exit</code> which is similar to a <code>sleep</code> but allows the program to handle signals (for example to exit) while execution is paused. We don't really want to do this in our tests, so as a special case, we <em>patch</em> this method in <code>setUp</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(self):
 
-<p>Let&rsquo;s look at a slightly more complicated example. The controller contains a method called <code>wait_or_exit</code> which is similar to a <code>sleep</code> but allows the program to handle signals (for example to exit) while execution is paused. We don&rsquo;t really want to do this in our tests, so as a special case, we <em>patch</em> this method in <code>setUp</code>:</p>
+        <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
 
-<pre><code class="language-python">    def setUp(self):
+        <span style="color:#75715e"># Special mock: don&#39;t actually sleep when wait_or_exit() is called</span>
 
-        ...
-
-        # Special mock: don't actually sleep when wait_or_exit() is called
-
-        self._mock_wait_method = patch.object(self.update_controller, &quot;wait_or_exit&quot;)
-        self._mock_wait_method.start()
+        self<span style="color:#f92672">.</span>_mock_wait_method <span style="color:#f92672">=</span> patch<span style="color:#f92672">.</span>object(self<span style="color:#f92672">.</span>update_controller, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">wait_or_exit</span><span style="color:#e6db74">&#34;</span>)
+        self<span style="color:#f92672">.</span>_mock_wait_method<span style="color:#f92672">.</span>start()
 
 
-    def tearDown(self):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">tearDown</span>(self):
 
-        self._mock_wait_method.stop()
+        self<span style="color:#f92672">.</span>_mock_wait_method<span style="color:#f92672">.</span>stop()
 
-</code></pre>
+</code></pre></div><p>Now we can test as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_if_no_internet_checks_again_after_ten_seconds</span>(self):
 
-<p>Now we can test as follows:</p>
+        <span style="color:#75715e"># Setup</span>
 
-<pre><code class="language-python">    def test_if_no_internet_checks_again_after_ten_seconds(self):
-
-        # Setup
-
-        self.mock_network_model.check_for_internet_connection.side_effect = [
+        self<span style="color:#f92672">.</span>mock_network_model<span style="color:#f92672">.</span>check_for_internet_connection<span style="color:#f92672">.</span>side_effect <span style="color:#f92672">=</span> [
             False,
             False,
             True,
         ]
 
-        # Run
+        <span style="color:#75715e"># Run</span>
 
-        self.update_controller.start()
+        self<span style="color:#f92672">.</span>update_controller<span style="color:#f92672">.</span>start()
 
-        # Test
+        <span style="color:#75715e"># Test</span>
 
-        self.update_controller.wait_or_exit.assert_has_calls([call(10), call(10)])
+        self<span style="color:#f92672">.</span>update_controller<span style="color:#f92672">.</span>wait_or_exit<span style="color:#f92672">.</span>assert_has_calls([call(<span style="color:#ae81ff">10</span>), call(<span style="color:#ae81ff">10</span>)])
 
-</code></pre>
-
-<p>Here we are using the <code>side_effect</code> pattern to indicate that the first two times the <code>check_for_internet_connection</code> method is called on the mock it should return <code>False</code>, but on the third time return <code>True</code>.</p>
-
+</code></pre></div><p>Here we are using the <code>side_effect</code> pattern to indicate that the first two times the <code>check_for_internet_connection</code> method is called on the mock it should return <code>False</code>, but on the third time return <code>True</code>.</p>
 <p>Then we then are asserting that the wait_or_exit method was called twice (i.e. ten second delays between checks for internet connectivity).</p>
-
 <p>Sure, we could have some kind of utility class passed in as another dependency to perform what is essentially a sleep, but this illustrates an alternative which in certain circumstances can be legitimate.</p>
 
 

@@ -1056,22 +1056,20 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    
-
-<h2 id="tldr">tldr</h2>
-
+    <h2 id="tldr">tldr</h2>
 <ol>
-<li><p>It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.</p></li>
-
-<li><p>Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.</p></li>
-
-<li><p>This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &lsquo;refining&rsquo; them. This might be turning raw ideas into user stories, or turning user stories into estimated, prioritised technical tasks.</p></li>
+<li>
+<p>It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.</p>
+</li>
+<li>
+<p>Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.</p>
+</li>
+<li>
+<p>This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &lsquo;refining&rsquo; them. This might be turning raw ideas into user stories, or turning user stories into estimated, prioritised technical tasks.</p>
+</li>
 </ol>
-
 <h2 id="in-the-beginning">In the beginning&hellip;</h2>
-
 <p>One of the recent frustrations that our agile team has had is around the wooliness of our process concerning the backlog. As is fairly typical, we had a &ldquo;Backlog&rdquo; column on our Kanban board in which there was a mix of all kinds of stuff. Stuff like:</p>
-
 <ul>
 <li>Prioritised, estimated and ready-to-go-into-a-sprint technical tasks</li>
 <li>Early-stage, half-defined stories from the product owner</li>
@@ -1079,55 +1077,41 @@ margin-left: -4%;
 <li>IOU-style cards describing technical-debt</li>
 <li>Absolutely nonsensical, not even half-formed cards from various sources</li>
 </ul>
-
 <p>Our existing process concerning the backlog involved a <strong>backlog grooming</strong> meeting each week (twice a sprint), during which cards in the backlog are cleaned-up, broken-down and given a rough estimation. You know, what we like to call &ldquo;grooming&rdquo;. We also have a <strong>release planning</strong> meeting once in a while, during which cards are selected from those in the backlog and moved into a column called &ldquo;Release shortlist&rdquo;. From here cards are selected to be worked on during our <strong>sprint planning</strong> meeting.</p>
-
 <p>We also had several problems consistently coming up in sprint retrospectives which seemed to be related to this part of our process, the more serious of which were likely affecting performance and overall throughput of the team:</p>
-
 <ul>
 <li>Developers starting work on a cards, then realising more design / research / thought / external input was required to begin coding, so the card immediately becomes blocked.</li>
 <li>Long and dry sprint meetings with a lack of focus</li>
 </ul>
-
-<p>As a quick aside, the latter of these is something that I&rsquo;ve experienced in various jobs and seen how badly it can affect agile teams. The lack of focus leads to drawn-out, boring meetings. This leads to disengagement, which in turn leads to lower output, negativity during meetings, and exacerbates the initial problem. It is <em>really</em> important to engage with the fact that &ndash; by nature &ndash; coders want to be coding, not planning or discussing what to code, designing the best way to code, or testing code. As a result it is crucial to make it as <strong>easy as possible to do these other activities</strong>, so they still happen effectively.</p>
-
-<p>To try and resolve these two problems, I formed a plan to attempt to clarify our process surrounding the backlog and our meetings related to it. It seemed a glaring inconsistency to me that we had several columns on our kanban board dedicated to the flow of cards within a sprint, but a single &ldquo;Backlog&rdquo; column for the entire phase of creation and refinement leading up to each sprint. To encourage a different way of thinking about the backlog, I&rsquo;ve started to use the metaphor of an oil refinery for the work of processing cards in the backlog. The &ldquo;raw&rdquo; cards (new stories, bugs, ideas) are &ldquo;refined&rdquo; into useful outputs (estimated, prioritised stories, then technical tasks), via a series of intermediary stages and processes, with the cards taking a different form at each.</p>
-
+<p>As a quick aside, the latter of these is something that I've experienced in various jobs and seen how badly it can affect agile teams. The lack of focus leads to drawn-out, boring meetings. This leads to disengagement, which in turn leads to lower output, negativity during meetings, and exacerbates the initial problem. It is <em>really</em> important to engage with the fact that &ndash; by nature &ndash; coders want to be coding, not planning or discussing what to code, designing the best way to code, or testing code. As a result it is crucial to make it as <strong>easy as possible to do these other activities</strong>, so they still happen effectively.</p>
+<p>To try and resolve these two problems, I formed a plan to attempt to clarify our process surrounding the backlog and our meetings related to it. It seemed a glaring inconsistency to me that we had several columns on our kanban board dedicated to the flow of cards within a sprint, but a single &ldquo;Backlog&rdquo; column for the entire phase of creation and refinement leading up to each sprint. To encourage a different way of thinking about the backlog, I've started to use the metaphor of an oil refinery for the work of processing cards in the backlog. The &ldquo;raw&rdquo; cards (new stories, bugs, ideas) are &ldquo;refined&rdquo; into useful outputs (estimated, prioritised stories, then technical tasks), via a series of intermediary stages and processes, with the cards taking a different form at each.</p>
 <h2 id="the-stratified-backlog">The stratified backlog</h2>
-
 <p>The first step we decided to take was to split out the backlog into multiple columns. The following diagram shows the columns we decided on for our first iteration of this experiment. This may seem pretty verbose, but we wanted to try be quite granular to start with and then, if necessary, merge some of these together.</p>
-
-<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/diagrams/backlog-refinery-1.png" src="https://benp44.github.io/blog/images/diagrams/low/backlog-refinery-1.png" alt="The Kanban columns" /></p></figure>
-
-<p>Although we&rsquo;re focusing on the backlog, I&rsquo;ve drawn our full board for context. A couple of further points of context:</p>
-
+<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/diagrams/backlog-refinery-1.png" src="https://benp44.github.io/blog/images/diagrams/low/backlog-refinery-1.png" alt="The Kanban columns"></p></figure>
+<p>Although we're focusing on the backlog, I've drawn our full board for context. A couple of further points of context:</p>
 <ul>
-<li><p>We are currently using <a href="https://zube.io/">Zube</a> to manage our board, which has a couple of nice features to help with this. Firstly, it has the in-built concept of a <strong>Triage</strong> column, into which new cards are created by default. This makes for a useful starting place for all cards, no matter how well defined.</p></li>
-
-<li><p>Another nice feature of Zube that helps with this system is that it allows for viewing the board in various ways. Thus when working with the backlog we can use a view that only shows the <strong>Backlog</strong> columns, and when we are doing sprint planning or day-to-day card management we can hide the backlog and show only the <strong>Sprint</strong> columns. The <strong>Release Shortlist</strong> column is left visible in both views to help bring the two halves of the process together.</p></li>
-
-<li><p>If you&rsquo;re using another tool to manage your work, then labels or tags would also probably work fine for the purpose of splitting up the backlog into various levels of refinement.</p></li>
+<li>
+<p>We are currently using <a href="https://zube.io/">Zube</a> to manage our board, which has a couple of nice features to help with this. Firstly, it has the in-built concept of a <strong>Triage</strong> column, into which new cards are created by default. This makes for a useful starting place for all cards, no matter how well defined.</p>
+</li>
+<li>
+<p>Another nice feature of Zube that helps with this system is that it allows for viewing the board in various ways. Thus when working with the backlog we can use a view that only shows the <strong>Backlog</strong> columns, and when we are doing sprint planning or day-to-day card management we can hide the backlog and show only the <strong>Sprint</strong> columns. The <strong>Release Shortlist</strong> column is left visible in both views to help bring the two halves of the process together.</p>
+</li>
+<li>
+<p>If you're using another tool to manage your work, then labels or tags would also probably work fine for the purpose of splitting up the backlog into various levels of refinement.</p>
+</li>
 </ul>
-
 <h2 id="sprint-meetings-as-backlog-refinement">Sprint meetings as &ldquo;backlog refinement&rdquo;</h2>
-
 <p>I might be overusing the metaphor a little at this stage.</p>
-
 <p>The selection of these columns is not arbitrary, but to engage with the second of the two problems I highlighted earlier, a lack of focus in sprint meetings. The idea is that each movement of cards from one column to the next is associated with a sprint meeting:</p>
-
-<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/diagrams/backlog-refinery-2.png" src="https://benp44.github.io/blog/images/diagrams/low/backlog-refinery-2.png" alt="Sprint meetings" /></p></figure>
-
+<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/diagrams/backlog-refinery-2.png" src="https://benp44.github.io/blog/images/diagrams/low/backlog-refinery-2.png" alt="Sprint meetings"></p></figure>
 <p>Now, the focus of each meeting is very clear, almost algorithmic:</p>
-
 <ol>
 <li>Take a card from one column (&ldquo;input&rdquo;)</li>
 <li>Discuss/analyse/improve the card, then update or replace it (&ldquo;refine&rdquo;)</li>
 <li>Put it in the next column (&ldquo;output&rdquo;)</li>
 <li>Repeat until no <em>input</em> cards remain, or time runs out</li>
 </ol>
-
 <p>And we can breakdown and define sprint meetings by their input, output, and refining process:</p>
-
 <table>
 <thead>
 <tr>
@@ -1137,60 +1121,45 @@ margin-left: -4%;
 <th><strong>Activities (refining process)</strong></th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center"><span style="background-color:#FBE6D0">Triage Grooming</span></td>
-<td align="center"><span style="background-color:#D9EAD3">Triage</span></td>
-<td align="center"><span style="background-color:#D9EAD3">Stories Defined</span></td>
-<td>&#8227; Understand and categorise cards<br/>&#8227; Identify epics<br/>&#8227; Improve clarity/definition<br/>&#8227; Add labels<br/>&#8227; High-level estimation<br/>&#8227; Identify research areas<br/>&#8227; Identify major external dependencies</td>
+<td align="center"><!-- raw HTML omitted -->Triage Grooming<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Triage<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Stories Defined<!-- raw HTML omitted --></td>
+<td>‣ Understand and categorise cards<!-- raw HTML omitted -->‣ Identify epics<!-- raw HTML omitted -->‣ Improve clarity/definition<!-- raw HTML omitted -->‣ Add labels<!-- raw HTML omitted -->‣ High-level estimation<!-- raw HTML omitted -->‣ Identify research areas<!-- raw HTML omitted -->‣ Identify major external dependencies</td>
 </tr>
-
 <tr>
-<td align="center"><span style="background-color:#FBE6D0">Design</span></td>
-<td align="center"><span style="background-color:#D9EAD3">Stories Defined</span></td>
-<td align="center"><span style="background-color:#D9EAD3">Tasks Defined</span></td>
-<td>&#8227; Software architecture/design<br/>&#8227; Break-out individual tasks<br/>&#8227; Low-level estimation</td>
+<td align="center"><!-- raw HTML omitted -->Design<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Stories Defined<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Tasks Defined<!-- raw HTML omitted --></td>
+<td>‣ Software architecture/design<!-- raw HTML omitted -->‣ Break-out individual tasks<!-- raw HTML omitted -->‣ Low-level estimation</td>
 </tr>
-
 <tr>
-<td align="center"><span style="background-color:#FBE6D0">Release Planning</span></td>
-<td align="center"><span style="background-color:#D9EAD3">Tasks Defined</span></td>
-<td align="center"><span style="background-color:#CFE2F3">Release Shortlist</span></td>
-<td>&#8227; Prioritisation of epics<br/>&#8227; Establish release timelines</td>
+<td align="center"><!-- raw HTML omitted -->Release Planning<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Tasks Defined<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Release Shortlist<!-- raw HTML omitted --></td>
+<td>‣ Prioritisation of epics<!-- raw HTML omitted -->‣ Establish release timelines</td>
 </tr>
-
 <tr>
-<td align="center"><span style="background-color:#FBE6D0">Sprint Planning</span></td>
-<td align="center"><span style="background-color:#CFE2F3">Release Shortlist</span></td>
-<td align="center"><span style="background-color:#B4A7D6">Sprint Backlog</span></td>
-<td>&#8227; Selection and prioritisation of tasks<br/>&#8227; Establish sprint capacity/workload</td>
+<td align="center"><!-- raw HTML omitted -->Sprint Planning<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Release Shortlist<!-- raw HTML omitted --></td>
+<td align="center"><!-- raw HTML omitted -->Sprint Backlog<!-- raw HTML omitted --></td>
+<td>‣ Selection and prioritisation of tasks<!-- raw HTML omitted -->‣ Establish sprint capacity/workload</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="buy-in-from-the-rest-of-the-team">Buy-in from the rest of the team</h2>
-
-<p>The other change we&rsquo;ve made is to really emphasize the importance that these backlog meetings need input from people outside of the development team. Of course product owners. But also UX/UI designers, and sometimes others. If these meetings are run efficiently their importance should be self-evident to all attendees, and the use of time is justifiable.</p>
-
+<p>The other change we've made is to really emphasize the importance that these backlog meetings need input from people outside of the development team. Of course product owners. But also UX/UI designers, and sometimes others. If these meetings are run efficiently their importance should be self-evident to all attendees, and the use of time is justifiable.</p>
 <h2 id="being-flexible">Being flexible</h2>
-
-<p>To those who worry that this is pinning things down too much, it&rsquo;s worth repeating that this is just a model. In special circumstances, it is still possible to move cards wherever the team want to move them. The aim of this model is not to nail down an algorithmic process for our Kanban board, but to support the way our agile team works and to try and iron-out empirically identified problems.</p>
-
+<p>To those who worry that this is pinning things down too much, it's worth repeating that this is just a model. In special circumstances, it is still possible to move cards wherever the team want to move them. The aim of this model is not to nail down an algorithmic process for our Kanban board, but to support the way our agile team works and to try and iron-out empirically identified problems.</p>
 <blockquote>
 <p>Individuals and interactions over processes and tools</p>
 </blockquote>
-
 <p>Alike all process changes, this is still an on-going experiment and I hope to report good things as we continue to use and adapt these ideas.</p>
-
 <h2 id="updates">Updates</h2>
-
 <h4 id="almost-immediately">Almost immediately</h4>
-
 <p>The first problem identified was that our product owner immediately felt uncomfortable that it might take several meetings to get a card from the backlog straight into the release shortlist. We agreed that an approach that might work in these cases would be to have ad-hoc escalation meetings in which we essential move a card through all the columns in one go - to get an urgent hotfix or feature in the the current release.</p>
-
 <h4 id="a-couple-of-weeks-later">A couple of weeks later&hellip;</h4>
-
 <p>After a couple of weeks with the new system, a couple of problems became apparent. It was noticed that for most stories things worked smoothly, but some more unusual cards became stuck in certain columns. I suspect these cards would have had the same problem in the old, monolithic backlog, and perhaps this new system allowed us to notice the problem better. These cards typically were hard to deal with because they had external dependencies or required a lot of analysis.</p>
 
 

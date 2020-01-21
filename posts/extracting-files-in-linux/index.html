@@ -1057,41 +1057,37 @@ margin-left: -4%;
                 
     
     <p>Obligatory xkcd on the difficulties working with archives in Linux:</p>
-
-<p><img src="https://imgs.xkcd.com/comics/tar.png" alt="" /></p>
-
+<p><img src="https://imgs.xkcd.com/comics/tar.png" alt=""></p>
 <p>For most cases, the following function can be plonked into your <code>.bashrc</code> or <code>.zshrc</code> etc. to make extracting files a little easier.</p>
-
-<pre><code class="language-plain"># ------------------------------------------------------------------------------------------
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"># ------------------------------------------------------------------------------------------
 # Extract function
 # ------------------------------------------------------------------------------------------
 
 function extract() {
-    if [ -f &quot;$1&quot; ] ; then
-        case &quot;$1&quot; in
-            *.tar.bz2)   tar xvjf &quot;$1&quot;                    ;;
-            *.tar.gz)    tar xvzf &quot;$1&quot;                    ;;
-            *.bz2)       bunzip2 &quot;$1&quot;                     ;;
-            *.rar)       unrar x &quot;$1&quot;                     ;;
-            *.gz)        gunzip &quot;$1&quot;                      ;;
-            *.tar)       tar xvf &quot;$1&quot;                     ;;
-            *.tar.xz)    tar xvf &quot;$1&quot;                     ;;
-            *.tbz2)      tar xvjf &quot;$1&quot;                    ;;
-            *.tgz)       tar xvzf &quot;$1&quot;                    ;;
-            *.zip)       unzip &quot;$1&quot;                       ;;
-            *.ZIP)       unzip &quot;$1&quot;                       ;;
-            *.pax)       cat &quot;$1&quot; | pax -r                ;;
-            *.pax.Z)     uncompress &quot;$1&quot; —stdout | pax -r ;;
-            *.Z)         uncompress &quot;$1&quot;                  ;;
-            *.7z)        7z x &quot;$1&quot;                        ;;
-            *)           echo &quot;don't know how to extract '$1'...&quot; ;;
+    if [ -f &#34;$1&#34; ] ; then
+        case &#34;$1&#34; in
+            *.tar.bz2)   tar xvjf &#34;$1&#34;                    ;;
+            *.tar.gz)    tar xvzf &#34;$1&#34;                    ;;
+            *.bz2)       bunzip2 &#34;$1&#34;                     ;;
+            *.rar)       unrar x &#34;$1&#34;                     ;;
+            *.gz)        gunzip &#34;$1&#34;                      ;;
+            *.tar)       tar xvf &#34;$1&#34;                     ;;
+            *.tar.xz)    tar xvf &#34;$1&#34;                     ;;
+            *.tbz2)      tar xvjf &#34;$1&#34;                    ;;
+            *.tgz)       tar xvzf &#34;$1&#34;                    ;;
+            *.zip)       unzip &#34;$1&#34;                       ;;
+            *.ZIP)       unzip &#34;$1&#34;                       ;;
+            *.pax)       cat &#34;$1&#34; | pax -r                ;;
+            *.pax.Z)     uncompress &#34;$1&#34; —stdout | pax -r ;;
+            *.Z)         uncompress &#34;$1&#34;                  ;;
+            *.7z)        7z x &#34;$1&#34;                        ;;
+            *)           echo &#34;don&#39;t know how to extract &#39;$1&#39;...&#34; ;;
         esac
     else
-        echo &quot;extract: error: $1 is not valid&quot;
+        echo &#34;extract: error: $1 is not valid&#34;
     fi
 }
-</code></pre>
-
+</code></pre></div>
 
             </div>
         </div>
