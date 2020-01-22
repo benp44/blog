@@ -37,7 +37,7 @@
       <guid>https://benp44.github.io/blog/posts/extracting-files-in-linux/</guid>
       <description>Obligatory xkcd on the difficulties working with archives in Linux:
 For most cases, the following function can be plonked into your .bashrc or .zshrc etc. to make extracting files a little easier.
-# ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;#34;$1&amp;#34; ] ; then case &amp;#34;$1&amp;#34; in *.tar.bz2) tar xvjf &amp;#34;$1&amp;#34; ;; *.tar.gz) tar xvzf &amp;#34;$1&amp;#34; ;; *.bz2) bunzip2 &amp;#34;$1&amp;#34; ;; *.rar) unrar x &amp;#34;$1&amp;#34; ;; *.</description>
+# ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;quot;$1&amp;quot; ] ; then case &amp;quot;$1&amp;quot; in *.tar.bz2) tar xvjf &amp;quot;$1&amp;quot; ;; *.tar.gz) tar xvzf &amp;quot;$1&amp;quot; ;; *.bz2) bunzip2 &amp;quot;$1&amp;quot; ;; *.rar) unrar x &amp;quot;$1&amp;quot; ;; *.</description>
     </item>
     
   </channel>

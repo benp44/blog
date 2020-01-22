@@ -49,7 +49,7 @@ Think of a large software project you&#39;re familiar with. Now think about some
       
       <guid>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</guid>
       <description>This post is a collection of python unit testing &amp;lsquo;gotchas&amp;rsquo;.
-Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;#34;os&amp;#34;] = mock_os from config_editor import ConfigEditor Now we have effectively mocked all actual file I/O in our tests
+Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor Now we have effectively mocked all actual file I/O in our tests
 Mocking in-built methods and file I/O Super useful if you want to test a unit that uses the builtin open method.</description>
     </item>
     
@@ -130,7 +130,7 @@ The first thing I programmed was a version of &amp;ldquo;worm&amp;rdquo; in BASI
       <guid>https://benp44.github.io/blog/posts/extracting-files-in-linux/</guid>
       <description>Obligatory xkcd on the difficulties working with archives in Linux:
 For most cases, the following function can be plonked into your .bashrc or .zshrc etc. to make extracting files a little easier.
-# ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;#34;$1&amp;#34; ] ; then case &amp;#34;$1&amp;#34; in *.tar.bz2) tar xvjf &amp;#34;$1&amp;#34; ;; *.tar.gz) tar xvzf &amp;#34;$1&amp;#34; ;; *.bz2) bunzip2 &amp;#34;$1&amp;#34; ;; *.rar) unrar x &amp;#34;$1&amp;#34; ;; *.</description>
+# ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;quot;$1&amp;quot; ] ; then case &amp;quot;$1&amp;quot; in *.tar.bz2) tar xvjf &amp;quot;$1&amp;quot; ;; *.tar.gz) tar xvzf &amp;quot;$1&amp;quot; ;; *.bz2) bunzip2 &amp;quot;$1&amp;quot; ;; *.rar) unrar x &amp;quot;$1&amp;quot; ;; *.</description>
     </item>
     
     <item>

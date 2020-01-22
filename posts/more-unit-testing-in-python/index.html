@@ -1058,96 +1058,96 @@ margin-left: -4%;
     
     <p>This post is a collection of python unit testing &lsquo;gotchas&rsquo;.</p>
 <h3 id="mocking-external-packages">Mocking external packages</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sys
-<span style="color:#f92672">import</span> unittest
-<span style="color:#f92672">from</span> unittest.mock <span style="color:#f92672">import</span> patch, Mock, call, mock_open
-<span style="color:#f92672">from</span> io <span style="color:#f92672">import</span> StringIO, TextIOWrapper
+<pre><code>import sys
+import unittest
+from unittest.mock import patch, Mock, call, mock_open
+from io import StringIO, TextIOWrapper
 
-mock_os <span style="color:#f92672">=</span> Mock()
-sys<span style="color:#f92672">.</span>modules[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">os</span><span style="color:#e6db74">&#34;</span>] <span style="color:#f92672">=</span> mock_os
+mock_os = Mock()
+sys.modules[&quot;os&quot;] = mock_os
 
-<span style="color:#f92672">from</span> config_editor <span style="color:#f92672">import</span> ConfigEditor
-</code></pre></div><p>Now we have effectively mocked all actual file I/O in our tests</p>
+from config_editor import ConfigEditor
+</code></pre><p>Now we have effectively mocked all actual file I/O in our tests</p>
 <h3 id="mocking-in-built-methods-and-file-io">Mocking in-built methods and file I/O</h3>
 <p>Super useful if you want to test a unit that uses the builtin <code>open</code> method. The following example is a class for modifyinh a system config file, but the unit tests never need touch the file system. The <code>setUp</code> defines the initial state of the file, and then each test can evaluate its expected and final state.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigEditorTestCase</span>(unittest<span style="color:#f92672">.</span>TestCase):
+<pre><code>class ConfigEditorTestCase(unittest.TestCase):
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(self):
+    def setUp(self):
 
-        <span style="color:#75715e"># Create the object to test</span>
+        # Create the object to test
 
-        self<span style="color:#f92672">.</span>config_editor <span style="color:#f92672">=</span> ConfigEditor(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/test/file.config</span><span style="color:#e6db74">&#34;</span>)
+        self.config_editor = ConfigEditor(&quot;/test/file.config&quot;)
 
-        self<span style="color:#f92672">.</span>mock_input_file <span style="color:#f92672">=</span> StringIO(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"># Title</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#turn_on_rocket_launcher=123</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">### turn_on_piranha_launcher=123</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">enable_flamethrower=true</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">enable_a_thing=laser_beam</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#enable_a_thing=blaster_power=500</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">enable_a_thing=photon_beam</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">###############################</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"># Some random comment</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">###############################</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-                                        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">set_this=thing_to=50000</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+        self.mock_input_file = StringIO(&quot;# Title\n&quot;
+                                        &quot;#turn_on_rocket_launcher=123\n&quot;
+                                        &quot;### turn_on_piranha_launcher=123\n&quot;
+                                        &quot;\n&quot;
+                                        &quot;enable_flamethrower=true\n&quot;
+                                        &quot;enable_a_thing=laser_beam\n&quot;
+                                        &quot;#enable_a_thing=blaster_power=500\n&quot;
+                                        &quot;enable_a_thing=photon_beam\n&quot;
+                                        &quot;\n&quot;
+                                        &quot;###############################\n&quot;
+                                        &quot;# Some random comment\n&quot;
+                                        &quot;###############################\n&quot;
+                                        &quot;set_this=thing_to=50000\n&quot;)
 
-        <span style="color:#75715e"># Create an empty stream for the output file which we can then inspect</span>
+        # Create an empty stream for the output file which we can then inspect
 
-        self<span style="color:#f92672">.</span>mock_output_file <span style="color:#f92672">=</span> StringIO()
+        self.mock_output_file = StringIO()
 
-        <span style="color:#75715e"># Patch the in-built &#34;open&#34; method, so it returns our dummy streams</span>
+        # Patch the in-built &quot;open&quot; method, so it returns our dummy streams
 
-        self<span style="color:#f92672">.</span>mock_open <span style="color:#f92672">=</span> mock_open()
-        self<span style="color:#f92672">.</span>mock_open_method <span style="color:#f92672">=</span> patch(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">builtins.open</span><span style="color:#e6db74">&#34;</span>, self<span style="color:#f92672">.</span>mock_open)
-        self<span style="color:#f92672">.</span>mock_open<span style="color:#f92672">.</span>side_effect <span style="color:#f92672">=</span> [self<span style="color:#f92672">.</span>mock_input_file, self<span style="color:#f92672">.</span>mock_output_file]
-        self<span style="color:#f92672">.</span>mock_open_method<span style="color:#f92672">.</span>start()
-</code></pre></div><h3 id="patching-objects">Patching objects</h3>
+        self.mock_open = mock_open()
+        self.mock_open_method = patch(&quot;builtins.open&quot;, self.mock_open)
+        self.mock_open.side_effect = [self.mock_input_file, self.mock_output_file]
+        self.mock_open_method.start()
+</code></pre><h3 id="patching-objects">Patching objects</h3>
 <p>Python offers a few ways of patching objects so that they can be used for unit testing. Often you see the <code>with patch()</code> notation to achieve this in a local scope:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">with</span> patch(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">module.Foo</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">as</span> mock:
-        instance <span style="color:#f92672">=</span> mock<span style="color:#f92672">.</span>return_value
-        instance<span style="color:#f92672">.</span>method<span style="color:#f92672">.</span>return_value <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">the result</span><span style="color:#e6db74">&#39;</span>
-        result <span style="color:#f92672">=</span> some_function()
-        <span style="color:#66d9ef">assert</span> result <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">the result</span><span style="color:#e6db74">&#39;</span>
-</code></pre></div><p>Or sometimes in the form of a method decorator:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#a6e22e">@mock.patch</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">os.listdir</span><span style="color:#e6db74">&#34;</span>, mock<span style="color:#f92672">.</span>MagicMock(return_value<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">some_directory_name</span><span style="color:#e6db74">&#34;</span>))
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test1</span>():
-        <span style="color:#66d9ef">assert</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">some_directory_name</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> os<span style="color:#f92672">.</span>listdir()
-</code></pre></div><p>But sometimes you want to patch an object for whole fixture without decorating every test in the same way. Here's one way to achieve that:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(self):
+<pre><code>    with patch('module.Foo') as mock:
+        instance = mock.return_value
+        instance.method.return_value = 'the result'
+        result = some_function()
+        assert result == 'the result'
+</code></pre><p>Or sometimes in the form of a method decorator:</p>
+<pre><code>    @mock.patch(&quot;os.listdir&quot;, mock.MagicMock(return_value=&quot;some_directory_name&quot;))
+    def test1():
+        assert &quot;some_directory_name&quot; == os.listdir()
+</code></pre><p>But sometimes you want to patch an object for whole fixture without decorating every test in the same way. Here's one way to achieve that:</p>
+<pre><code>    def setUp(self):
 
-        <span style="color:#75715e"># Patch the close method of the two stream, so we can check they are closed correctly</span>
+        # Patch the close method of the two stream, so we can check they are closed correctly
 
-        self<span style="color:#f92672">.</span>mock_close_input_stream <span style="color:#f92672">=</span> Mock()
-        self<span style="color:#f92672">.</span>patch_input_stream_close_method <span style="color:#f92672">=</span> patch<span style="color:#f92672">.</span>object(self<span style="color:#f92672">.</span>mock_input_file, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">close</span><span style="color:#e6db74">&#34;</span>, self<span style="color:#f92672">.</span>mock_close_input_stream)
-        self<span style="color:#f92672">.</span>patch_input_stream_close_method<span style="color:#f92672">.</span>start()
+        self.mock_close_input_stream = Mock()
+        self.patch_input_stream_close_method = patch.object(self.mock_input_file, &quot;close&quot;, self.mock_close_input_stream)
+        self.patch_input_stream_close_method.start()
 
-        self<span style="color:#f92672">.</span>mock_close_output_stream <span style="color:#f92672">=</span> Mock()
-        self<span style="color:#f92672">.</span>patch_output_stream_close_method <span style="color:#f92672">=</span> patch<span style="color:#f92672">.</span>object(self<span style="color:#f92672">.</span>mock_output_file, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">close</span><span style="color:#e6db74">&#34;</span>, self<span style="color:#f92672">.</span>mock_close_output_stream)
-        self<span style="color:#f92672">.</span>patch_output_stream_close_method<span style="color:#f92672">.</span>start()
+        self.mock_close_output_stream = Mock()
+        self.patch_output_stream_close_method = patch.object(self.mock_output_file, &quot;close&quot;, self.mock_close_output_stream)
+        self.patch_output_stream_close_method.start()
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">tearDown</span>(self):
+    def tearDown(self):
 
-        self<span style="color:#f92672">.</span>mock_open_method<span style="color:#f92672">.</span>stop()
-        self<span style="color:#f92672">.</span>patch_input_stream_close_method<span style="color:#f92672">.</span>stop()
-</code></pre></div><h3 id="making-assertions-in-the-teardown">Making assertions in the tearDown</h3>
+        self.mock_open_method.stop()
+        self.patch_input_stream_close_method.stop()
+</code></pre><h3 id="making-assertions-in-the-teardown">Making assertions in the tearDown</h3>
 <p>When you've written a few tests which duplicate an assertion, it can be cleaner to put this in the tearDown. This can be especially useful for stuff like resource de-allocation, or ensuring that files handles are closed etc.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">tearDown</span>(self):
+<pre><code>    def tearDown(self):
 
-        <span style="color:#75715e"># Test that the config files are always opened as expected</span>
+        # Test that the config files are always opened as expected
 
-        self<span style="color:#f92672">.</span>mock_open<span style="color:#f92672">.</span>assert_has_calls([call(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/test/file.config</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span>), call(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/test/file.config.new</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">w</span><span style="color:#e6db74">&#34;</span>)])
+        self.mock_open.assert_has_calls([call(&quot;/test/file.config&quot;, &quot;r&quot;), call(&quot;/test/file.config.new&quot;, &quot;w&quot;)])
 
-        <span style="color:#75715e"># Test the config files are always closed</span>
+        # Test the config files are always closed
 
-        self<span style="color:#f92672">.</span>mock_close_input_stream<span style="color:#f92672">.</span>assert_called_once()
-        self<span style="color:#f92672">.</span>mock_close_output_stream<span style="color:#f92672">.</span>assert_called_once()
+        self.mock_close_input_stream.assert_called_once()
+        self.mock_close_output_stream.assert_called_once()
 
-        <span style="color:#75715e"># Test that the temp file is always cleaned up</span>
+        # Test that the temp file is always cleaned up
 
-        mock_os<span style="color:#f92672">.</span>remove<span style="color:#f92672">.</span>assert_called_with(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/test/file.config.new</span><span style="color:#e6db74">&#34;</span>)
+        mock_os.remove.assert_called_with(&quot;/test/file.config.new&quot;)
 
-</code></pre></div>
+</code></pre>
 
             </div>
         </div>

@@ -1070,18 +1070,18 @@ margin-left: -4%;
 <li>
 <p><strong>Installing pre-commit locally</strong></p>
 <p>As simple as:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ sudo pip3 install pre-commit
-</code></pre></div></li>
+<pre><code>$ sudo pip3 install pre-commit
+</code></pre></li>
 <li>
 <p><strong>Configuring pre-commit</strong></p>
 <p>In each of my git repositories, setup the pre-commit hook, and create a sample configuration file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ pre-commit install
+<pre><code>$ pre-commit install
 $ pre-commit sample-config &gt; .pre-commit-config.yaml
-</code></pre></div></li>
+</code></pre></li>
 <li>
 <p><strong>The test run</strong></p>
 <p>Now we can run pre-commit and see what it thinks of the code in the repo:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ pre-commit run --all-files
+<pre><code>$ pre-commit run --all-files
 [INFO] Initializing environment for https://github.com/pre-commit/pre-commit-hooks.
 [INFO] Installing environment for https://github.com/pre-commit/pre-commit-hooks.
 [INFO] Once installed this environment will be reused.
@@ -1110,7 +1110,7 @@ Fixing &lt;filename not shown&gt;
 Check Yaml...........................................(no files to check)Skipped
 Check for added large files..............................................Passed
 
-</code></pre></div><p>Yikes! So many issues. Thankfully they're relatively small-fry. But then all I'm running here is the default sample set of linters. As you can see, what's being caught here are largely whitespace issues: I've left trailing whitespace on some lines, and in some cases I'm not ending my files with exactly one line break (a <a href="https://stackoverflow.com/a/729795/408642">Posix standard</a> if you weren't aware).</p>
+</code></pre><p>Yikes! So many issues. Thankfully they're relatively small-fry. But then all I'm running here is the default sample set of linters. As you can see, what's being caught here are largely whitespace issues: I've left trailing whitespace on some lines, and in some cases I'm not ending my files with exactly one line break (a <a href="https://stackoverflow.com/a/729795/408642">Posix standard</a> if you weren't aware).</p>
 <p>And as a good linter should these simple, unambiguous things have been fixed for me. I just need to re-stage the files and re-commit.</p>
 <p>Note that I ran this command manually for the sake of an example, but the real point of pre-commit is that you don't actually need to run this command. As a git hook, it is run automatically whenever I commit to this repo. Before the actual commit happens. You know, &ldquo;pre-commit&rdquo;.</p>
 </li>
@@ -1118,7 +1118,7 @@ Check for added large files..............................................Passed
 <p><strong>Adding some more useful tools</strong></p>
 <p>Next let's modify the <code>.pre-commit-config.yaml</code> for this repo, and add some more specific linters.</p>
 <p>The current, default config file looks like this:**</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"># See https://pre-commit.com for more information
+<pre><code># See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
@@ -1128,9 +1128,9 @@ repos:
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
-</code></pre></div><p>You can see the whitespace-based linters that made the fixes to my code earlier.</p>
+</code></pre><p>You can see the whitespace-based linters that made the fixes to my code earlier.</p>
 <p>The repo I'm working with is mostly Python code, with a handful of utility shell scripts, so let's add some stuff to lint those files:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"># See https://pre-commit.com for more information
+<pre><code># See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
@@ -1157,10 +1157,10 @@ repos:
     rev: v1.4.4
     hooks:
     - id: autopep8
-</code></pre></div><p>I've added a couple of shellscript linters, <code>shellcheck</code>, <code>shfmt</code> and <code>shell-lint</code>. I've also added a symlink checker as the repo may end up with a few of those knocking around, and god knows they can cause havoc when they go awry.</p>
+</code></pre><p>I've added a couple of shellscript linters, <code>shellcheck</code>, <code>shfmt</code> and <code>shell-lint</code>. I've also added a symlink checker as the repo may end up with a few of those knocking around, and god knows they can cause havoc when they go awry.</p>
 <p>More interesting is the autopep8 linter which checks my Python code conforms to the <a href="https://www.python.org/dev/peps/pep-0008/">PEP8 standard</a>.</p>
 <p>Now when I run pre-commit I get some more stuff going on:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ pre-commit run --all-files
+<pre><code>$ pre-commit run --all-files
 Trim Trailing Whitespace.................................................Passed
 Fix End of Files.........................................................Passed
 Check Yaml...............................................................Passed
@@ -1176,21 +1176,21 @@ hookid: shfmt
 docs/regenerate-api-docs.sh
 
 The above files have style errors.
-Use &#34;shfmt -d&#34; option to show diff.
-Use &#34;shfmt -w&#34; option to write (autocorrect).
+Use &quot;shfmt -d&quot; option to show diff.
+Use &quot;shfmt -w&quot; option to write (autocorrect).
 
 Shell Syntax Check.......................................................Passed
 autopep8.................................................................Failed
 hookid: autopep8
 
 Files were modified by this hook.
-</code></pre></div><p>At first I thought it might be overkill adding various shell script linters, but as you can see <code>shellcheck</code> passed, but <code>shfmt</code> failed. Unfortunately not all hooks work in the same way, and here I have to run the provided command to find and fix the exact problem.</p>
+</code></pre><p>At first I thought it might be overkill adding various shell script linters, but as you can see <code>shellcheck</code> passed, but <code>shfmt</code> failed. Unfortunately not all hooks work in the same way, and here I have to run the provided command to find and fix the exact problem.</p>
 <p>Next up, we can see that <code>autopep8</code> has run and made some automatic fixes to my python code. Neat!</p>
 <p>There's just one problem. PEP8 is a pretty good code standard to my mind, however I've always found that a couple of the rules are a bit aggressive. I'm not keen on the rather severe line length limit, so I usually disable that, but more of a problem here is that one of the changes <code>autopep8</code> is making is breaking my unit tests.</p>
 <p>As a brief aside, in Python unit tests sometimes you want to mock a whole module before it gets imported. As a result you sometimes have some code to do this <em>before</em> the import. This breaks <a href="https://lintlyci.github.io/Flake8Rules/rules/E402.html">PEP8 rule E402</a>.</p>
 <p>This seems a bit of a nasty problem, as now I have no way to commit my code without these PEP8 changes breaking my unit tests.</p>
 <p>So here's my workaround for this. I've reconfigured the PEP8 linter to give my unit tests a little more slack than the production code, by running <code>autopep8</code> in two diffent modes. The default (strict) settings are used on my production code, and then slightly relaxed settings are used for the files containing unit tests.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">-   repo: https://github.com/pre-commit/mirrors-autopep8
+<pre><code>-   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.4.4
     hooks:
     - id: autopep8
@@ -1202,10 +1202,10 @@ Files were modified by this hook.
     hooks:
     - id: autopep8
     name: autopep8-unit-tests
-    args: [&#34;-i&#34;, &#34;--ignore=E226,E24,W50,W690,E402&#34;]
-</code></pre></div><p>Notice that the first entry excludes the <code>tests</code> directory, and the second entry ignores some of the default PEP8 warnings.</p>
+    args: [&quot;-i&quot;, &quot;--ignore=E226,E24,W50,W690,E402&quot;]
+</code></pre><p>Notice that the first entry excludes the <code>tests</code> directory, and the second entry ignores some of the default PEP8 warnings.</p>
 <p>Now when I run pre-commit, we're looking good:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ pre-commit run --all-files
+<pre><code>$ pre-commit run --all-files
 Trim Trailing Whitespace.................................................Passed
 Fix End of Files.........................................................Passed
 Check Yaml...............................................................Passed
@@ -1216,7 +1216,7 @@ Check shell style with shfmt.............................................Passed
 Shell Syntax Check.......................................................Passed
 autopep8-default.........................................................Passed
 autopep8-unit-tests......................................................Passed
-</code></pre></div></li>
+</code></pre></li>
 <li>
 <p><strong>Getting others involved</strong></p>
 <p>After committing all these changes to the repo, the next step is to get other developers using it, and then finally to run <code>pre-commit</code> as part of the continuous integration build system (in my case simply add a call to pre-commit into my CI system on Jenkins).</p>
