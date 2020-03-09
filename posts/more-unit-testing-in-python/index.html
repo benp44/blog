@@ -1113,7 +1113,7 @@ from config_editor import ConfigEditor
 <pre><code>    @mock.patch(&quot;os.listdir&quot;, mock.MagicMock(return_value=&quot;some_directory_name&quot;))
     def test1():
         assert &quot;some_directory_name&quot; == os.listdir()
-</code></pre><p>But sometimes you want to patch an object for whole fixture without decorating every test in the same way. Here's one way to achieve that:</p>
+</code></pre><p>But sometimes you want to patch an object for whole fixture without decorating every test in the same way. Here&rsquo;s one way to achieve that:</p>
 <pre><code>    def setUp(self):
 
         # Patch the close method of the two stream, so we can check they are closed correctly
@@ -1131,7 +1131,7 @@ from config_editor import ConfigEditor
         self.mock_open_method.stop()
         self.patch_input_stream_close_method.stop()
 </code></pre><h3 id="making-assertions-in-the-teardown">Making assertions in the tearDown</h3>
-<p>When you've written a few tests which duplicate an assertion, it can be cleaner to put this in the tearDown. This can be especially useful for stuff like resource de-allocation, or ensuring that files handles are closed etc.</p>
+<p>When you&rsquo;ve written a few tests which duplicate an assertion, it can be cleaner to put this in the tearDown. This can be especially useful for stuff like resource de-allocation, or ensuring that files handles are closed etc.</p>
 <pre><code>    def tearDown(self):
 
         # Test that the config files are always opened as expected

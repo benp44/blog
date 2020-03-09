@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Unrecognized Escape Sequence" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://benp44.github.io/blog/about/" />
-<meta property="og:title" content="About" />
-<meta property="twitter:title" content="About">
+<meta property="og:url" content="https://benp44.github.io/blog/posts/useful-rust-combinators/" />
+<meta property="og:title" content="Rust: Results, Options and Combinators" />
+<meta property="twitter:title" content="Rust: Results, Options and Combinators">
 
     <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Unrecognized Escape Sequence - About 
+     Unrecognized Escape Sequence - Rust: Results, Options and Combinators 
 
 </title>
-<link rel="canonical" href="https://benp44.github.io/blog/about/">
+<link rel="canonical" href="https://benp44.github.io/blog/posts/useful-rust-combinators/">
 
 
 <style media="screen">
@@ -994,7 +994,7 @@ margin-left: -4%;
 
 <link rel="shortcut icon"
 
-    href="../images/favicon.ico"
+    href="../../images/favicon.ico"
 
 >
 
@@ -1011,10 +1011,10 @@ margin-left: -4%;
 
     <div class="container">
         
-        <a href="https://benp44.github.io/blog/"><img class="logo" src="../images/moe.png" alt="logo"></a>
+        <a href="https://benp44.github.io/blog/"><img class="logo" src="../../images/moe.png" alt="logo"></a>
         
         <div class="content">
-            <a href="../"><div class="name"><h1>Unrecognized Escape Sequence</h1></div></a>
+            <a href="../../"><div class="name"><h1>Unrecognized Escape Sequence</h1></div></a>
             <h2 style="padding-bottom: 10px; font-size: 13pt">An increasingly grumpy blog about software engineering</h2>
             <nav>
                 <ul>
@@ -1022,13 +1022,13 @@ margin-left: -4%;
                     
                         
                             
-                            <li><a href="../posts">posts</a></li>
+                            <li><a href="../../posts">posts</a></li>
                             
                         
                     
                     
                         
-                            <li><a href="../about/">About</a></li>
+                            <li><a href="../../about/">About</a></li>
                         
                     
                         
@@ -1048,7 +1048,7 @@ margin-left: -4%;
             <div class="page-heading">
 
     
-    About
+    Rust: Results, Options and Combinators
     
 
 </div>
@@ -1056,12 +1056,83 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    <p>My name is Ben and I&rsquo;m a software engineer. I currently live in Cambridge (UK), with my partner and son. I have survived 15 years (and counting) working in the tech industry, mostly as a developer but also on occasion as an architect or technologist.</p>
-<p>The first thing I programmed was a version of &ldquo;worm&rdquo; in BASIC on a 386 DOS PC, at my best guess around 1994. I have a BEng and MSc in Computer Science and have written software for medical, legal, educational and cultural organisations.</p>
-<p>These days my general go-to languages are C++ and Python, although secretly, deep down I wish I could do everything in the friendly, comfortable world of C# and Visual Studio. I&rsquo;m working on developing an interest in Rust, and for the last couple of years have been enjoying my work with Qt and QML.</p>
-<p>This blog is an attempt to document some of the experiences I&rsquo;ve had working in software, some of tools and techniques I have found or continue to find useful, and the practices that make for the production of good (and bad) software. Hopefully you may find some of my posts useful.</p>
-<p>If you wish to know more, please feel free to contact me via email or otherwise.</p>
+    <p>As you start to write Rust code, you find yourself regularly using the <code>match</code> syntax. This comes up due to Rust&rsquo;s error handling pattern, specifically the <code>Result</code> and <code>Option</code> types. Personally, I found that writing matches got old quite quickly. Rust is a concise language in general, so the match-blocks feels verbose, and I start to feel uncomfortable with the indented blocks of code that often end up inside the <code>match</code>.</p>
+<p>While I&rsquo;m very conscious of the paradigm of verbose code often being easier to read than concise code, there are a few tools provided by Rust that once you are comfortable with the idea behind matches, can make your code more concise while (hopefully) remaining readable.</p>
+<h2 id="step-one-panicking">Step One: Panicking</h2>
+<p>Of course the simplest way to avoid match blocks is to simply ignore that an error might have occurred (<code>Result</code>), or that you might not have something when you think you do (<code>Option</code>). This can be done by calling <code>unwrap</code> or <code>expect</code>. If an <code>Option</code> has a value or a <code>Result</code> is <code>OK</code>, the value or result is returned. Otherwise Rust panics.</p>
+<p>Similar is the <code>expect</code> function, which does the same thing but allows you to wave to the user before their program blows up (or maybe write a message to stderr).</p>
+<p>But I general you don&rsquo;t really want to deliberately panic. It sounds bad. It looks bad. It&rsquo;s bad.</p>
+<h2 id="step-two-the--operator">Step Two: The <code>?</code> operator</h2>
+<p>The first and most obvious improvement on panicking is the <code>?</code> syntax, which is used to evaluate a <code>Result</code>, proceed if OK or return the Result up the call stack if an error occurred. This is well documented and common, but is worth a quick example.</p>
+<p>So we go from this:</p>
+<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+    // Match to see if the file was created
 
+    let mut file = match File::create(&quot;file.txt&quot;) {
+           Ok(f) =&gt; f,
+           Err(e) =&gt; return Err(e),
+    };
+
+    // Only handle the error case if the file write failed
+
+    if let Err(e) = file.write_all(value.as_bytes()) {
+        return Err(e)
+    }
+
+    Ok(())
+}
+</code></pre><p>To this:</p>
+<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+    let mut file = File::create(&quot;file.txt&quot;)?;
+    file.write_all(value.as_bytes())?;
+
+    Ok(())
+}
+</code></pre><h2 id="step-three-combinators">Step Three: Combinators</h2>
+<p>The <code>?</code> syntax is great, but it starts to become less useful, particularly when you want to respond to error cases rather than pass them up the stack, or when you&rsquo;re mixing Options and Results, or different types of Results. However in many of these cases, there are <em>combinators</em> that can really help, a few examples of which are covered below.</p>
+<h3 id="turning-an-option-into-a-result">Turning an <code>Option</code> into a <code>Result</code></h3>
+<p>A common situation is evaluating an <code>Option</code> which effectively defines the result of a function. I.e. if the option is <code>None</code>, then the function should return. For example:</p>
+<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+    let result = match LANGUAGES.get(id as usize) {
+        Some(value) =&gt; value,
+        None =&gt; return Err(format!(&quot;No language found for id: {}&quot;, id).to_string()),
+    };
+
+    Ok(result)
+}
+</code></pre><p>Here, a useful combinator is <code>ok_or()</code>, which effectively turns the <code>Option</code> into a <code>Result</code>, and allows you to specify the error message:</p>
+<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+    let result = LANGUAGES.get(id as usize)
+                          .ok_or(format!(&quot;No language found for id: {}&quot;, id)
+                          .to_string())?;
+
+    Ok(result)
+}
+</code></pre><h3 id="yield-a-default-value-in-case-of-none">Yield a default value in case of <code>None</code></h3>
+<p>Similarly, another nice tool is the <code>unwrap_or</code> combinator that returns a default value when an Option is <code>None</code>:</p>
+<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+    let result = LANGUAGES.get(id as usize).unwrap_or(&amp;UNKNOWN_LANGUAGE_NAME);
+
+    Ok(result)  
+}
+</code></pre><h3 id="if-at-first-you-dont-succeed">If at first you don&rsquo;t succeed</h3>
+<p>Note that you can also use <code>unwrap_or</code> on a <code>Result</code> to &ldquo;have another go&rdquo; in case of an error. Here, if the initial file creation fails, we attempt to create the file with another name (terrible looking code I know, but sometimes real-world examples are tricky to come up with):</p>
+<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+    let mut file = File::create(&quot;log.txt&quot;).unwrap_or(File::create(&quot;log01.txt&quot;)?);
+    file.write_all(value.as_bytes())?;
+
+    Ok(())
+}
+</code></pre><h3 id="closure-versions-of-combinators">Closure versions of combinators</h3>
+<p>Some combinators, including those above also have an <em>_else</em> version, so <code>ok_or_else</code>, <code>unwrap_or_else</code>, etc. These do the same thing as their counterparts, but take a closure instead of a value. The important detail with these is that the logic in the closures are lazily-evaluated. Thus, were you to perform any serious memory allocation or processing in the error cases, these are a useful option to avoid that unless necessary:</p>
+<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+    let result = LANGUAGES
+        .get(id as usize)
+        .unwrap_or_else(|| return &amp;UNKNOWN_LANGUAGE_NAME);
+
+    Ok(result)
+}
+</code></pre>
 
             </div>
         </div>

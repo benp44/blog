@@ -1056,13 +1056,13 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    <p>Recently I've been working at home with a loud infant in the next room. As a result, I've needed to wear headphones to concentrate. This raises the issue of finding a good source of continuous, ambient, non-commercial and enjoyable music. On this front, I'm a big fan of <a href="https://somafm.com/">somafm</a>, which meets exactly those criteria. Soma is ad-free on the basis that it's funded by donations, so if you enjoy, I hope you'll find time to <a href="https://somafm.com/support/">donate yourself</a> and keep this awesome service going.</p>
-<p>To make listening to soma a little simpler, I'm using github user rockymadden's <a href="https://github.com/rockymadden/somafm-cli">useful cli utility</a>; and I've added a couple of useful functions to my <code>.zshrc</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">function</span> soma-play<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <p>Recently I&rsquo;ve been working at home with a loud infant in the next room. As a result, I&rsquo;ve needed to wear headphones to concentrate. This raises the issue of finding a good source of continuous, ambient, non-commercial and enjoyable music. On this front, I&rsquo;m a big fan of <a href="https://somafm.com/">somafm</a>, which meets exactly those criteria. Soma is ad-free on the basis that it&rsquo;s funded by donations, so if you enjoy, I hope you&rsquo;ll find time to <a href="https://somafm.com/support/">donate yourself</a> and keep this awesome service going.</p>
+<p>To make listening to soma a little simpler, I&rsquo;m using github user rockymadden&rsquo;s <a href="https://github.com/rockymadden/somafm-cli">useful cli utility</a>; and I&rsquo;ve added a couple of useful functions to my <code>.zshrc</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">function</span> soma-play<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
     /home/ben/Development/somafm-cli/build/bin/somafm listen <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span> &amp;
 <span style="color:#f92672">}</span>
 
-<span style="color:#66d9ef">function</span> soma-stop<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">function</span> soma-stop<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
     ps xao pgid,cmd | grep <span style="color:#e6db74">&#34;bash /home/ben/Development/somafm-cli/build/bin/somafm&#34;</span> | grep -v <span style="color:#e6db74">&#34;grep&#34;</span> | head -n <span style="color:#ae81ff">1</span> | awk <span style="color:#e6db74">&#39;{ print -$1 }&#39;</span> | xargs kill -15
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Which can then be used to start soma playing in the background (e.g. listening to the <em>groovesalad</em> station), and to stop it:</p>

@@ -1057,21 +1057,21 @@ margin-left: -4%;
                 
     
     <h3 id="what-is-fzf">What is fzf?</h3>
-<p>If you're a linux terminal user and not familiar with <strong>fzf</strong>, I would highly recommend giving it a try. I'm not going to go to great lengths to explain the functionality here, as that information is available on the tool's <a href="https://github.com/junegunn/fzf">github page</a>. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</p>
+<p>If you&rsquo;re a linux terminal user and not familiar with <strong>fzf</strong>, I would highly recommend giving it a try. I&rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&rsquo;s <a href="https://github.com/junegunn/fzf">github page</a>. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</p>
 <p>For example, fzf replaces the standard <code>reverse-i-search</code> behaviour (typically triggered by pressing <strong>Ctrl+R</strong>), with a superior alternative that shows a list of the most recent commands that match with the inputted search string, and allows for &ldquo;fuzzy&rdquo; text searching to further refine this list.</p>
 <p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/fzf/command.gif" src="https://benp44.github.io/blog/images/fzf/low/command.gif" alt="Listing command history"></p></figure>
-<p>Maybe even more useful than searching the command history is fzf's file searching. This can be invoked various ways,but the easiest to demonstrate is simply by pressing <code>Ctrl+T</code>. This starts the fuzzy search for files and directories under the current path.</p>
+<p>Maybe even more useful than searching the command history is fzf&rsquo;s file searching. This can be invoked various ways,but the easiest to demonstrate is simply by pressing <code>Ctrl+T</code>. This starts the fuzzy search for files and directories under the current path.</p>
 <p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/fzf/files.gif" src="https://benp44.github.io/blog/images/fzf/low/files.gif" alt="Listing command history"></p></figure>
-<p>Once you've formed the muscle memory to start using these key combinations, you begin to realise just how slow it was to constantly have to browse up and down the directory tree, essentially doing the computer's job for it.</p>
+<p>Once you&rsquo;ve formed the muscle memory to start using these key combinations, you begin to realise just how slow it was to constantly have to browse up and down the directory tree, essentially doing the computer&rsquo;s job for it.</p>
 <h3 id="customising-the-search">Customising the search</h3>
-<p>Usefully, fzf allows you to use your own commands to perform the actual searching, and following the recommendation of the author, I'm using <code>fd</code> for this, which makes things even faster. To do this I've added the following to my <code>.zshrc</code>:</p>
+<p>Usefully, fzf allows you to use your own commands to perform the actual searching, and following the recommendation of the author, I&rsquo;m using <code>fd</code> for this, which makes things even faster. To do this I&rsquo;ve added the following to my <code>.zshrc</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Use fd to list files for fzf</span>
-_fzf_compgen_path<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+_fzf_compgen_path<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
     fd --hidden --follow --exclude <span style="color:#e6db74">&#34;.git&#34;</span> . <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>1<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><h3 id="previews">Previews</h3>
 <p>Another nice feature of fzf is the ability to show a preview pane for the file you have highlighted in the search result. The typical configuration for this will show text-based files using <code>cat</code> in the preview pane. While exploring the features of fzf I thought I would drill-down into the configuration of this, and try to get a bit more out of it.</p>
-<p>So in my <code>.zshrc</code> I'm now telling fzf to use the <code>fzf-preview.sh</code> script to preview the selected search result:</p>
+<p>So in my <code>.zshrc</code> I&rsquo;m now telling fzf to use the <code>fzf-preview.sh</code> script to preview the selected search result:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Call script to preview files</span>
 export FZF_CTRL_T_OPTS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; --preview &#39;~/path/to/fzf-preview.sh {}&#39;&#34;</span>
 </code></pre></div><p>This script currently looks like:</p>
@@ -1085,23 +1085,23 @@ export FZF_CTRL_T_OPTS<span style="color:#f92672">=</span><span style="color:#e6
 
 file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
 
-<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span><span style="color:#f92672">[</span> -d <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span><span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> -d <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
     ls -al --color <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
-<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span><span style="color:#f92672">[</span> <span style="color:#66d9ef">$(</span>file --mime <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span> <span style="color:#f92672">=</span>~ binary <span style="color:#f92672">]</span><span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span><span style="color:#f92672">[</span> <span style="color:#66d9ef">$(</span>file --mime <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span> <span style="color:#f92672">=</span>~ <span style="color:#e6db74">&#34;image/&#34;</span> <span style="color:#f92672">]</span><span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> <span style="color:#66d9ef">$(</span>file --mime <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span> <span style="color:#f92672">=</span>~ binary <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#66d9ef">$(</span>file --mime <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span> <span style="color:#f92672">=</span>~ <span style="color:#e6db74">&#34;image/&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
         columns<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>tput cols<span style="color:#66d9ef">)</span>
         columns<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span><span style="color:#e6db74">${</span>columns<span style="color:#e6db74">}</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#66d9ef">))</span>
         catimg -w <span style="color:#e6db74">${</span>columns<span style="color:#e6db74">}</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
     <span style="color:#66d9ef">else</span>
-        echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74"> is a binary file</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&amp;&amp;</span> false
+        echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74"> is a binary file&#34;</span> <span style="color:#f92672">&amp;&amp;</span> false
     <span style="color:#66d9ef">fi</span>
 <span style="color:#66d9ef">else</span>
     bat --style<span style="color:#f92672">=</span>numbers --color<span style="color:#f92672">=</span>always <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 2&gt; /dev/null | head -100
 <span style="color:#66d9ef">fi</span>
 </code></pre></div><p>So far this handles previews for directories (shows a list the contents), binary files (shows a message), images (previews them using <code>catimg</code>), and text files (previews them using <code>bat</code> with syntax highlighting etc.)</p>
 <p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://benp44.github.io/blog/images/fzf/preview.gif" src="https://benp44.github.io/blog/images/fzf/low/preview.gif" alt="Listing command history"></p></figure>
-<p>There's still a few issues with this, but I'll expand the functionality here to do more as and when I come across other ideas for how to preview different files.</p>
-<p>Anyway, enough said about fzf, but if you've not tried it already I highly recommend you give it a go.</p>
+<p>There&rsquo;s still a few issues with this, but I&rsquo;ll expand the functionality here to do more as and when I come across other ideas for how to preview different files.</p>
+<p>Anyway, enough said about fzf, but if you&rsquo;ve not tried it already I highly recommend you give it a go.</p>
 
 
             </div>

@@ -1056,8 +1056,8 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    <p>Have you ever noticed that comments usually appear greyed out or pale in most IDE colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don't think very much of comments. Comments are equivalent to a footnote in a book &ndash; an optional extra that doesn't really need to be read. I mean, almost the first thing a compiler does is remove all the comments. They're that disposable, right?</p>
-<p>It's a shame that this &ndash; at best unconscious &ndash; belief exists, as comments can play a really important part of helping to make code more readable and understandable. The likely reason for this belief, at least from my experience anyway, is that comments are misused <em>a lot</em>.</p>
+    <p>Have you ever noticed that comments usually appear greyed out or pale in most IDE colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don&rsquo;t think very much of comments. Comments are equivalent to a footnote in a book &ndash; an optional extra that doesn&rsquo;t really need to be read. I mean, almost the first thing a compiler does is remove all the comments. They&rsquo;re that disposable, right?</p>
+<p>It&rsquo;s a shame that this &ndash; at best unconscious &ndash; belief exists, as comments can play a really important part of helping to make code more readable and understandable. The likely reason for this belief, at least from my experience anyway, is that comments are misused <em>a lot</em>.</p>
 <h3 id="the-smell-of-bad-comments">The smell of bad comments</h3>
 <p>There are lots of bad <a href="https://en.wikipedia.org/wiki/Code_smell">smells</a> around comments, which superficially can seem like a harmless addition to your codebase. Some common examples include:</p>
 <ul>
@@ -1067,8 +1067,8 @@ margin-left: -4%;
 </ul>
 <p>The good news is that most of these smells can typically be addressed quite easily.</p>
 <h3 id="some-example-solutions">Some example solutions</h3>
-<p>To take the first of these smells as an example, I've described here a couple of the approaches I've taken in the past to try and fix them when I come across obvious, cluttering comments.</p>
-<p>Here's a classic case of &ldquo;telling a story&rdquo;, self-evident comments that are semi-useful as you read the code for the first time, but shouldn't need to exist. Comments like these might as well be greyed-out by the IDE, as they do and say so little:</p>
+<p>To take the first of these smells as an example, I&rsquo;ve described here a couple of the approaches I&rsquo;ve taken in the past to try and fix them when I come across obvious, cluttering comments.</p>
+<p>Here&rsquo;s a classic case of &ldquo;telling a story&rdquo;, self-evident comments that are semi-useful as you read the code for the first time, but shouldn&rsquo;t need to exist. Comments like these might as well be greyed-out by the IDE, as they do and say so little:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
     <span style="color:#75715e">// Create objects
@@ -1079,20 +1079,20 @@ margin-left: -4%;
 
     <span style="color:#75715e">// Connect the signals
 </span><span style="color:#75715e"></span>
-    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">:</span><span style="color:#f92672">:</span>progress, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">:</span><span style="color:#f92672">:</span>onProgress);
-    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">:</span><span style="color:#f92672">:</span>downloadComplete, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">:</span><span style="color:#f92672">:</span>onDownloadComplete);
+    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">::</span>progress, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">::</span>onProgress);
+    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">::</span>downloadComplete, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">::</span>onDownloadComplete);
 
     <span style="color:#75715e">// Show the window:
 </span><span style="color:#75715e"></span>
-    mainWindow<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>show();
+    mainWindow<span style="color:#f92672">-&gt;</span>show();
 
     <span style="color:#75715e">// Start download
 </span><span style="color:#75715e"></span>
-    downloadManager<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>startDownloading();
+    downloadManager<span style="color:#f92672">-&gt;</span>startDownloading();
 
     <span style="color:#75715e">// Start event loop
 </span><span style="color:#75715e"></span>
-    mainWindow<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>exec();
+    mainWindow<span style="color:#f92672">-&gt;</span>exec();
 }
 </code></pre></div><h3 id="solution-a-making-the-comments-come-alive">Solution A: Making the comments come alive</h3>
 <p>Maybe these kind of comments are a smell that the code needs to be broken down into smaller functions. In other words, if the comments are telling a story, maybe this story needs to be in chapters :eyes_rolling:.</p>
@@ -1102,40 +1102,40 @@ margin-left: -4%;
     createObjects();
     connectSignals();
 
-    mainWindow<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>show();
+    mainWindow<span style="color:#f92672">-&gt;</span>show();
 
-    downloadManager<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>startDownloading();
+    downloadManager<span style="color:#f92672">-&gt;</span>startDownloading();
 
-    mainWindow<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>exec();
+    mainWindow<span style="color:#f92672">-&gt;</span>exec();
 }
 </code></pre></div><h3 id="solution-b-making-comments-do-something">Solution B: Making comments do something</h3>
 <p>Maybe if comments actually did something, they would be more respected, like when comments are marked up for use by documentation tools. Another alternative is turning comments into logging or code tracing. This way, the comments have the additional benefit of documenting the code at runtime:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    debug() <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Creating objects...</span><span style="color:#e6db74">&#34;</span>;
+    debug() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Creating objects...&#34;</span>;
 
     MainWindow<span style="color:#f92672">*</span> mainWindow <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MainWindow();
     NetworkRequestFactory<span style="color:#f92672">*</span> networkRequestFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NetworkRequestFactory();
     DownloadManager<span style="color:#f92672">*</span> downloadManager <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DownloadManager(networkRequestFactory);
 
-    debug() <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Connecting signals...</span><span style="color:#e6db74">&#34;</span>;
+    debug() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Connecting signals...&#34;</span>;
 
-    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">:</span><span style="color:#f92672">:</span>progress, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">:</span><span style="color:#f92672">:</span>onProgress);
-    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">:</span><span style="color:#f92672">:</span>downloadComplete, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">:</span><span style="color:#f92672">:</span>onDownloadComplete);
+    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">::</span>progress, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">::</span>onProgress);
+    connect(downloadManager, <span style="color:#f92672">&amp;</span>DownloadManager<span style="color:#f92672">::</span>downloadComplete, mainWindow, <span style="color:#f92672">&amp;</span>MainWindow<span style="color:#f92672">::</span>onDownloadComplete);
 
-    debug() <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Showing window...</span><span style="color:#e6db74">&#34;</span>;
+    debug() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Showing window...&#34;</span>;
 
-    mainWindow<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>show();
+    mainWindow<span style="color:#f92672">-&gt;</span>show();
 
-    debug() <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Starting download...</span><span style="color:#e6db74">&#34;</span>;
+    debug() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Starting download...&#34;</span>;
 
-    downloadManager<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>startDownloading();
+    downloadManager<span style="color:#f92672">-&gt;</span>startDownloading();
 
-    debug() <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Starting event loop...</span><span style="color:#e6db74">&#34;</span>;
+    debug() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Starting event loop...&#34;</span>;
 
-    mainWindow<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>exec();
+    mainWindow<span style="color:#f92672">-&gt;</span>exec();
 
-    debug() <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Done. Exiting...</span><span style="color:#e6db74">&#34;</span>;
+    debug() <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Done. Exiting...&#34;</span>;
 }
 </code></pre></div><h3 id="final-thought">Final thought</h3>
 <p>Of course, a good comment can be absolutely essential and invaluable &ndash; a way for one programmer to make things easier for another. Ideally, a well maintained codebase should aspire to reserve the use of comments for these situations, and remove all others.</p>
