@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Unrecognized Escape Sequence</title>
+    <link>https://benp44.github.io/blog/tags/python/</link>
+    <description>Recent content in Python on Unrecognized Escape Sequence</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 01 Jun 2020 16:40:25 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>An on-going and unordered catalogue of useful Python stuff</title>
+      <link>https://benp44.github.io/blog/posts/lesser-known-python-tools/</link>
+      <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/posts/lesser-known-python-tools/</guid>
+      <description>defaultdict A familiar problem with all dictionaries:
+scores = {} def increment_score_for_user(username: str): if username not in scores: scores[username] = 0 scores[username] += 1 But with the inbuilt defaultdict, we can save ourselves the hassle:
+from collections import defaultdict scores = defaultdict(int) def increment_score_for_user(username: str): scores[username] += 1 The argument on the constructor is a function that defines the value to use is the provided key is not in the dictionary:</description>
+    </item>
+    
+    <item>
+      <title>More Python mocking fun</title>
+      <link>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</link>
+      <pubDate>Tue, 21 May 2019 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</guid>
+      <description>This post is a collection of python unit testing &amp;lsquo;gotchas&amp;rsquo;.
+Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor Now we have effectively mocked all actual file I/O in our tests
+Mocking in-built methods and file I/O Super useful if you want to test a unit that uses the builtin open method.</description>
+    </item>
+    
+  </channel>
+</rss>

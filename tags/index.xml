@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 01 Mar 2020 15:05:19 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2020 16:40:25 +0100</lastBuildDate>
     
 	<atom:link href="https://benp44.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Design patterns</title>
+      <link>https://benp44.github.io/blog/tags/design-patterns/</link>
+      <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/design-patterns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://benp44.github.io/blog/tags/python/</link>
+      <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Rust</title>

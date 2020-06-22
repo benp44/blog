@@ -21,6 +21,17 @@
     </item>
     
     <item>
+      <title>More Python mocking fun</title>
+      <link>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</link>
+      <pubDate>Tue, 21 May 2019 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</guid>
+      <description>This post is a collection of python unit testing &amp;lsquo;gotchas&amp;rsquo;.
+Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor Now we have effectively mocked all actual file I/O in our tests
+Mocking in-built methods and file I/O Super useful if you want to test a unit that uses the builtin open method.</description>
+    </item>
+    
+    <item>
       <title>Getting started with Google Test</title>
       <link>https://benp44.github.io/blog/posts/getting-started-with-gtest/</link>
       <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>

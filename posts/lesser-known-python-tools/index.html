@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Unrecognized Escape Sequence" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://benp44.github.io/blog/tags/unit-testing/" />
-<meta property="og:title" content="Unit Testing" />
-<meta property="twitter:title" content="Unit Testing">
+<meta property="og:url" content="https://benp44.github.io/blog/posts/lesser-known-python-tools/" />
+<meta property="og:title" content="An on-going and unordered catalogue of useful Python stuff" />
+<meta property="twitter:title" content="An on-going and unordered catalogue of useful Python stuff">
 
     <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Unrecognized Escape Sequence - Unit Testing 
+     Unrecognized Escape Sequence - An on-going and unordered catalogue of useful Python stuff 
 
 </title>
-<link rel="canonical" href="https://benp44.github.io/blog/tags/unit-testing/">
+<link rel="canonical" href="https://benp44.github.io/blog/posts/lesser-known-python-tools/">
 
 
 <style media="screen">
@@ -1000,8 +1000,6 @@ margin-left: -4%;
 
 
 
-  <link href="https://benp44.github.io/blog/tags/unit-testing/index.xml" rel="alternate" type="application/rss+xml" title="Unrecognized Escape Sequence" />
-
 
 </head>
 
@@ -1009,7 +1007,7 @@ margin-left: -4%;
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1042,42 +1040,95 @@ margin-left: -4%;
     </div>
 </div>
 
+
+
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts about Unit Testing</div>
-                <ul>
-                    
-                        <li class="post-item">
-    <span class="meta">Jun 3, 2018</span>
-    
-    <a href="../../posts/getting-started-with-gtest/"><span>Getting started with Google Test</span></a>
-    
-</li>
+            <div class="page-heading">
 
-                    
-                        <li class="post-item">
-    <span class="meta">May 21, 2019</span>
     
-    <a href="../../posts/more-unit-testing-in-python/"><span>More Python mocking fun</span></a>
+    An on-going and unordered catalogue of useful Python stuff
     
-</li>
 
-                    
-                        <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="../../posts/gtest-gotchas/"><span>A couple of Google Test gotchas</span></a>
-    
-</li>
+</div>
 
-                    
-                </ul>
+            <div class="markdown">
+                
+    
+    <h2 id="defaultdict">defaultdict</h2>
+<p>A familiar problem with all dictionaries:</p>
+<pre><code>scores = {}
+
+def increment_score_for_user(username: str):    
+    if username not in scores:
+        scores[username] = 0
+    scores[username] += 1
+</code></pre><p>But with the inbuilt <code>defaultdict</code>, we can save ourselves the hassle:</p>
+<pre><code>from collections import defaultdict
+
+scores = defaultdict(int)
+
+def increment_score_for_user(username: str):
+    scores[username] += 1
+</code></pre><p>The argument on the constructor is a function that defines the value to use is the provided key is not in the dictionary:</p>
+<pre><code>from collections import defaultdict
+
+starting_score = 15
+scores = defaultdict(lambda: starting_score)
+
+assert scores[&quot;some unknown user&quot;] == 15
+</code></pre><h2 id="generator-expressions">Generator expressions</h2>
+<p>List comprehensions like that below are pretty useful, in this example for getting the length of each line in a file:</p>
+<pre><code>def get_line_lengths(filename):
+    return [len(line) for line in open(filename)]
+</code></pre><p>Until someone goes and does something like:</p>
+<pre><code>get_line_lengths(&quot;gigabyte-file.txt&quot;)
+</code></pre><p>So we replace the list comprehension with a generator expression (in this case by simply replacing the square brackets with round):</p>
+<pre><code>def get_line_lengths(filename):
+    return (len(line) for line in open(filename))
+</code></pre><p>And we return a generator:</p>
+<pre><code>g = get_line_lengths(&quot;gigabyte-file.txt&quot;)                                                    
+next(g)
+</code></pre><p>Which is equivalent to the standard generator function:</p>
+<pre><code>def get_line_lengths(filename):
+    for line in open(filename):
+        yield len(line)
+</code></pre><h2 id="using-a-decorator-to-trace-function-calls">Using a decorator to trace function calls</h2>
+<p>An example of how to write your own decorators:</p>
+<pre><code>from functools import wraps
+import sys
+
+def trace(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        print(f&quot;{func.__name__} was called with {args}&quot;, file=sys.stdout)
+        return result
+    return wrapper
+
+@trace
+def something(name: str):
+    print(f&quot;Hello, {name}!&quot;)
+</code></pre><h2 id="named-tuples">Named tuples</h2>
+<p>Use namedtuple when you want a simple data structure:</p>
+<pre><code>from collections import namedtuple
+
+Beer = namedtuple('Beer', 'name type amount')
+
+old_speckled_hen = Beer(name='Old Speckled Hen', type=&quot;Ale&quot;, amount=&quot;500ml&quot;)
+super_dry = Beer(name='Asahi Super Dry', type=&quot;Lager&quot;, amount=&quot;620ml&quot;)
+
+assert  old_speckled_hen.amount == &quot;500ml&quot;
+</code></pre>
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
