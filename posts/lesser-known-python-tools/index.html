@@ -1057,14 +1057,14 @@ margin-left: -4%;
                 
     
     <h2 id="defaultdict">defaultdict</h2>
-<p>A familiar problem with all dictionaries:</p>
+<p>A familiar problem with dictionaries:</p>
 <pre><code>scores = {}
 
 def increment_score_for_user(username: str):    
     if username not in scores:
         scores[username] = 0
     scores[username] += 1
-</code></pre><p>But with the inbuilt <code>defaultdict</code>, we can save ourselves the hassle:</p>
+</code></pre><p>But if we can only remember the existance of the humble <code>defaultdict</code>, we can save ourselves the hassle:</p>
 <pre><code>from collections import defaultdict
 
 scores = defaultdict(int)
@@ -1079,18 +1079,18 @@ scores = defaultdict(lambda: starting_score)
 
 assert scores[&quot;some unknown user&quot;] == 15
 </code></pre><h2 id="generator-expressions">Generator expressions</h2>
-<p>List comprehensions like that below are pretty useful, in this example for getting the length of each line in a file:</p>
+<p>An example of a list comprehension, getting the length of each line in a file:</p>
 <pre><code>def get_line_lengths(filename):
     return [len(line) for line in open(filename)]
-</code></pre><p>Until someone goes and does something like:</p>
+</code></pre><p>But then someone goes and does something like:</p>
 <pre><code>get_line_lengths(&quot;gigabyte-file.txt&quot;)
-</code></pre><p>So we replace the list comprehension with a generator expression (in this case by simply replacing the square brackets with round):</p>
+</code></pre><p>So we replace the list comprehension with a <em>generator expression</em> (in this case by simply replacing the square brackets with round):</p>
 <pre><code>def get_line_lengths(filename):
     return (len(line) for line in open(filename))
-</code></pre><p>And we return a generator:</p>
+</code></pre><p>Which returns a generator, which we can iterate over using <code>next</code>:</p>
 <pre><code>g = get_line_lengths(&quot;gigabyte-file.txt&quot;)                                                    
 next(g)
-</code></pre><p>Which is equivalent to the standard generator function:</p>
+</code></pre><p>Note that this is equivalent to the generator function, which in a context like this might be considered clearer:</p>
 <pre><code>def get_line_lengths(filename):
     for line in open(filename):
         yield len(line)
@@ -1111,7 +1111,11 @@ def trace(func):
 def something(name: str):
     print(f&quot;Hello, {name}!&quot;)
 </code></pre><h2 id="named-tuples">Named tuples</h2>
-<p>Use namedtuple when you want a simple data structure:</p>
+<p>The ugliness of accessing tuples by index makes my eyes bleed:</p>
+<pre><code>old_speckled_hen = ('Old Speckled Hen', &quot;Ale&quot;, &quot;500ml&quot;)
+
+assert old_speckled_hen[2] == &quot;500ml&quot;
+</code></pre><p>So save yourself a trip to the optometrist and use <code>namedtuple</code>:</p>
 <pre><code>from collections import namedtuple
 
 Beer = namedtuple('Beer', 'name type amount')
