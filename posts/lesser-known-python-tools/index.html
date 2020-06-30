@@ -1124,6 +1124,15 @@ old_speckled_hen = Beer(name='Old Speckled Hen', type=&quot;Ale&quot;, amount=&q
 super_dry = Beer(name='Asahi Super Dry', type=&quot;Lager&quot;, amount=&quot;620ml&quot;)
 
 assert  old_speckled_hen.amount == &quot;500ml&quot;
+</code></pre><h3 id="adding-a-function-level-cache-with-a-single-line-of-code">Adding a function-level cache with a single line of code</h3>
+<p>Not a complicated thing to achieve, but doing so using a single line of code built into the language is nice.</p>
+<p>Obviously only for deterministic code.</p>
+<pre><code>from functools import lru_cache
+
+@lru_cache
+def process_file(filename: str):
+    # Some expensive function that is deterministic from the parameter...
+    return get_number_of_items_in_file(filename)
 </code></pre>
 
             </div>
