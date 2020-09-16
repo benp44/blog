@@ -28,6 +28,11 @@
   </url>
   
   <url>
+    <loc>https://benp44.github.io/blog/</loc>
+    <lastmod>2020-06-01T16:40:25+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://benp44.github.io/blog/tags/rust/</loc>
     <lastmod>2020-03-01T15:05:19+01:00</lastmod>
   </url>
@@ -35,36 +40,6 @@
   <url>
     <loc>https://benp44.github.io/blog/posts/useful-rust-combinators/</loc>
     <lastmod>2020-03-01T15:05:19+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/git/</loc>
-    <lastmod>2019-09-05T15:05:19+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/posts/nightmare-of-versioning/</loc>
-    <lastmod>2019-09-05T15:05:19+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/software-engineering/</loc>
-    <lastmod>2019-09-05T15:05:19+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/source-control/</loc>
-    <lastmod>2019-09-05T15:05:19+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/svc/</loc>
-    <lastmod>2019-09-05T15:05:19+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/versioning/</loc>
-    <lastmod>2019-09-05T15:05:19+01:00</lastmod>
   </url>
   
   <url>
@@ -79,6 +54,11 @@
   
   <url>
     <loc>https://benp44.github.io/blog/tags/linters/</loc>
+    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://benp44.github.io/blog/tags/software-engineering/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
   </url>
   
@@ -174,11 +154,6 @@
   
   <url>
     <loc>https://benp44.github.io/blog/about/</loc>
-    <lastmod>2017-12-04T16:33:49+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/</loc>
     <lastmod>2017-12-04T16:33:49+01:00</lastmod>
   </url>
   
