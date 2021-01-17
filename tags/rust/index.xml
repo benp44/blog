@@ -6,11 +6,7 @@
     <description>Recent content in Rust on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 01 Mar 2020 15:05:19 +0100</lastBuildDate>
-    
-	<atom:link href="https://benp44.github.io/blog/tags/rust/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 01 Mar 2020 15:05:19 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rust: Results, Options and Combinators</title>
       <link>https://benp44.github.io/blog/posts/useful-rust-combinators/</link>

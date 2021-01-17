@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://benp44.github.io/blog/posts/</loc>
+    <lastmod>2021-01-05T21:21:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://benp44.github.io/blog/posts/merge-requests/</loc>
+    <lastmod>2021-01-05T21:21:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://benp44.github.io/blog/tags/software-engineering/</loc>
+    <lastmod>2021-01-05T21:21:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://benp44.github.io/blog/tags/</loc>
+    <lastmod>2021-01-05T21:21:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://benp44.github.io/blog/</loc>
+    <lastmod>2021-01-05T21:21:01+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://benp44.github.io/blog/posts/lesser-known-python-tools/</loc>
     <lastmod>2020-06-01T16:40:25+01:00</lastmod>
   </url>
@@ -13,22 +38,7 @@
   </url>
   
   <url>
-    <loc>https://benp44.github.io/blog/posts/</loc>
-    <lastmod>2020-06-01T16:40:25+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://benp44.github.io/blog/tags/python/</loc>
-    <lastmod>2020-06-01T16:40:25+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/</loc>
-    <lastmod>2020-06-01T16:40:25+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/</loc>
     <lastmod>2020-06-01T16:40:25+01:00</lastmod>
   </url>
   
@@ -54,11 +64,6 @@
   
   <url>
     <loc>https://benp44.github.io/blog/tags/linters/</loc>
-    <lastmod>2019-07-01T20:05:54+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/tags/software-engineering/</loc>
     <lastmod>2019-07-01T20:05:54+01:00</lastmod>
   </url>
   

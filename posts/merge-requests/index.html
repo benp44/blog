@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Unrecognized Escape Sequence" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://benp44.github.io/blog/posts/more-unit-testing-in-python/" />
-<meta property="og:title" content="More Python mocking fun" />
-<meta property="twitter:title" content="More Python mocking fun">
+<meta property="og:url" content="https://benp44.github.io/blog/posts/merge-requests/" />
+<meta property="og:title" content="Putting together a half-decent merge/pull request" />
+<meta property="twitter:title" content="Putting together a half-decent merge/pull request">
 
     <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Unrecognized Escape Sequence - More Python mocking fun 
+     Unrecognized Escape Sequence - Putting together a half-decent merge/pull request 
 
 </title>
-<link rel="canonical" href="https://benp44.github.io/blog/posts/more-unit-testing-in-python/">
+<link rel="canonical" href="https://benp44.github.io/blog/posts/merge-requests/">
 
 
 <style media="screen">
@@ -1048,7 +1048,7 @@ margin-left: -4%;
             <div class="page-heading">
 
     
-    More Python mocking fun
+    Putting together a half-decent merge/pull request
     
 
 </div>
@@ -1056,98 +1056,46 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    <p>This post is a collection of python unit testing &lsquo;gotchas&rsquo;.</p>
-<h3 id="mocking-external-packages">Mocking external packages</h3>
-<pre><code>import sys
-import unittest
-from unittest.mock import patch, Mock, call, mock_open
-from io import StringIO, TextIOWrapper
+    <p>There&rsquo;s a decent case &ndash; for when working on almost any software project &ndash; that you should be doing code reviews for everything that is intended to make it into your main branch. Even if you are working alone, I  would recommend making a review process part of your workflow, if only to separate the mental process of writing code from reviewing it.</p>
+<p>In larger projects with more developers, yes, automated tests, linters and continuous integration (CI) systems are essential, but I would argue equally so is the quality control gate that is a decent review system. There is no automated system in the world that can confirm that code is genuninely human readable, that the design chosen by a developer makes sense in a bigger picture, that a piece of work is moving a project in the right direction or the wrong one. A good review process not only attempts to achieve these lofty goals, but also is critical for maintaining joint understanding and ownership of a project among the team working on it.</p>
+<p>The standard tool for performing code reviews is the <strong>Pull Request</strong> or <strong>Merge Request</strong> depending on where your code is kept (from hereon &ldquo;PR&rdquo;). But what makes for a good PR? There are lots of opinions on this and each team will likely have their own stuff that makes sense. Over the years I&rsquo;ve found the following general rules to be useful.</p>
+<h2 id="writing-up-the-pr">Writing up the PR</h2>
+<h3 id="have-a-template-and-keep-it-evolving">Have a template, and keep it evolving</h3>
+<p>Tools like Github and Gitlab have the facility to write a template for PRs, which are invaluable. Typically these are versioned in the repository alongside the code so it&rsquo;s easy for the team to update them over time. Everything that should be included in a PR can be written as reminders in the template.</p>
+<p>Having a <strong>checklist</strong> of reminders and steps required for getting the PR reviewed/merged is hugely valuable. For example this might include:</p>
+<ul>
+<li>All required fields in the template have been filled in</li>
+<li>The branch has been rebased on top of your main branch</li>
+<li>Appropriate documentation has been added (e.g. in-code documentation, readme files)</li>
+<li>Changelogs have been updated</li>
+<li>Appropriate automated tests have been added (plus pet-peeve, automated tests aren&rsquo;t filling the log with warning and error messages)</li>
+<li>Style/formatting guidelines have been followed (those that aren&rsquo;t checked automatically by CI or <a href="../../posts/pre-commit/">other means</a>)</li>
+<li>No <code>TODO</code>s or <code>FIXME</code>s have been left in the code (they have been made into issues etc.)</li>
+<li>Appropriate logging has been added (<em>so</em> often forgotten!)</li>
+<li>Any new third-party software has been vetted</li>
+<li>Legacy code that has been changed has been refactored to meet new standards</li>
+</ul>
+<h3 id="write-a-decent-title">Write a decent title</h3>
+<p>Summarise what has changed. In a large codebase, it can be useful to prefix the title with the area/section/feature that has been affected to help categorise the PR at a glance.</p>
+<h3 id="spend-some-time-writing-a-detailed-description-of-what-has-been-changed">Spend some time writing a detailed description of what has been changed</h3>
+<p>What did you change? Why? Be aware often the reviewer will be less familiar with the motivations of the changes and the area of code being changed. Think about how long it takes to understand what change has been made by a bunch of source code changes by looking at them alone. Even one sentence of introduction can make a huge difference.</p>
+<p>Including things like a list of steps to take in order to view or test the code changes can be very helpful. If any complicated or unusual algorithms, structures, tools, etc. have been used, or if a convention in the code has been broken (presumably for a good reason), further explanation of this might be warranted.</p>
+<h3 id="give-some-context-and-flag-further-work-that-will-be-required">Give some context, and flag further work that will be required</h3>
+<p>If this PR is part of a sequence of changes, consider listing previous PRs to give context, and suggest what the subject of the next ones might be.</p>
+<h3 id="add-screenshots-of-the-changes-where-appropriate-or-other-artifacts-that-might-be-useful-for-review">Add screenshots of the changes (where appropriate), or other artifacts that might be useful for review</h3>
+<p>A picture paints a thousand words, right? Well a screenshot can save&hellip;. a thousands line of code review? Actually that doesn&rsquo;t sound too far off. Isn&rsquo;t it reassuring when someone demonstrates that they&rsquo;ve done the due dilligence and actually tested their code changes!?</p>
+<h2 id="the-code-itself">The code itself</h2>
+<h3 id="be-your-own-reviewer">Be your own reviewer</h3>
+<p>If you want someone else to review your code, give them the respect of reviewing it first and picking up little things. A PR is a great way to put on your reviewer hat and look at your code changes with a fresh perspective. I know I find a lot of missing details in my code by taking this approach (although I also recommend using a local diff tool such as <a href="https://meldmerge.org/">Meld</a> to do this for the same reason).</p>
+<p>Also, adding comments next to lines of the code isn&rsquo;t just for reviewers! If (when?) there&rsquo;s something weird in the code, give your reviewers a heads up by calling it out, and explaining why.</p>
+<h3 id="limit-scope-to-one-thing-and-keep-the-scale-manageable">Limit scope to one thing, and keep the scale manageable</h3>
+<p>A PR should ideally be a single, discrete piece of work. Reviewing multiple pieces of work in the same package is hard and messy, and if one part of the PR isn&rsquo;t up to scratch, the whole thing should be rejected. Likewise, PRs that are too big are equally hard to review. If big code changes are required, you&rsquo;ll need to find a way to break them across multiple PRs.</p>
+<p>Often the reason why PRs get big or have multiple pieces of work in them are that developers feel pressured to do so because of bottlenecks getting work completed. If your process makes you feel like you need to cram unrelated refactorings and changes into an PR that has functional changes too, address these problems in the process!</p>
+<h3 id="get-your-story-in-order">Get your story in order</h3>
+<p>Remember that the history of your code is almost as important as the code itself. Review your commits before sending your PR for review and rebase to squash those that aren&rsquo;t required and to reword your commit messages. Ideally the commits should tell a story of how the relevant work was done, with each commit representing working code (and passing CI!).</p>
+<h3 id="get-your-code-up-to-date">Get your code up to date</h3>
+<p>Remember that code can be broken by merging the deployment branch into it, so this should be done before review takes place. My preference is to interactively rebase my branch on top of the latest tip of the main branch as this gives the opportunity to see the other changes coming in, and to review my commits at the same time. Don&rsquo;t forget to run all unit tests after merging/rebasing!</p>
 
-mock_os = Mock()
-sys.modules[&quot;os&quot;] = mock_os
-
-from config_editor import ConfigEditor
-</code></pre><p>Now we have effectively mocked all actual file I/O in our tests</p>
-<h3 id="mocking-in-built-methods-and-file-io">Mocking in-built methods and file I/O</h3>
-<p>Super useful if you want to test a unit that uses the builtin <code>open</code> method. The following example is a class for modifyinh a system config file, but the unit tests never need touch the file system. The <code>setUp</code> defines the initial state of the file, and then each test can evaluate its expected and final state.</p>
-<pre><code>class ConfigEditorTestCase(unittest.TestCase):
-
-    def setUp(self):
-
-        # Create the object to test
-
-        self.config_editor = ConfigEditor(&quot;/test/file.config&quot;)
-
-        self.mock_input_file = StringIO(&quot;# Title\n&quot;
-                                        &quot;#turn_on_rocket_launcher=123\n&quot;
-                                        &quot;### turn_on_piranha_launcher=123\n&quot;
-                                        &quot;\n&quot;
-                                        &quot;enable_flamethrower=true\n&quot;
-                                        &quot;enable_a_thing=laser_beam\n&quot;
-                                        &quot;#enable_a_thing=blaster_power=500\n&quot;
-                                        &quot;enable_a_thing=photon_beam\n&quot;
-                                        &quot;\n&quot;
-                                        &quot;###############################\n&quot;
-                                        &quot;# Some random comment\n&quot;
-                                        &quot;###############################\n&quot;
-                                        &quot;set_this=thing_to=50000\n&quot;)
-
-        # Create an empty stream for the output file which we can then inspect
-
-        self.mock_output_file = StringIO()
-
-        # Patch the in-built &quot;open&quot; method, so it returns our dummy streams
-
-        self.mock_open = mock_open()
-        self.mock_open_method = patch(&quot;builtins.open&quot;, self.mock_open)
-        self.mock_open.side_effect = [self.mock_input_file, self.mock_output_file]
-        self.mock_open_method.start()
-</code></pre><h3 id="patching-objects">Patching objects</h3>
-<p>Python offers a few ways of patching objects so that they can be used for unit testing. Often you see the <code>with patch()</code> notation to achieve this in a local scope:</p>
-<pre><code>    with patch('module.Foo') as mock:
-        instance = mock.return_value
-        instance.method.return_value = 'the result'
-        result = some_function()
-        assert result == 'the result'
-</code></pre><p>Or sometimes in the form of a method decorator:</p>
-<pre><code>    @mock.patch(&quot;os.listdir&quot;, mock.MagicMock(return_value=&quot;some_directory_name&quot;))
-    def test1():
-        assert &quot;some_directory_name&quot; == os.listdir()
-</code></pre><p>But sometimes you want to patch an object for whole fixture without decorating every test in the same way. Here&rsquo;s one way to achieve that:</p>
-<pre><code>    def setUp(self):
-
-        # Patch the close method of the two stream, so we can check they are closed correctly
-
-        self.mock_close_input_stream = Mock()
-        self.patch_input_stream_close_method = patch.object(self.mock_input_file, &quot;close&quot;, self.mock_close_input_stream)
-        self.patch_input_stream_close_method.start()
-
-        self.mock_close_output_stream = Mock()
-        self.patch_output_stream_close_method = patch.object(self.mock_output_file, &quot;close&quot;, self.mock_close_output_stream)
-        self.patch_output_stream_close_method.start()
-
-    def tearDown(self):
-
-        self.mock_open_method.stop()
-        self.patch_input_stream_close_method.stop()
-</code></pre><h3 id="making-assertions-in-the-teardown">Making assertions in the tearDown</h3>
-<p>When you&rsquo;ve written a few tests which duplicate an assertion, it can be cleaner to put this in the tearDown. This can be especially useful for stuff like resource de-allocation, or ensuring that files handles are closed etc.</p>
-<pre><code>    def tearDown(self):
-
-        # Test that the config files are always opened as expected
-
-        self.mock_open.assert_has_calls([call(&quot;/test/file.config&quot;, &quot;r&quot;), call(&quot;/test/file.config.new&quot;, &quot;w&quot;)])
-
-        # Test the config files are always closed
-
-        self.mock_close_input_stream.assert_called_once()
-        self.mock_close_output_stream.assert_called_once()
-
-        # Test that the temp file is always cleaned up
-
-        mock_os.remove.assert_called_with(&quot;/test/file.config.new&quot;)
-
-</code></pre>
 
             </div>
         </div>
