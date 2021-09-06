@@ -1071,7 +1071,7 @@ scores = defaultdict(int)
 
 def increment_score_for_user(username: str):
     scores[username] += 1
-</code></pre><p>The argument on the constructor is a function that defines the value to use is the provided key is not in the dictionary:</p>
+</code></pre><p>The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</p>
 <pre><code>from collections import defaultdict
 
 starting_score = 15
@@ -1124,7 +1124,7 @@ old_speckled_hen = Beer(name='Old Speckled Hen', type=&quot;Ale&quot;, amount=&q
 super_dry = Beer(name='Asahi Super Dry', type=&quot;Lager&quot;, amount=&quot;620ml&quot;)
 
 assert  old_speckled_hen.amount == &quot;500ml&quot;
-</code></pre><h3 id="adding-a-function-level-cache-with-a-single-line-of-code">Adding a function-level cache with a single line of code</h3>
+</code></pre><h2 id="adding-a-function-level-cache-with-a-single-line-of-code">Adding a function-level cache with a single line of code</h2>
 <p>Not a complicated thing to achieve, but doing so using a single line of code built into the language is nice.</p>
 <p>Obviously only for deterministic code.</p>
 <pre><code>from functools import lru_cache

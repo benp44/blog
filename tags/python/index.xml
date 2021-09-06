@@ -15,7 +15,7 @@
       <guid>https://benp44.github.io/blog/posts/lesser-known-python-tools/</guid>
       <description>defaultdict A familiar problem with dictionaries:
 scores = {} def increment_score_for_user(username: str): if username not in scores: scores[username] = 0 scores[username] += 1 But if we can only remember the existance of the humble defaultdict, we can save ourselves the hassle:
-from collections import defaultdict scores = defaultdict(int) def increment_score_for_user(username: str): scores[username] += 1 The argument on the constructor is a function that defines the value to use is the provided key is not in the dictionary:</description>
+from collections import defaultdict scores = defaultdict(int) def increment_score_for_user(username: str): scores[username] += 1 The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</description>
     </item>
     
     <item>

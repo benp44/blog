@@ -1065,17 +1065,17 @@ margin-left: -4%;
 <p>Once you&rsquo;ve formed the muscle memory to start using these key combinations, you begin to realise just how slow it was to constantly have to browse up and down the directory tree, essentially doing the computer&rsquo;s job for it.</p>
 <h3 id="customising-the-search">Customising the search</h3>
 <p>Usefully, fzf allows you to use your own commands to perform the actual searching, and following the recommendation of the author, I&rsquo;m using <code>fd</code> for this, which makes things even faster. To do this I&rsquo;ve added the following to my <code>.zshrc</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Use fd to list files for fzf</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Use fd to list files for fzf</span>
 _fzf_compgen_path<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
     fd --hidden --follow --exclude <span style="color:#e6db74">&#34;.git&#34;</span> . <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>1<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><h3 id="previews">Previews</h3>
 <p>Another nice feature of fzf is the ability to show a preview pane for the file you have highlighted in the search result. The typical configuration for this will show text-based files using <code>cat</code> in the preview pane. While exploring the features of fzf I thought I would drill-down into the configuration of this, and try to get a bit more out of it.</p>
 <p>So in my <code>.zshrc</code> I&rsquo;m now telling fzf to use the <code>fzf-preview.sh</code> script to preview the selected search result:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Call script to preview files</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Call script to preview files</span>
 export FZF_CTRL_T_OPTS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; --preview &#39;~/path/to/fzf-preview.sh {}&#39;&#34;</span>
 </code></pre></div><p>This script currently looks like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e"># fzf-preview.sh: fzf preview for various file types.</span>
 <span style="color:#75715e">#</span>
