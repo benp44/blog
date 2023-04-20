@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 05 Jan 2021 21:21:01 +0000</lastBuildDate><atom:link href="https://benp44.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 15:05:19 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building services with the Actix framework</title>
+      <link>https://benp44.github.io/blog/posts/actix-actor-framework/</link>
+      <pubDate>Tue, 18 Apr 2023 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/posts/actix-actor-framework/</guid>
+      <description>Actix is a Rust crate that provides a framework for developing concurrent applications using the Actor Model, a popular design pattern for writing complex concurrent applications. I have found it a useful abstraction due to the way it allows you to decompose your service into discrete actors, each responsible for some subset of the service logic, and communicate between these with strongly-typed messages.
+In particular I think this kind of abstraction is useful in Rust as it allows you to avoid some of the noise that comes with managing synchronisation of shared resource by hand.</description>
+    </item>
+    
     <item>
       <title>Putting together a half-decent merge/pull request</title>
       <link>https://benp44.github.io/blog/posts/merge-requests/</link>

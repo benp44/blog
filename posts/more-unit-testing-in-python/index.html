@@ -549,12 +549,12 @@ div.main .content .markdown code,
 div.main .content .markdown pre {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 0.98rem;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -566,6 +566,7 @@ div.main .content .markdown pre {
   white-space: pre;
   word-break: break-all;
   word-wrap: break-word;
+  border-radius: 3px;
 }
 div.main .content .markdown pre code {
   /* enclosed by 4 backticks (````) */
@@ -788,7 +789,7 @@ kbd {
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';
+      font-family: 'Ubuntu Mono';      
 }
 
 
@@ -998,9 +999,6 @@ margin-left: -4%;
 
 >
 
-
-
-
 </head>
 
 
@@ -1058,7 +1056,7 @@ margin-left: -4%;
     
     <p>This post is a collection of python unit testing &lsquo;gotchas&rsquo;.</p>
 <h3 id="mocking-external-packages">Mocking external packages</h3>
-<pre><code>import sys
+<pre tabindex="0"><code>import sys
 import unittest
 from unittest.mock import patch, Mock, call, mock_open
 from io import StringIO, TextIOWrapper
@@ -1070,7 +1068,7 @@ from config_editor import ConfigEditor
 </code></pre><p>Now we have effectively mocked all actual file I/O in our tests</p>
 <h3 id="mocking-in-built-methods-and-file-io">Mocking in-built methods and file I/O</h3>
 <p>Super useful if you want to test a unit that uses the builtin <code>open</code> method. The following example is a class for modifyinh a system config file, but the unit tests never need touch the file system. The <code>setUp</code> defines the initial state of the file, and then each test can evaluate its expected and final state.</p>
-<pre><code>class ConfigEditorTestCase(unittest.TestCase):
+<pre tabindex="0"><code>class ConfigEditorTestCase(unittest.TestCase):
 
     def setUp(self):
 
@@ -1104,17 +1102,17 @@ from config_editor import ConfigEditor
         self.mock_open_method.start()
 </code></pre><h3 id="patching-objects">Patching objects</h3>
 <p>Python offers a few ways of patching objects so that they can be used for unit testing. Often you see the <code>with patch()</code> notation to achieve this in a local scope:</p>
-<pre><code>    with patch('module.Foo') as mock:
+<pre tabindex="0"><code>    with patch('module.Foo') as mock:
         instance = mock.return_value
         instance.method.return_value = 'the result'
         result = some_function()
         assert result == 'the result'
 </code></pre><p>Or sometimes in the form of a method decorator:</p>
-<pre><code>    @mock.patch(&quot;os.listdir&quot;, mock.MagicMock(return_value=&quot;some_directory_name&quot;))
+<pre tabindex="0"><code>    @mock.patch(&quot;os.listdir&quot;, mock.MagicMock(return_value=&quot;some_directory_name&quot;))
     def test1():
         assert &quot;some_directory_name&quot; == os.listdir()
 </code></pre><p>But sometimes you want to patch an object for whole fixture without decorating every test in the same way. Here&rsquo;s one way to achieve that:</p>
-<pre><code>    def setUp(self):
+<pre tabindex="0"><code>    def setUp(self):
 
         # Patch the close method of the two stream, so we can check they are closed correctly
 
@@ -1132,7 +1130,7 @@ from config_editor import ConfigEditor
         self.patch_input_stream_close_method.stop()
 </code></pre><h3 id="making-assertions-in-the-teardown">Making assertions in the tearDown</h3>
 <p>When you&rsquo;ve written a few tests which duplicate an assertion, it can be cleaner to put this in the tearDown. This can be especially useful for stuff like resource de-allocation, or ensuring that files handles are closed etc.</p>
-<pre><code>    def tearDown(self):
+<pre tabindex="0"><code>    def tearDown(self):
 
         # Test that the config files are always opened as expected
 
@@ -1165,7 +1163,7 @@ from config_editor import ConfigEditor
 
         
             
-                <a href="https://benp44.github.io/blog/license">Copyright © 2021 Ben Pring</a>
+                <a href="https://benp44.github.io/blog/license">Copyright © 2023 Ben Pring</a>
             
         
 
@@ -1205,12 +1203,6 @@ from config_editor import ConfigEditor
         
             <a href="mailto:ben.pring@gmail.com">
                 <img class="icon" src="https://benp44.github.io/blog/img/email.svg" alt="email" />
-            </a>
-        
-
-        
-            <a href="https://benp44.github.io/blog/index.xml">
-                <img class="icon" src="https://benp44.github.io/blog/img/rss.svg" alt="rss" />
             </a>
         
 

@@ -549,12 +549,12 @@ div.main .content .markdown code,
 div.main .content .markdown pre {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 0.98rem;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -566,6 +566,7 @@ div.main .content .markdown pre {
   white-space: pre;
   word-break: break-all;
   word-wrap: break-word;
+  border-radius: 3px;
 }
 div.main .content .markdown pre code {
   /* enclosed by 4 backticks (````) */
@@ -788,7 +789,7 @@ kbd {
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';
+      font-family: 'Ubuntu Mono';      
 }
 
 
@@ -998,9 +999,6 @@ margin-left: -4%;
 
 >
 
-
-
-
 </head>
 
 
@@ -1070,18 +1068,18 @@ margin-left: -4%;
 <li>
 <p><strong>Installing pre-commit locally</strong></p>
 <p>As simple as:</p>
-<pre><code>$ sudo pip3 install pre-commit
+<pre tabindex="0"><code>$ sudo pip3 install pre-commit
 </code></pre></li>
 <li>
 <p><strong>Configuring pre-commit</strong></p>
 <p>In each of my git repositories, setup the pre-commit hook, and create a sample configuration file:</p>
-<pre><code>$ pre-commit install
+<pre tabindex="0"><code>$ pre-commit install
 $ pre-commit sample-config &gt; .pre-commit-config.yaml
 </code></pre></li>
 <li>
 <p><strong>The test run</strong></p>
 <p>Now we can run pre-commit and see what it thinks of the code in the repo:</p>
-<pre><code>$ pre-commit run --all-files
+<pre tabindex="0"><code>$ pre-commit run --all-files
 [INFO] Initializing environment for https://github.com/pre-commit/pre-commit-hooks.
 [INFO] Installing environment for https://github.com/pre-commit/pre-commit-hooks.
 [INFO] Once installed this environment will be reused.
@@ -1118,7 +1116,7 @@ Check for added large files..............................................Passed
 <p><strong>Adding some more useful tools</strong></p>
 <p>Next let&rsquo;s modify the <code>.pre-commit-config.yaml</code> for this repo, and add some more specific linters.</p>
 <p>The current, default config file looks like this:**</p>
-<pre><code># See https://pre-commit.com for more information
+<pre tabindex="0"><code># See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
@@ -1130,7 +1128,7 @@ repos:
     -   id: check-added-large-files
 </code></pre><p>You can see the whitespace-based linters that made the fixes to my code earlier.</p>
 <p>The repo I&rsquo;m working with is mostly Python code, with a handful of utility shell scripts, so let&rsquo;s add some stuff to lint those files:</p>
-<pre><code># See https://pre-commit.com for more information
+<pre tabindex="0"><code># See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
@@ -1160,7 +1158,7 @@ repos:
 </code></pre><p>I&rsquo;ve added a couple of shellscript linters, <code>shellcheck</code>, <code>shfmt</code> and <code>shell-lint</code>. I&rsquo;ve also added a symlink checker as the repo may end up with a few of those knocking around, and god knows they can cause havoc when they go awry.</p>
 <p>More interesting is the autopep8 linter which checks my Python code conforms to the <a href="https://www.python.org/dev/peps/pep-0008/">PEP8 standard</a>.</p>
 <p>Now when I run pre-commit I get some more stuff going on:</p>
-<pre><code>$ pre-commit run --all-files
+<pre tabindex="0"><code>$ pre-commit run --all-files
 Trim Trailing Whitespace.................................................Passed
 Fix End of Files.........................................................Passed
 Check Yaml...............................................................Passed
@@ -1190,7 +1188,7 @@ Files were modified by this hook.
 <p>As a brief aside, in Python unit tests sometimes you want to mock a whole module before it gets imported. As a result you sometimes have some code to do this <em>before</em> the import. This breaks <a href="https://lintlyci.github.io/Flake8Rules/rules/E402.html">PEP8 rule E402</a>.</p>
 <p>This seems a bit of a nasty problem, as now I have no way to commit my code without these PEP8 changes breaking my unit tests.</p>
 <p>So here&rsquo;s my workaround for this. I&rsquo;ve reconfigured the PEP8 linter to give my unit tests a little more slack than the production code, by running <code>autopep8</code> in two diffent modes. The default (strict) settings are used on my production code, and then slightly relaxed settings are used for the files containing unit tests.</p>
-<pre><code>-   repo: https://github.com/pre-commit/mirrors-autopep8
+<pre tabindex="0"><code>-   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.4.4
     hooks:
     - id: autopep8
@@ -1205,7 +1203,7 @@ Files were modified by this hook.
     args: [&quot;-i&quot;, &quot;--ignore=E226,E24,W50,W690,E402&quot;]
 </code></pre><p>Notice that the first entry excludes the <code>tests</code> directory, and the second entry ignores some of the default PEP8 warnings.</p>
 <p>Now when I run pre-commit, we&rsquo;re looking good:</p>
-<pre><code>$ pre-commit run --all-files
+<pre tabindex="0"><code>$ pre-commit run --all-files
 Trim Trailing Whitespace.................................................Passed
 Fix End of Files.........................................................Passed
 Check Yaml...............................................................Passed
@@ -1243,7 +1241,7 @@ autopep8-unit-tests......................................................Passed
 
         
             
-                <a href="https://benp44.github.io/blog/license">Copyright © 2021 Ben Pring</a>
+                <a href="https://benp44.github.io/blog/license">Copyright © 2023 Ben Pring</a>
             
         
 
@@ -1283,12 +1281,6 @@ autopep8-unit-tests......................................................Passed
         
             <a href="mailto:ben.pring@gmail.com">
                 <img class="icon" src="https://benp44.github.io/blog/img/email.svg" alt="email" />
-            </a>
-        
-
-        
-            <a href="https://benp44.github.io/blog/index.xml">
-                <img class="icon" src="https://benp44.github.io/blog/img/rss.svg" alt="rss" />
             </a>
         
 

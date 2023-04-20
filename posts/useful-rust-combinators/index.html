@@ -549,12 +549,12 @@ div.main .content .markdown code,
 div.main .content .markdown pre {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 0.98rem;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -566,6 +566,7 @@ div.main .content .markdown pre {
   white-space: pre;
   word-break: break-all;
   word-wrap: break-word;
+  border-radius: 3px;
 }
 div.main .content .markdown pre code {
   /* enclosed by 4 backticks (````) */
@@ -788,7 +789,7 @@ kbd {
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';
+      font-family: 'Ubuntu Mono';      
 }
 
 
@@ -998,9 +999,6 @@ margin-left: -4%;
 
 >
 
-
-
-
 </head>
 
 
@@ -1065,7 +1063,7 @@ margin-left: -4%;
 <h2 id="step-two-the--operator">Step Two: The <code>?</code> operator</h2>
 <p>The first and most obvious improvement on panicking is the <code>?</code> syntax, which is used to evaluate a <code>Result</code>, proceed if OK or return the Result up the call stack if an error occurred. This is well documented and common, but is worth a quick example.</p>
 <p>So we go from this:</p>
-<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+<pre tabindex="0"><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
     // Match to see if the file was created
 
     let mut file = match File::create(&quot;file.txt&quot;) {
@@ -1082,7 +1080,7 @@ margin-left: -4%;
     Ok(())
 }
 </code></pre><p>To this:</p>
-<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+<pre tabindex="0"><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
     let mut file = File::create(&quot;file.txt&quot;)?;
     file.write_all(value.as_bytes())?;
 
@@ -1092,7 +1090,7 @@ margin-left: -4%;
 <p>The <code>?</code> syntax is great, but it starts to become less useful, particularly when you want to respond to error cases rather than pass them up the stack, or when you&rsquo;re mixing Options and Results, or different types of Results. However in many of these cases, there are <em>combinators</em> that can really help, a few examples of which are covered below.</p>
 <h3 id="turning-an-option-into-a-result">Turning an <code>Option</code> into a <code>Result</code></h3>
 <p>A common situation is evaluating an <code>Option</code> which effectively defines the result of a function. I.e. if the option is <code>None</code>, then the function should return. For example:</p>
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre tabindex="0"><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = match LANGUAGES.get(id as usize) {
         Some(value) =&gt; value,
         None =&gt; return Err(format!(&quot;No language found for id: {}&quot;, id).to_string()),
@@ -1101,7 +1099,7 @@ margin-left: -4%;
     Ok(result)
 }
 </code></pre><p>Here, a useful combinator is <code>ok_or()</code>, which effectively turns the <code>Option</code> into a <code>Result</code>, and allows you to specify the error message:</p>
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre tabindex="0"><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = LANGUAGES.get(id as usize)
                           .ok_or(format!(&quot;No language found for id: {}&quot;, id)
                           .to_string())?;
@@ -1110,14 +1108,14 @@ margin-left: -4%;
 }
 </code></pre><h3 id="yield-a-default-value-in-case-of-none">Yield a default value in case of <code>None</code></h3>
 <p>Similarly, another nice tool is the <code>unwrap_or</code> combinator that returns a default value when an Option is <code>None</code>:</p>
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre tabindex="0"><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = LANGUAGES.get(id as usize).unwrap_or(&amp;UNKNOWN_LANGUAGE_NAME);
 
     Ok(result)  
 }
 </code></pre><h3 id="if-at-first-you-dont-succeed">If at first you don&rsquo;t succeed</h3>
 <p>Note that you can also use <code>unwrap_or</code> on a <code>Result</code> to &ldquo;have another go&rdquo; in case of an error. Here, if the initial file creation fails, we attempt to create the file with another name (terrible looking code I know, but sometimes real-world examples are tricky to come up with):</p>
-<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+<pre tabindex="0"><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
     let mut file = File::create(&quot;log.txt&quot;).unwrap_or(File::create(&quot;log01.txt&quot;)?);
     file.write_all(value.as_bytes())?;
 
@@ -1125,7 +1123,7 @@ margin-left: -4%;
 }
 </code></pre><h3 id="closure-versions-of-combinators">Closure versions of combinators</h3>
 <p>Some combinators, including those above also have an <em>_else</em> version, so <code>ok_or_else</code>, <code>unwrap_or_else</code>, etc. These do the same thing as their counterparts, but take a closure instead of a value. The important detail with these is that the logic in the closures are lazily-evaluated. Thus, were you to perform any serious memory allocation or processing in the error cases, these are a useful option to avoid that unless necessary:</p>
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre tabindex="0"><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = LANGUAGES
         .get(id as usize)
         .unwrap_or_else(|| return &amp;UNKNOWN_LANGUAGE_NAME);
@@ -1150,7 +1148,7 @@ margin-left: -4%;
 
         
             
-                <a href="https://benp44.github.io/blog/license">Copyright © 2021 Ben Pring</a>
+                <a href="https://benp44.github.io/blog/license">Copyright © 2023 Ben Pring</a>
             
         
 
@@ -1190,12 +1188,6 @@ margin-left: -4%;
         
             <a href="mailto:ben.pring@gmail.com">
                 <img class="icon" src="https://benp44.github.io/blog/img/email.svg" alt="email" />
-            </a>
-        
-
-        
-            <a href="https://benp44.github.io/blog/index.xml">
-                <img class="icon" src="https://benp44.github.io/blog/img/rss.svg" alt="rss" />
             </a>
         
 

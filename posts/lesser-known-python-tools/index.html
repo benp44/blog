@@ -549,12 +549,12 @@ div.main .content .markdown code,
 div.main .content .markdown pre {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 0.98rem;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -566,6 +566,7 @@ div.main .content .markdown pre {
   white-space: pre;
   word-break: break-all;
   word-wrap: break-word;
+  border-radius: 3px;
 }
 div.main .content .markdown pre code {
   /* enclosed by 4 backticks (````) */
@@ -788,7 +789,7 @@ kbd {
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';
+      font-family: 'Ubuntu Mono';      
 }
 
 
@@ -998,9 +999,6 @@ margin-left: -4%;
 
 >
 
-
-
-
 </head>
 
 
@@ -1058,21 +1056,21 @@ margin-left: -4%;
     
     <h2 id="defaultdict">defaultdict</h2>
 <p>A familiar problem with dictionaries:</p>
-<pre><code>scores = {}
+<pre tabindex="0"><code>scores = {}
 
 def increment_score_for_user(username: str):    
     if username not in scores:
         scores[username] = 0
     scores[username] += 1
 </code></pre><p>But if we can only remember the existance of the humble <code>defaultdict</code>, we can save ourselves the hassle:</p>
-<pre><code>from collections import defaultdict
+<pre tabindex="0"><code>from collections import defaultdict
 
 scores = defaultdict(int)
 
 def increment_score_for_user(username: str):
     scores[username] += 1
 </code></pre><p>The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</p>
-<pre><code>from collections import defaultdict
+<pre tabindex="0"><code>from collections import defaultdict
 
 starting_score = 15
 scores = defaultdict(lambda: starting_score)
@@ -1080,23 +1078,23 @@ scores = defaultdict(lambda: starting_score)
 assert scores[&quot;some unknown user&quot;] == 15
 </code></pre><h2 id="generator-expressions">Generator expressions</h2>
 <p>An example of a list comprehension, getting the length of each line in a file:</p>
-<pre><code>def get_line_lengths(filename):
+<pre tabindex="0"><code>def get_line_lengths(filename):
     return [len(line) for line in open(filename)]
 </code></pre><p>But then someone goes and does something like:</p>
-<pre><code>get_line_lengths(&quot;gigabyte-file.txt&quot;)
+<pre tabindex="0"><code>get_line_lengths(&quot;gigabyte-file.txt&quot;)
 </code></pre><p>So we replace the list comprehension with a <em>generator expression</em> (in this case by simply replacing the square brackets with round):</p>
-<pre><code>def get_line_lengths(filename):
+<pre tabindex="0"><code>def get_line_lengths(filename):
     return (len(line) for line in open(filename))
 </code></pre><p>Which returns a generator, which we can iterate over using <code>next</code>:</p>
-<pre><code>g = get_line_lengths(&quot;gigabyte-file.txt&quot;)                                                    
+<pre tabindex="0"><code>g = get_line_lengths(&quot;gigabyte-file.txt&quot;)                                                    
 next(g)
 </code></pre><p>Note that this is equivalent to the generator function, which in a context like this might be considered clearer:</p>
-<pre><code>def get_line_lengths(filename):
+<pre tabindex="0"><code>def get_line_lengths(filename):
     for line in open(filename):
         yield len(line)
 </code></pre><h2 id="using-a-decorator-to-trace-function-calls">Using a decorator to trace function calls</h2>
 <p>An example of how to write your own decorators:</p>
-<pre><code>from functools import wraps
+<pre tabindex="0"><code>from functools import wraps
 import sys
 
 def trace(func):
@@ -1112,11 +1110,11 @@ def something(name: str):
     print(f&quot;Hello, {name}!&quot;)
 </code></pre><h2 id="named-tuples">Named tuples</h2>
 <p>The ugliness of accessing tuples by index makes my eyes bleed:</p>
-<pre><code>old_speckled_hen = ('Old Speckled Hen', &quot;Ale&quot;, &quot;500ml&quot;)
+<pre tabindex="0"><code>old_speckled_hen = ('Old Speckled Hen', &quot;Ale&quot;, &quot;500ml&quot;)
 
 assert old_speckled_hen[2] == &quot;500ml&quot;
 </code></pre><p>So save yourself a trip to the optometrist and use <code>namedtuple</code>:</p>
-<pre><code>from collections import namedtuple
+<pre tabindex="0"><code>from collections import namedtuple
 
 Beer = namedtuple('Beer', 'name type amount')
 
@@ -1127,7 +1125,7 @@ assert  old_speckled_hen.amount == &quot;500ml&quot;
 </code></pre><h2 id="adding-a-function-level-cache-with-a-single-line-of-code">Adding a function-level cache with a single line of code</h2>
 <p>Not a complicated thing to achieve, but doing so using a single line of code built into the language is nice.</p>
 <p>Obviously only for deterministic code.</p>
-<pre><code>from functools import lru_cache
+<pre tabindex="0"><code>from functools import lru_cache
 
 @lru_cache
 def process_file(filename: str):
@@ -1151,7 +1149,7 @@ def process_file(filename: str):
 
         
             
-                <a href="https://benp44.github.io/blog/license">Copyright © 2021 Ben Pring</a>
+                <a href="https://benp44.github.io/blog/license">Copyright © 2023 Ben Pring</a>
             
         
 
@@ -1191,12 +1189,6 @@ def process_file(filename: str):
         
             <a href="mailto:ben.pring@gmail.com">
                 <img class="icon" src="https://benp44.github.io/blog/img/email.svg" alt="email" />
-            </a>
-        
-
-        
-            <a href="https://benp44.github.io/blog/index.xml">
-                <img class="icon" src="https://benp44.github.io/blog/img/rss.svg" alt="rss" />
             </a>
         
 

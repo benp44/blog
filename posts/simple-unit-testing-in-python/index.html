@@ -549,12 +549,12 @@ div.main .content .markdown code,
 div.main .content .markdown pre {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 0.98rem;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -566,6 +566,7 @@ div.main .content .markdown pre {
   white-space: pre;
   word-break: break-all;
   word-wrap: break-word;
+  border-radius: 3px;
 }
 div.main .content .markdown pre code {
   /* enclosed by 4 backticks (````) */
@@ -788,7 +789,7 @@ kbd {
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';
+      font-family: 'Ubuntu Mono';      
 }
 
 
@@ -998,9 +999,6 @@ margin-left: -4%;
 
 >
 
-
-
-
 </head>
 
 
@@ -1065,7 +1063,7 @@ margin-left: -4%;
 <h3 id="setting-up-a-test-case">Setting up a test case</h3>
 <p>This example is based on a MVC-style controller class used in an software update application. This controller contains some of the business logic of the application, for example determining whether a check for software updates can and should be made, based on whether there&rsquo;s an internet connection available, and when the last check as performed.</p>
 <p>To get started, here&rsquo;s the test case <code>setUp</code> method:</p>
-<pre><code>import unittest
+<pre tabindex="0"><code>import unittest
 from unittest.mock import patch, call, Mock
 from update_controller import UpdateController
 
@@ -1094,7 +1092,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 <p><em>That&rsquo;s it.</em></p>
 <p>Having done a lot of unit testing in C++, the first time I saw this my mind was blown.</p>
 <p>But it gets better. Let&rsquo;s look a our first test, which can be described as: <em>&ldquo;If an internet connection is available, but we&rsquo;ve already checked for updates today, we don&rsquo;t check again.&quot;</em></p>
-<pre><code>
+<pre tabindex="0"><code>
     def test_checks_for_updates_only_if_not_checked_so_far_today(self):
 
         # Setup
@@ -1116,7 +1114,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 <p>Asserting the behaviour of the controller is equally simple:</p>
 <p><code>mock_update_model.check_for_updates.assert_not_called()</code></p>
 <p>Let&rsquo;s look at a slightly more complicated example. The controller contains a method called <code>wait_or_exit</code> which is similar to a <code>sleep</code> but allows the program to handle signals (for example to exit) while execution is paused. We don&rsquo;t really want to do this in our tests, so as a special case, we <em>patch</em> this method in <code>setUp</code>:</p>
-<pre><code>    def setUp(self):
+<pre tabindex="0"><code>    def setUp(self):
 
         ...
 
@@ -1131,7 +1129,7 @@ class UpdateControllerTestCase(unittest.TestCase):
         self._mock_wait_method.stop()
 
 </code></pre><p>Now we can test as follows:</p>
-<pre><code>    def test_if_no_internet_checks_again_after_ten_seconds(self):
+<pre tabindex="0"><code>    def test_if_no_internet_checks_again_after_ten_seconds(self):
 
         # Setup
 
@@ -1170,7 +1168,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 
         
             
-                <a href="https://benp44.github.io/blog/license">Copyright © 2021 Ben Pring</a>
+                <a href="https://benp44.github.io/blog/license">Copyright © 2023 Ben Pring</a>
             
         
 
@@ -1210,12 +1208,6 @@ class UpdateControllerTestCase(unittest.TestCase):
         
             <a href="mailto:ben.pring@gmail.com">
                 <img class="icon" src="https://benp44.github.io/blog/img/email.svg" alt="email" />
-            </a>
-        
-
-        
-            <a href="https://benp44.github.io/blog/index.xml">
-                <img class="icon" src="https://benp44.github.io/blog/img/rss.svg" alt="rss" />
             </a>
         
 
