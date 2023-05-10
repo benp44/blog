@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Unrecognized Escape Sequence" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://benp44.github.io/blog/posts/actix-actor-framework/" />
-<meta property="og:title" content="Building services in Rust with the Actix framework" />
-<meta property="twitter:title" content="Building services in Rust with the Actix framework">
+<meta property="og:url" content="https://benp44.github.io/blog/tags/agile/" />
+<meta property="og:title" content="Agile" />
+<meta property="twitter:title" content="Agile">
 
     <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Unrecognized Escape Sequence - Building services in Rust with the Actix framework 
+     Unrecognized Escape Sequence - Agile 
 
 </title>
-<link rel="canonical" href="https://benp44.github.io/blog/posts/actix-actor-framework/">
+<link rel="canonical" href="https://benp44.github.io/blog/tags/agile/">
 
 
 <style media="screen">
@@ -1005,7 +1005,7 @@ margin-left: -4%;
 <body>
 
 
-<div class="header column">
+<div class="header header-home column">
 
     <div class="container">
         
@@ -1038,246 +1038,26 @@ margin-left: -4%;
     </div>
 </div>
 
-
-
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="page-heading">
-
+            <div class="posts">
+                <div class="page-heading">Posts about Agile</div>
+                <ul>
+                    
+                        <li class="post-item">
+    <span class="meta">Feb 12, 2023</span>
     
-    Building services in Rust with the Actix framework
+    <a href="../../posts/wip-limits/"><span>Scrum WIP Limits</span></a>
     
+</li>
 
-</div>
-
-            <div class="markdown">
-                
-    
-    <p>Actix is a Rust crate that provides a framework for developing concurrent applications using the <a href="https://en.wikipedia.org/wiki/Actor_model">Actor Model</a>, a popular design pattern for writing complex concurrent applications. I have found it a useful abstraction due to the way it allows you to decompose your service into discrete <em>actors</em>, each responsible for some subset of the service logic, and communicate between these with strongly-typed messages.</p>
-<p>In particular I think this kind of abstraction is useful in Rust as it allows you to avoid some of the noise that comes with managing synchronisation of shared resource by hand.</p>
-<p>The Actix actor framework is the base of <a href="https://actix.rs/">Actix Web</a>, a fully-featured web-services framework, but for the purposes of this post I&rsquo;m only looking at the actor framework which can be used on its own for more general-purpose backend applications and services.</p>
-<p>There are many crates that provide actor model abstractions for rust, and I don&rsquo;t claim to know which is the best or most fully-featured. However, I can say that I have worked with Actix in anger and found it to be performant, flexible and relatively intuitive.</p>
-<p>In this post, I&rsquo;ll give a brief breakdown of the steps to build a simple Actix service and play with some different execution models provided by the framework.</p>
-<h2 id="1-getting-started">1. Getting started</h2>
-<p>Let&rsquo;s get started with a boilerplate Rust program, to which we&rsquo;ll add the Actix dependency.</p>
-<pre tabindex="0"><code>cargo new actix-demo
-cd actix-demo
-cargo add actix
-</code></pre><p>Great! Our <code>Cargo.toml</code> now looks like:</p>
-<pre tabindex="0"><code>[package]
-name = &quot;actix-demo&quot;
-version = &quot;0.1.0&quot;
-edition = &quot;2021&quot;
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-actix = &quot;0.13.0&quot;
-</code></pre><h2 id="2-creating-an-actor">2. Creating an Actor</h2>
-<p>Let&rsquo;s create our first actor, a very simple one that will provide some arithmetic operations.</p>
-<p>Alongside the <code>main.rs</code>, let&rsquo;s create <code>arithmetic_service.rs</code>:</p>
-<pre tabindex="0"><code>use actix::{Actor, Context};
-
-pub(crate) struct ArithmeticService;
-
-impl Actor for ArithmeticService {
-    type Context = Context&lt;Self&gt;;
-
-    fn started(&amp;mut self, _context: &amp;mut Self::Context) {
-        println!(&quot;ArithmeticService is running&quot;);
-    }
-
-    fn stopped(&amp;mut self, _context: &amp;mut Self::Context) {
-        println!(&quot;ArithmeticService stopped&quot;);
-    }
-}
-</code></pre><p>Implementing the <code>started</code> and <code>stopped</code> functions is optional, but seems useful in this context.</p>
-<p>To get this up and running, we need to decorate our <code>main</code> function with the <code>#[actix::main]</code> macro (which essentially just starts the async runtime); declare <code>main</code> as async (more on this later); and then start our service (requiring the <code>Actor</code> trait to be in scope):</p>
-<pre tabindex="0"><code>mod arithmetic_service;
-
-use crate::arithmetic_service::{GreetingService};
-use actix::{Actor};
-
-#[actix::main]
-async fn main() {
-    ArithmeticService.start();
-}
-</code></pre><p>And voila:</p>
-<pre tabindex="0"><code>cargo run
-Finished dev [unoptimized + debuginfo] target(s) in 0.79s
-     Running `target/debug/actix-demo`
-ArithmeticService is running
-ArithmeticService stopped
-</code></pre><h2 id="3-defining-a-message">3. Defining a message</h2>
-<p>Actix uses the concept of &ldquo;messages&rdquo; for communicating with actors. While more complex to setup and use than, say, a function call, messages are a big part of how the framework provides a separation of concerns and manages concurrency.</p>
-<p>To get us started, let&rsquo;s give our service functionality for returning the square of an input (*yawn*). We define messages as a struct with the <code>Message</code> derivation, and <code>rtype</code> macro to define a return type. We&rsquo;ll put these in <code>arithmetic_service.rs</code>, although message definitions might also be defined elsewhere and shared between services/actors. That the result type must be declared by name rather than as an actual type declaration is not something I&rsquo;m wildly keen on, but rest-assured the compiler complains if this string does not resolve as a valid type.</p>
-<pre tabindex="0"><code>#[derive(Message)]
-#[rtype(result = &quot;i64&quot;)]
-pub(crate) struct Square{
-    pub input: i64,
-}
-</code></pre><p>Now we make our service able to &ldquo;handle&rdquo; this type of message, by implementing the <code>Handler</code> trait:</p>
-<pre tabindex="0"><code>impl Handler&lt;Square&gt; for ArithmeticService {
-    type Result = i64;
-
-    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
-        message.input * message.input
-    }
-}
-</code></pre><h2 id="4-sending-a-message-to-the-service">4. Sending a message to the service</h2>
-<p>We can now send a <code>Square</code> message to the service from <code>main</code>. To do so, when we create the service actor, we need to keep a &ldquo;address&rdquo; for the service, which allows us to speak to the service.</p>
-<p>We send the message using the <code>send</code> function, which returns a promise so must be <code>await</code>ed. Send returns a <code>Result</code> because it might fail if, for example, the service is not running, or its message queue is full (topics for another day).</p>
-<p>Finally, to make things a little cleaner, I&rsquo;ll add the <a href="https://github.com/nrc/derive-new"><code>derive-new</code></a> crate and derive this for the <code>Square</code> struct to allow creating the message concisely.</p>
-<pre tabindex="0"><code>#[actix::main]
-async fn main() {
-    let service_address = ArithmeticService.start();
-    let result = service_address.send(Square::new(5_i64)).await;
-
-    match result {
-        Ok(square) =&gt; println!(&quot;Square was: {}&quot;, square),
-        _ =&gt; println!(&quot;Communication with the actor has failed&quot;),
-    }
-}
-</code></pre><p>And when we run we get:</p>
-<pre tabindex="0"><code>ArithmeticService is running
-Square was: 25
-</code></pre><p>Nice! A couple of points about this:</p>
-<ul>
-<li>Using the <code>send</code> function is only one option, there are also other options <code>do_send</code> and <code>try_send</code> which have different semantics around synchronicity and error handling.</li>
-<li>I was a little surprised to not see the <code>ArithmeticService stopped</code> message in the stderr; I see the stopped function invoked in other applications I&rsquo;ve written. For this post I&rsquo;m not too interested in investigating whether this is a bug in Actix, or whether there is something I&rsquo;m missing in the disposal of the resources. The documentation indicates that the service should be torn down when there are no addresses left active, but dropping the address used in <code>main</code> does not seem to help.</li>
-</ul>
-<h2 id="5-concurrency">5. Concurrency</h2>
-<p>To play with the concurrency of Actix, let&rsquo;s first modify our service to simulate a more interesting application than just calculating squares. If we add a delay and some logging into the <code>Square</code> message handler:</p>
-<pre tabindex="0"><code>    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
-        println!(&quot;started processing Square({})&quot;, message.input);
-   
-        // Simulate some work being done by waiting for n seconds, where n is the input value
-        let delay_in_seconds = message.input.try_into().unwrap();
-        sleep(Duration::from_secs(delay_in_seconds));
-
-        println!(&quot;finished processing Square({})&quot;, message.input);
-
-        message.input * message.input
-    }
-</code></pre><p>Note that I&rsquo;m using a call to <code>unwrap</code> in this code for brevity which I would certainly not do in a production application.</p>
-<p>Now let&rsquo;s send multiple messages to the service in <code>main</code>. I&rsquo;m going to do this by collecting the futures returned from calls to <code>send</code> and awaiting them out-of-order. The <code>FuturesUnordered</code> struct is a really nice tool for this purpose, essentially providing a mechanism for polling futures and responding to them as they complete:</p>
-<pre tabindex="0"><code>    let mut futures = FuturesUnordered::new();
-    futures.push(service_address.send(Square::new(5_i64)));
-    futures.push(service_address.send(Square::new(2_i64)));
-    futures.push(service_address.send(Square::new(3_i64)));
-
-    while let Some(send_result) = futures.next().await {
-        match send_result {
-            Ok(square) =&gt; println!(&quot;Got square: {}&quot;, square),
-            Err(err) =&gt; println!(&quot;Error communicating with service: {}&quot;, err),
-        };
-    }
-</code></pre><p>Now when we run we get:</p>
-<pre tabindex="0"><code>ArithmeticService is running
-started processing Square(5)
-finished processing Square(5)
-started processing Square(2)
-finished processing Square(2)
-started processing Square(3)
-finished processing Square(3)
-Got square: 25
-Got square: 4
-Got square: 9
-</code></pre><p>What&rsquo;s happening here? Actix uses a single-threaded asynchronous event-loop for all it&rsquo;s processing. This means that both the invocations of <code>handle</code> and the <code>main</code> function are all running on the same single thread. In particular, the blocking calls to <code>sleep</code> in the message handler are a problem for this processing model as they block the whole event loop.</p>
-<p>To help us see what&rsquo;s going on, let&rsquo;s capture some thread IDs in our logging by adding to <code>main</code>:</p>
-<pre tabindex="0"><code>println!(&quot;Running main on thread: {:?}&quot;, thread::current().id());
-</code></pre><p>And in <code>handle</code>:</p>
-<pre tabindex="0"><code>    println!(
-        &quot;started processing Square({}), on {:?}&quot;,
-        message.input,
-        thread::current().id(),
-    );
-</code></pre><p>To prevent this blocking behaviour we should perform our message handling asynchronously, so as not to block the event loop. If we change our <code>handle</code> function to use an asynchronous <code>sleep</code> from <code>tokio</code>, we can send this to the event loop and wait for it to complete without blocking:</p>
-<pre tabindex="0"><code>    fn handle(&amp;mut self, message: Square, context: &amp;mut Self::Context) -&gt; Self::Result {
-        println!(
-            &quot;started processing Square({}), on {:?}&quot;,
-            message.input,
-            thread::current().id()
-        );
-
-        let processing_task = async move {
-            let delay_in_seconds = message.input.try_into().unwrap();
-            sleep(Duration::from_secs(delay_in_seconds)).await;
-        };
-
-        context.wait(processing_task.into_actor(self));
-
-        println!(&quot;finished processing Square({})&quot;, message.input);
-        message.input * message.input
-    }
-</code></pre><p>The magic incantation here is <code>context.wait(processing_task.into_actor(self));</code> which executes <code>processing_task</code> on whatever execution environment is available to the actor context. This is nice as we don&rsquo;t need to know about the internals of this, we just tell Actix to run it. In fact, the execution environment in this case comes from what Actix terms an <em>Arbiter</em>. In this case, we are using the default <em>System Arbiter</em>, as we have not told Actix to do anything else.</p>
-<p>So how does our program behave now?</p>
-<pre tabindex="0"><code>Running main on thread: ThreadId(1)
-ArithmeticService is running
-started processing Square(5) on ThreadId(1)
-finished processing Square(5)
-Got square: 25
-started processing Square(2) on ThreadId(1)
-finished processing Square(2)
-Got square: 4
-started processing Square(3) on ThreadId(1)
-finished processing Square(3)
-Got square: 9
-ArithmeticService stopped
-</code></pre><p>Great! We get our message responses as soon as they are ready, and they are still guaranteed to be in-order, which may be a requirement of whatever system we are building. Notice also that everything is running on the same thread.</p>
-<h2 id="6-synchronous-processing-with-multiple-threads">6. Synchronous processing with multiple threads</h2>
-<p>As a final modification to this example, let&rsquo;s switch from using this single-threaded asynchronous execution environment to a multi-threaded synchronous one. This will change the behaviour such that messages are no longer responded to in FIFO order.</p>
-<p>To do this we can use the Actix <code>SyncArbiter</code> in place of the implicit system arbiter. When we create our actor using this, we can specify the number of threads to create for processing, each of which will have it&rsquo;s own <code>ArithmeticService</code> to process messages.</p>
-<p>In <code>main</code>, we swap out the way we create our service:</p>
-<pre tabindex="0"><code>    let processing_threads = 3;
-    let service_address = SyncArbiter::start(processing_threads, || ArithmeticService);
-</code></pre><p>And we change the type of <code>Context</code> used by our service:</p>
-<pre tabindex="0"><code>    type Context = SyncContext&lt;Self&gt;;
-</code></pre><p><code>SyncContext</code>, being a context designed for synchronous processing, does not allow us to <code>spawn</code> or <code>wait</code> for futures, so we replace our <code>tokio</code> sleep with a synchronous equivalent:</p>
-<pre tabindex="0"><code>    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
-        println!(
-            &quot;started processing Square({}), on {:?}&quot;,
-            message.input,
-            thread::current().id(),
-        );
-
-        let delay_in_seconds = message.input.try_into().unwrap();
-        thread::sleep(Duration::from_secs(delay_in_seconds));
-
-        println!(&quot;finished processing Square({})&quot;, message.input);
-        message.input * message.input
-    }
-</code></pre><p>And we&rsquo;re done. Let&rsquo;s see how this behaves:</p>
-<pre tabindex="0"><code>Running main on thread: ThreadId(1)
-ArithmeticService is running
-ArithmeticService is running
-ArithmeticService is running
-started processing Square(5), on ThreadId(4)
-started processing Square(2), on ThreadId(3)
-started processing Square(3), on ThreadId(2)
-finished processing Square(2)
-Got square: 4
-finished processing Square(3)
-Got square: 9
-finished processing Square(5)
-Got square: 25
-ArithmeticService stopped
-ArithmeticService stopped
-ArithmeticService stopped
-</code></pre><p>Presto. We see that three <code>ArithmeticService</code>s are started on separate threads, and each one processes one of the messages we send. All three messages are processed concurrently, and their responses are returned when ready, completing out-of-order.</p>
-<h2 id="conclusions">Conclusions</h2>
-<p>For those that have made it this far, hopefully this post has been a useful exploration of Actix and how it works, and the different ways in which it can operate.</p>
-<p>The final state of the source code for this project is on Github here: <a href="https://github.com/benp44/actix-demo">https://github.com/benp44/actix-demo</a>.</p>
-
-
+                    
+                </ul>
             </div>
         </div>
     </div>
 </div>
-
-
-
 <div class="footer column">
     <div class="container">
 

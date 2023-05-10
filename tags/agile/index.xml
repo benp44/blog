@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Agile on Unrecognized Escape Sequence</title>
+    <link>https://benp44.github.io/blog/tags/agile/</link>
+    <description>Recent content in Agile on Unrecognized Escape Sequence</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 12 Feb 2023 15:05:19 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/tags/agile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scrum WIP Limits</title>
+      <link>https://benp44.github.io/blog/posts/wip-limits/</link>
+      <pubDate>Sun, 12 Feb 2023 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/posts/wip-limits/</guid>
+      <description>The TLDR My team has recently been experimenting with various WIP (work in progress) limits. Actually we brought in the idea maybe a year ago, but I&amp;rsquo;ve only recently had some time to write about it with some hindsight.
+You can read on for quite a lot of (possibly uninteresting) detail, but the TLDR is that a WIP limit is a very valuable tool, which I would recommend any established Scrum team give a try.</description>
+    </item>
+    
+  </channel>
+</rss>
