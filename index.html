@@ -38,8 +38,13 @@
 
 <style media="screen">
   @font-face {
-  font-family: 'Nexa Bold';
-  src: url('https://benp44.github.io/blog/fonts/Nexa Bold.otf');
+  font-family: 'Nunito';
+  src: url('https://benp44.github.io/blog/fonts/Nunito-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Droid Sans Mono';
+  src: url('https://benp44.github.io/blog/fonts/Droid-Sans-Mono.otf');
 }
 
 html, body, div, span, applet, object, iframe,
@@ -204,7 +209,7 @@ div.header .container .logo {
 div.header .name {
   padding-top: 20px;
   font-size: 28px;
-  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'Nunito', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   
   text-transform: uppercase;
@@ -239,7 +244,7 @@ div.header nav ul li:last-child {
 div.header nav ul a {
   color: #555555;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   text-transform: uppercase;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
@@ -322,13 +327,11 @@ div.main .content .title-container {
 div.main .content .posts {
   
   
-  margin-bottom: 4em;
-  
 }
 div.main .content .page-heading {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'Nunito', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   text-transform: uppercase;
   -moz-osx-font-smoothing: grayscale;
@@ -439,7 +442,7 @@ div.main .container .content .post-item {
   list-style: disc inside;
 }
 div.main .container .content .post-item .meta {
-  font-size: 14px;
+  font-size: 15px;
   color: #666666;
   display: none;
   min-width: 100px;
@@ -494,7 +497,7 @@ div.main .content {
 }
 div.main .content .markdown {
   font-size: 1.1em;
-  line-height: 1.75em;
+  line-height: 1.2em;
   color: #313537;
   font-family: serif;
   font-weight: 300;
@@ -537,14 +540,14 @@ div.main .content .markdown h6 {
 }
 div.main .content .markdown code,
 div.main .content .markdown pre {
-  font-family: 'Menlo', monospace;
+  font-family: 'Droid Sans Mono', monospace;
   font-size: 0.98rem;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -588,7 +591,7 @@ div.main .content .markdown dd {
   margin-bottom: .5rem;
 }
 div.main .content .markdown ul {
-  list-style-type: disc;
+  list-style-type: square;
   list-style-position: outside;
   margin-bottom: 1.25rem;
 }
@@ -625,7 +628,7 @@ div.main .content .markdown abbr[title] {
 div.main .content .markdown blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: #7a7a7a;
+  color: #4a4a4a;
   border-left: .25rem solid #e5e5e5;
 }
 div.main .content .markdown blockquote p:last-child {
@@ -768,11 +771,11 @@ kbd {
 .wf-raleway-n7-active div.main .content .markdown h4,
 .wf-raleway-n7-active div.main .content .markdown h5,
 .wf-raleway-n7-active div.main .content .markdown h6 {
-      font-family: 'Raleway';
+      font-family: 'Nunito';
 }
 
 .wf-merriweather-n3-active div.main .content .markdown {
-      font-family: 'Merriweather';
+      font-family: 'Nunito';
 }
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
@@ -797,13 +800,13 @@ padding: 0 16px;
 margin-left: 100px;
 margin-right: 100px;
 
-max-width: 750px;
+max-width: 850px;
 
 }
 div.column {
 padding: 0 16px;
 
-max-width: 750px;
+max-width: 850px;
 
 }
 div.header {
@@ -958,7 +961,7 @@ margin-left: -4%;
 
 <noscript>
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,300i,700,700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
 </noscript>
 
@@ -1026,6 +1029,39 @@ margin-left: -4%;
                     
                 </ul>
             </nav>
+            
+            <div style="padding-top:14pt; text-align: justify;text-justify: inter-word;" class="main">Greetings. The posts on this blog are inspired by my experiences working in software engineering. It consists of introductions into a few technologies and tools I think worth of writing down; some exploration of the fuzzy world of agile software development methodologies; and the occasional messy rant about the industry. Perhaps therein is contained a few useful nuggets of advice for others who have the misfortune to also stray down this path.</div>
+            <h2 style="padding-top: 16pt; text-transform: uppercase; font-weight: 600; font-size: 12pt">Recent posts</h2>
+            <table>
+                
+                
+                    <tr>
+                        <td style="text-align:right;">18/4/2023</td>
+                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/"> Building services in Rust with the Actix framework</a></td>
+                    </tr>
+                
+                    <tr>
+                        <td style="text-align:right;">1/3/2023</td>
+                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/"> Docker problems on a VPN</a></td>
+                    </tr>
+                
+                    <tr>
+                        <td style="text-align:right;">12/2/2023</td>
+                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/scrum-wip-limits/"> Scrum WIP Limits</a></td>
+                    </tr>
+                
+                    <tr>
+                        <td style="text-align:right;">5/1/2021</td>
+                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/putting-together-a-half-decent-merge/pull-request/"> Putting together a half-decent merge/pull request</a></td>
+                    </tr>
+                
+                    <tr>
+                        <td style="text-align:right;">1/6/2020</td>
+                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/an-on-going-and-unordered-catalogue-of-useful-python-stuff/"> An on-going and unordered catalogue of useful Python stuff</a></td>
+                    </tr>
+                
+            </table>
+            
         </div>
     </div>
 </div>
@@ -1036,173 +1072,9 @@ margin-left: -4%;
             
 
             
-                <div class="posts">
-                
-                
-                
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
-                    
-                    
-                        <li class="groupby"></li>
-                        
-                            <li class="post-item">
-    <span class="meta">Apr 18, 2023</span>
-    
-    <a href="./blog/building-services-in-rust-with-the-actix-framework/"><span>Building services in Rust with the Actix framework</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Mar 1, 2023</span>
-    
-    <a href="./blog/docker-problems-on-a-vpn/"><span>Docker problems on a VPN</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Feb 12, 2023</span>
-    
-    <a href="./blog/scrum-wip-limits/"><span>Scrum WIP Limits</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jan 5, 2021</span>
-    
-    <a href="./blog/putting-together-a-half-decent-merge/pull-request/"><span>Putting together a half-decent merge/pull request</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jun 1, 2020</span>
-    
-    <a href="./blog/an-on-going-and-unordered-catalogue-of-useful-python-stuff/"><span>An on-going and unordered catalogue of useful Python stuff</span></a>
-    
-</li>
-
-                        
-                    
-                    </ul>
-
-                    
-                        <a href="./blog/" class="see-more">See more ...</a>
-                    
-                
-                </div>
-            
 
             <div class="best-posts">
             
-            
-                <div class="page-heading">Popular posts</div>
-                <ul>
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                        <li class="post-item">
-    <span class="meta">Jan 5, 2021</span>
-    
-    <a href="./blog/putting-together-a-half-decent-merge/pull-request/"><span>Putting together a half-decent merge/pull request</span></a>
-    
-</li>
-
-                    
-                
-                    
-                
-                    
-                        <li class="post-item">
-    <span class="meta">Mar 1, 2020</span>
-    
-    <a href="./blog/rust-results-options-and-combinators/"><span>Rust: Results, Options and Combinators</span></a>
-    
-</li>
-
-                    
-                
-                    
-                
-                    
-                
-                    
-                        <li class="post-item">
-    <span class="meta">May 29, 2019</span>
-    
-    <a href="./blog/the-backlog-refinery/"><span>The backlog refinery</span></a>
-    
-</li>
-
-                    
-                
-                    
-                        <li class="post-item">
-    <span class="meta">May 21, 2019</span>
-    
-    <a href="./blog/more-python-mocking-fun/"><span>More Python mocking fun</span></a>
-    
-</li>
-
-                    
-                
-                    
-                
-                    
-                        <li class="post-item">
-    <span class="meta">Feb 24, 2019</span>
-    
-    <a href="./blog/building-without-designing/"><span>Building without designing</span></a>
-    
-</li>
-
-                    
-                
-                    
-                
-                    
-                
-                    
-                        <li class="post-item">
-    <span class="meta">Jul 20, 2018</span>
-    
-    <a href="./blog/coding-styles/"><span>Coding styles</span></a>
-    
-</li>
-
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                        <li class="post-item">
-    <span class="meta">Jun 24, 2017</span>
-    
-    <a href="./blog/bad-comments/"><span>Bad comments</span></a>
-    
-</li>
-
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                </ul>
             
             </div>
         </div>
@@ -1281,7 +1153,7 @@ margin-left: -4%;
 <script>
   WebFont.load({
     google: {
-      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+      families: ['Raleway:400,600,700', 'Nunito:300,300i,700,700i', 'Ubuntu+Mono:400,700']
     }
   });
 </script>

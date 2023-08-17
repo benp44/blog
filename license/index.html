@@ -37,8 +37,13 @@
 
 <style media="screen">
   @font-face {
-  font-family: 'Nexa Bold';
-  src: url('https://benp44.github.io/blog/fonts/Nexa Bold.otf');
+  font-family: 'Nunito';
+  src: url('https://benp44.github.io/blog/fonts/Nunito-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Droid Sans Mono';
+  src: url('https://benp44.github.io/blog/fonts/Droid-Sans-Mono.otf');
 }
 
 html, body, div, span, applet, object, iframe,
@@ -203,7 +208,7 @@ div.header .container .logo {
 div.header .name {
   padding-top: 20px;
   font-size: 28px;
-  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'Nunito', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   
   text-transform: uppercase;
@@ -238,7 +243,7 @@ div.header nav ul li:last-child {
 div.header nav ul a {
   color: #555555;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   text-transform: uppercase;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
@@ -323,9 +328,9 @@ div.main .content .posts {
   
 }
 div.main .content .page-heading {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'Nunito', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   text-transform: uppercase;
   -moz-osx-font-smoothing: grayscale;
@@ -436,7 +441,7 @@ div.main .container .content .post-item {
   list-style: disc inside;
 }
 div.main .container .content .post-item .meta {
-  font-size: 14px;
+  font-size: 15px;
   color: #666666;
   display: none;
   min-width: 100px;
@@ -491,7 +496,7 @@ div.main .content {
 }
 div.main .content .markdown {
   font-size: 1.1em;
-  line-height: 1.75em;
+  line-height: 1.2em;
   color: #313537;
   font-family: serif;
   font-weight: 300;
@@ -534,14 +539,14 @@ div.main .content .markdown h6 {
 }
 div.main .content .markdown code,
 div.main .content .markdown pre {
-  font-family: 'Menlo', monospace;
+  font-family: 'Droid Sans Mono', monospace;
   font-size: 0.98rem;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -585,7 +590,7 @@ div.main .content .markdown dd {
   margin-bottom: .5rem;
 }
 div.main .content .markdown ul {
-  list-style-type: disc;
+  list-style-type: square;
   list-style-position: outside;
   margin-bottom: 1.25rem;
 }
@@ -622,7 +627,7 @@ div.main .content .markdown abbr[title] {
 div.main .content .markdown blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: #7a7a7a;
+  color: #4a4a4a;
   border-left: .25rem solid #e5e5e5;
 }
 div.main .content .markdown blockquote p:last-child {
@@ -765,11 +770,11 @@ kbd {
 .wf-raleway-n7-active div.main .content .markdown h4,
 .wf-raleway-n7-active div.main .content .markdown h5,
 .wf-raleway-n7-active div.main .content .markdown h6 {
-      font-family: 'Raleway';
+      font-family: 'Nunito';
 }
 
 .wf-merriweather-n3-active div.main .content .markdown {
-      font-family: 'Merriweather';
+      font-family: 'Nunito';
 }
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
@@ -794,13 +799,13 @@ padding: 0 16px;
 margin-left: 100px;
 margin-right: 100px;
 
-max-width: 750px;
+max-width: 850px;
 
 }
 div.column {
 padding: 0 16px;
 
-max-width: 750px;
+max-width: 850px;
 
 }
 div.header {
@@ -955,7 +960,7 @@ margin-left: -4%;
 
 <noscript>
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,300i,700,700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
 </noscript>
 
@@ -1021,6 +1026,7 @@ margin-left: -4%;
                     
                 </ul>
             </nav>
+            
         </div>
     </div>
 </div>
@@ -1128,7 +1134,7 @@ margin-left: -4%;
 <script>
   WebFont.load({
     google: {
-      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+      families: ['Raleway:400,600,700', 'Nunito:300,300i,700,700i', 'Ubuntu+Mono:400,700']
     }
   });
 </script>
