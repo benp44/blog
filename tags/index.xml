@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Unrecognized Escape Sequence</title>
@@ -6,22 +6,27 @@
     <description>Recent content in Tags on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 18 Apr 2023 15:05:19 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Sat, 17 Nov 2018 17:22:35 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>.Zshrc</title>
+      <link>https://benp44.github.io/blog/tags/.zshrc/</link>
+      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/.zshrc/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Actix</title>
       <link>https://benp44.github.io/blog/tags/actix/</link>
       <pubDate>Tue, 18 Apr 2023 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/tags/actix/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rust</title>
-      <link>https://benp44.github.io/blog/tags/rust/</link>
-      <pubDate>Tue, 18 Apr 2023 15:05:19 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/rust/</guid>
       <description></description>
     </item>
     
@@ -35,11 +40,146 @@
     </item>
     
     <item>
+      <title>Code Quality</title>
+      <link>https://benp44.github.io/blog/tags/code-quality/</link>
+      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/code-quality/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coding Style</title>
+      <link>https://benp44.github.io/blog/tags/coding-style/</link>
+      <pubDate>Sat, 24 Jun 2017 09:15:09 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/coding-style/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coding Styles</title>
+      <link>https://benp44.github.io/blog/tags/coding-styles/</link>
+      <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/coding-styles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Comments</title>
+      <link>https://benp44.github.io/blog/tags/comments/</link>
+      <pubDate>Sat, 24 Jun 2017 09:15:09 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/comments/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cpp</title>
+      <link>https://benp44.github.io/blog/tags/cpp/</link>
+      <pubDate>Mon, 03 Jun 2019 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/cpp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Design Patterns</title>
+      <link>https://benp44.github.io/blog/tags/design-patterns/</link>
+      <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/design-patterns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://benp44.github.io/blog/tags/docker/</link>
+      <pubDate>Wed, 01 Mar 2023 15:44:30 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kanban</title>
+      <link>https://benp44.github.io/blog/tags/kanban/</link>
+      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/kanban/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linters</title>
+      <link>https://benp44.github.io/blog/tags/linters/</link>
+      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/linters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linting</title>
+      <link>https://benp44.github.io/blog/tags/linting/</link>
+      <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/linting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://benp44.github.io/blog/tags/linux/</link>
+      <pubDate>Wed, 01 Mar 2023 15:44:30 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Project Management</title>
+      <link>https://benp44.github.io/blog/tags/project-management/</link>
+      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/project-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://benp44.github.io/blog/tags/python/</link>
+      <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://benp44.github.io/blog/tags/rust/</link>
+      <pubDate>Tue, 18 Apr 2023 15:05:19 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Scrum</title>
       <link>https://benp44.github.io/blog/tags/scrum/</link>
       <pubDate>Sun, 12 Feb 2023 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/tags/scrum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Software Engineering</title>
+      <link>https://benp44.github.io/blog/tags/software-engineering/</link>
+      <pubDate>Tue, 05 Jan 2021 21:21:01 +0000</pubDate>
+      
+      <guid>https://benp44.github.io/blog/tags/software-engineering/</guid>
       <description></description>
     </item>
     
@@ -62,56 +202,11 @@
     </item>
     
     <item>
-      <title>WIP</title>
-      <link>https://benp44.github.io/blog/tags/wip/</link>
-      <pubDate>Sun, 12 Feb 2023 15:05:19 +0100</pubDate>
+      <title>Terminal</title>
+      <link>https://benp44.github.io/blog/tags/terminal/</link>
+      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/tags/wip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Software Engineering</title>
-      <link>https://benp44.github.io/blog/tags/software-engineering/</link>
-      <pubDate>Tue, 05 Jan 2021 21:21:01 +0000</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/software-engineering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Design patterns</title>
-      <link>https://benp44.github.io/blog/tags/design-patterns/</link>
-      <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/design-patterns/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://benp44.github.io/blog/tags/python/</link>
-      <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Code Quality</title>
-      <link>https://benp44.github.io/blog/tags/code-quality/</link>
-      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/code-quality/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linters</title>
-      <link>https://benp44.github.io/blog/tags/linters/</link>
-      <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/linters/</guid>
+      <guid>https://benp44.github.io/blog/tags/terminal/</guid>
       <description></description>
     </item>
     
@@ -125,15 +220,6 @@
     </item>
     
     <item>
-      <title>cpp</title>
-      <link>https://benp44.github.io/blog/tags/cpp/</link>
-      <pubDate>Mon, 03 Jun 2019 15:05:19 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/cpp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Unit Testing</title>
       <link>https://benp44.github.io/blog/tags/unit-testing/</link>
       <pubDate>Mon, 03 Jun 2019 15:05:19 +0100</pubDate>
@@ -143,47 +229,20 @@
     </item>
     
     <item>
-      <title>Kanban</title>
-      <link>https://benp44.github.io/blog/tags/kanban/</link>
-      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      <title>Vpn</title>
+      <link>https://benp44.github.io/blog/tags/vpn/</link>
+      <pubDate>Wed, 01 Mar 2023 15:44:30 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/tags/kanban/</guid>
+      <guid>https://benp44.github.io/blog/tags/vpn/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Project Management</title>
-      <link>https://benp44.github.io/blog/tags/project-management/</link>
-      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      <title>Wip</title>
+      <link>https://benp44.github.io/blog/tags/wip/</link>
+      <pubDate>Sun, 12 Feb 2023 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/tags/project-management/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>.zshrc</title>
-      <link>https://benp44.github.io/blog/tags/.zshrc/</link>
-      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/.zshrc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://benp44.github.io/blog/tags/linux/</link>
-      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Terminal</title>
-      <link>https://benp44.github.io/blog/tags/terminal/</link>
-      <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
-      
-      <guid>https://benp44.github.io/blog/tags/terminal/</guid>
+      <guid>https://benp44.github.io/blog/tags/wip/</guid>
       <description></description>
     </item>
     

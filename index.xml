@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unrecognized Escape Sequence</title>
@@ -6,114 +6,130 @@
     <description>Recent content on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 18 Apr 2023 15:05:19 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Tue, 18 Apr 2023 15:05:19 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Building services in Rust with the Actix framework</title>
-      <link>https://benp44.github.io/blog/posts/actix-actor-framework/</link>
+      <link>https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/</link>
       <pubDate>Tue, 18 Apr 2023 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/actix-actor-framework/</guid>
+      <guid>https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/</guid>
       <description>Actix is a Rust crate that provides a framework for developing service-style programs using the Actor Model, a popular design pattern for writing complex concurrent applications. I have found it a useful abstraction due to the way it allows you to decompose your service into discrete actors, each responsible for some subset of the service logic, and communicate between these with strongly-typed messages.
 In particular I think this kind of abstraction is useful in Rust as it allows you to avoid some of the noise that comes with managing synchronisation of shared resource by hand.</description>
     </item>
     
     <item>
+      <title>Docker problems on a VPN</title>
+      <link>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</link>
+      <pubDate>Wed, 01 Mar 2023 15:44:30 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</guid>
+      <description>Ok, this is really a post to help my own memory as I&amp;rsquo;ve had these problems more than once and more than once had to solve from scratch :(
+The symptoms vary depending on what you&amp;rsquo;re trying to do of course, but the symptoms are that resources that are through a VPN tunnel are accessible outside of docker, but inside a container fail with DNS-related errors, for example:
+Failed to establish a new connection: [Error -3] Temporary failure in name resolution: https://something.</description>
+    </item>
+    
+    <item>
       <title>Scrum WIP Limits</title>
-      <link>https://benp44.github.io/blog/posts/wip-limits/</link>
+      <link>https://benp44.github.io/blog/blog/scrum-wip-limits/</link>
       <pubDate>Sun, 12 Feb 2023 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/wip-limits/</guid>
+      <guid>https://benp44.github.io/blog/blog/scrum-wip-limits/</guid>
       <description>The TLDR My team has recently been experimenting with various WIP (work in progress) limits. Actually we brought in the idea maybe a year ago, but I&amp;rsquo;ve only recently had some time to write about it with some hindsight.
 You can read on for quite a lot of (possibly uninteresting) detail, but the TLDR is that a WIP limit is a very valuable tool, which I would recommend any established Scrum team give a try.</description>
     </item>
     
     <item>
       <title>Putting together a half-decent merge/pull request</title>
-      <link>https://benp44.github.io/blog/posts/merge-requests/</link>
+      <link>https://benp44.github.io/blog/blog/putting-together-a-half-decent-merge/pull-request/</link>
       <pubDate>Tue, 05 Jan 2021 21:21:01 +0000</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/merge-requests/</guid>
+      <guid>https://benp44.github.io/blog/blog/putting-together-a-half-decent-merge/pull-request/</guid>
       <description>There&amp;rsquo;s a decent case &amp;ndash; for when working on almost any software project &amp;ndash; that you should be doing code reviews for everything that is intended to make it into your main branch. Even if you are working alone, I would recommend making a review process part of your workflow, if only to separate the mental process of writing code from reviewing it.
 In larger projects with more developers, yes, automated tests, linters and continuous integration (CI) systems are essential, but I would argue equally so is the quality control gate that is a decent review system.</description>
     </item>
     
     <item>
       <title>An on-going and unordered catalogue of useful Python stuff</title>
-      <link>https://benp44.github.io/blog/posts/lesser-known-python-tools/</link>
+      <link>https://benp44.github.io/blog/blog/an-on-going-and-unordered-catalogue-of-useful-python-stuff/</link>
       <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/lesser-known-python-tools/</guid>
+      <guid>https://benp44.github.io/blog/blog/an-on-going-and-unordered-catalogue-of-useful-python-stuff/</guid>
       <description>defaultdict A familiar problem with dictionaries:
-scores = {} def increment_score_for_user(username: str): if username not in scores: scores[username] = 0 scores[username] += 1 But if we can only remember the existance of the humble defaultdict, we can save ourselves the hassle:
-from collections import defaultdict scores = defaultdict(int) def increment_score_for_user(username: str): scores[username] += 1 The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</description>
+scores = {} def increment_score_for_user(username: str): if username not in scores: scores[username] = 0 scores[username] += 1  But if we can only remember the existance of the humble defaultdict, we can save ourselves the hassle:
+from collections import defaultdict scores = defaultdict(int) def increment_score_for_user(username: str): scores[username] += 1  The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</description>
     </item>
     
     <item>
       <title>Rust: Results, Options and Combinators</title>
-      <link>https://benp44.github.io/blog/posts/useful-rust-combinators/</link>
+      <link>https://benp44.github.io/blog/blog/rust-results-options-and-combinators/</link>
       <pubDate>Sun, 01 Mar 2020 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/useful-rust-combinators/</guid>
-      <description>As you start to write Rust code, you find yourself regularly using the match syntax. This comes up due to Rust&amp;rsquo;s error handling pattern, specifically the Result and Option types. Personally, I found that writing matches got old quite quickly. Rust is a concise language in general, so the match-blocks feels verbose, and I start to feel uncomfortable with the indented blocks of code that often end up inside the match.</description>
+      <guid>https://benp44.github.io/blog/blog/rust-results-options-and-combinators/</guid>
+      <description>As I started to write Rust code, I found myself regularly using the match syntax. This comes up due to Rust&amp;rsquo;s error handling pattern, specifically the Result and Option types. Personally, I found that writing matches got old quite quickly. Rust is a concise language in general, so the match-blocks feels verbose, and I start to feel uncomfortable with the indented blocks of code that often end up inside the match.</description>
     </item>
     
     <item>
       <title>Improving your life with pre-commit</title>
-      <link>https://benp44.github.io/blog/posts/pre-commit/</link>
+      <link>https://benp44.github.io/blog/blog/improving-your-life-with-pre-commit/</link>
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/pre-commit/</guid>
+      <guid>https://benp44.github.io/blog/blog/improving-your-life-with-pre-commit/</guid>
       <description>What is pre-commit and how can it help me? If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
  [pre-commit] is a multi-language package manager for pre-commit hooks. You specify a list of hooks you want and pre-commit manages the installation and execution of any hook written in any language before every commit</description>
     </item>
     
     <item>
       <title>A couple of Google Test gotchas</title>
-      <link>https://benp44.github.io/blog/posts/gtest-gotchas/</link>
+      <link>https://benp44.github.io/blog/blog/a-couple-of-google-test-gotchas/</link>
       <pubDate>Mon, 03 Jun 2019 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/gtest-gotchas/</guid>
+      <guid>https://benp44.github.io/blog/blog/a-couple-of-google-test-gotchas/</guid>
       <description>Testing multiple calls to the same mock method Situation: You want to test that a method of your mocked dependency is called multiple times with different parameters. For example, in the following code snippets we are testing that a method setProperty is called twice from within the method being tested. As we typically want to check only one thing per test, we would have two tests which EXPECT_CALL these calls:</description>
     </item>
     
     <item>
       <title>The backlog refinery</title>
-      <link>https://benp44.github.io/blog/posts/the-backlog-refinery/</link>
+      <link>https://benp44.github.io/blog/blog/the-backlog-refinery/</link>
       <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/the-backlog-refinery/</guid>
-      <description>tldr   It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
-  Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
-  This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
+      <guid>https://benp44.github.io/blog/blog/the-backlog-refinery/</guid>
+      <description>tldr  It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
+ Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
+ This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
     </item>
     
     <item>
       <title>More Python mocking fun</title>
-      <link>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</link>
+      <link>https://benp44.github.io/blog/blog/more-python-mocking-fun/</link>
       <pubDate>Tue, 21 May 2019 16:40:25 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/more-unit-testing-in-python/</guid>
+      <guid>https://benp44.github.io/blog/blog/more-python-mocking-fun/</guid>
       <description>This post is a collection of python unit testing &amp;lsquo;gotchas&amp;rsquo;.
-Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor Now we have effectively mocked all actual file I/O in our tests
+Mocking external packages import sys import unittest from unittest.mock import patch, Mock, call, mock_open from io import StringIO, TextIOWrapper mock_os = Mock() sys.modules[&amp;quot;os&amp;quot;] = mock_os from config_editor import ConfigEditor  Now we have effectively mocked all actual file I/O in our tests
 Mocking in-built methods and file I/O Super useful if you want to test a unit that uses the builtin open method.</description>
     </item>
     
     <item>
       <title>Unit testing in Python with dependency injection</title>
-      <link>https://benp44.github.io/blog/posts/simple-unit-testing-in-python/</link>
+      <link>https://benp44.github.io/blog/blog/unit-testing-in-python-with-dependency-injection/</link>
       <pubDate>Sun, 21 Apr 2019 16:40:25 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/simple-unit-testing-in-python/</guid>
+      <guid>https://benp44.github.io/blog/blog/unit-testing-in-python-with-dependency-injection/</guid>
       <description>A foreword on this approach to unit testing in Python Python is a very flexible language, and while the creators of Python tried to follow the guiding principle &amp;ldquo;there should be one, and preferably only one, obvious way to do things&amp;rdquo;, this flexibility inevitably means that there are &amp;ndash; in fact &amp;ndash; lots of ways to do things, some good, some bad.
 Unit testing in Python is no exception to this.</description>
     </item>
     
     <item>
       <title>Building without designing</title>
-      <link>https://benp44.github.io/blog/posts/building-without-designing/</link>
+      <link>https://benp44.github.io/blog/blog/building-without-designing/</link>
       <pubDate>Sun, 24 Feb 2019 19:52:30 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/building-without-designing/</guid>
+      <guid>https://benp44.github.io/blog/blog/building-without-designing/</guid>
       <description>A quick one today, but an important one.
 When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
 I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&amp;rdquo; as an excuse to drop some of the less tangibly essential aspects of software development and &amp;ldquo;just smash out some code&amp;rdquo;.</description>
@@ -121,38 +137,38 @@ I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&a
     
     <item>
       <title>Using and meddling with fzf</title>
-      <link>https://benp44.github.io/blog/posts/fzf/</link>
+      <link>https://benp44.github.io/blog/blog/using-and-meddling-with-fzf/</link>
       <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/fzf/</guid>
+      <guid>https://benp44.github.io/blog/blog/using-and-meddling-with-fzf/</guid>
       <description>What is fzf? If you&amp;rsquo;re a linux terminal user and not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
     </item>
     
     <item>
       <title>Somafm in the terminal</title>
-      <link>https://benp44.github.io/blog/posts/somafm-in-terminal/</link>
+      <link>https://benp44.github.io/blog/blog/somafm-in-the-terminal/</link>
       <pubDate>Sat, 03 Nov 2018 14:38:35 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/somafm-in-terminal/</guid>
+      <guid>https://benp44.github.io/blog/blog/somafm-in-the-terminal/</guid>
       <description>Recently I&amp;rsquo;ve been working at home with a loud infant in the next room. As a result, I&amp;rsquo;ve needed to wear headphones to concentrate. This raises the issue of finding a good source of continuous, ambient, non-commercial and enjoyable music. On this front, I&amp;rsquo;m a big fan of somafm, which meets exactly those criteria. Soma is ad-free on the basis that it&amp;rsquo;s funded by donations, so if you enjoy, I hope you&amp;rsquo;ll find time to donate yourself and keep this awesome service going.</description>
     </item>
     
     <item>
       <title>Coding styles</title>
-      <link>https://benp44.github.io/blog/posts/coding-styles/</link>
+      <link>https://benp44.github.io/blog/blog/coding-styles/</link>
       <pubDate>Fri, 20 Jul 2018 20:05:54 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/coding-styles/</guid>
-      <description>Coding style 101   Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up being re-used in a production project.
+      <guid>https://benp44.github.io/blog/blog/coding-styles/</guid>
+      <description>Coding style 101  Have a coding style and follow it. Consistency is really important for code readability. And this goes for whatever code you&amp;rsquo;re working on - code that can seem throwaway at first may end up being re-used in a production project.
 Not sure where to start? Have a look at some coding styles that have been created for you. PEP8 is a good start for Python. Google&amp;rsquo;s C++ style is pretty agreeable.</description>
     </item>
     
     <item>
       <title>Getting started with Google Test</title>
-      <link>https://benp44.github.io/blog/posts/getting-started-with-gtest/</link>
+      <link>https://benp44.github.io/blog/blog/getting-started-with-google-test/</link>
       <pubDate>Sun, 03 Jun 2018 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/getting-started-with-gtest/</guid>
+      <guid>https://benp44.github.io/blog/blog/getting-started-with-google-test/</guid>
       <description>Unit testing in C++ I cut my teeth with TDD working in C# and taking advantage of the variety of really nice unit testing and mocking tools available within the cosy Microsoft playground. But in the last few years I&amp;rsquo;ve found myself working with C++ a lot more, and I really wanted to ensure that the unit testing experience was, as far as possible, as convenient and powerful.
 Unit testing can be a little dry at times (what!</description>
     </item>
@@ -163,16 +179,16 @@ Unit testing can be a little dry at times (what!</description>
       <pubDate>Mon, 04 Dec 2017 16:33:49 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/about/</guid>
-      <description>My name is Ben and I&amp;rsquo;m a software engineer. I currently live in Cambridge (UK), with my partner and son. I have survived many years now working in the tech industry, mostly as a developer but also on occasion as an architect or technologist.
-The first thing I programmed was a version of &amp;ldquo;worm&amp;rdquo; in BASIC on a 386 DOS PC, at my best guess around 1994. I have a BEng and MSc in Computer Science and have written software for medical, legal, educational and cultural organisations.</description>
+      <description>My name is Ben and I&amp;rsquo;m a software engineer. I currently live in Cambridge, UK, with my partner and son two sons. I have survived many years now working in the tech industry, mostly as a software engineer/developer but also on occasion as an architect or technologist.
+The first thing I programmed was a version of &amp;ldquo;worm&amp;rdquo; in BASIC on a 386 DOS PC, at my best guess around 1994. I have a BEng and MSc in Computer Science and have written software for scientific, medical, legal, educational and cultural organisations.</description>
     </item>
     
     <item>
       <title>Painless file extraction</title>
-      <link>https://benp44.github.io/blog/posts/extracting-files-in-linux/</link>
+      <link>https://benp44.github.io/blog/blog/painless-file-extraction/</link>
       <pubDate>Fri, 01 Sep 2017 15:44:30 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/extracting-files-in-linux/</guid>
+      <guid>https://benp44.github.io/blog/blog/painless-file-extraction/</guid>
       <description>Obligatory xkcd on the difficulties working with archives in Linux:
 For most cases, the following function can be plonked into your .bashrc or .zshrc etc. to make extracting files a little easier.
 # ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;quot;$1&amp;quot; ] ; then case &amp;quot;$1&amp;quot; in *.tar.bz2) tar xvjf &amp;quot;$1&amp;quot; ;; *.tar.gz) tar xvzf &amp;quot;$1&amp;quot; ;; *.bz2) bunzip2 &amp;quot;$1&amp;quot; ;; *.rar) unrar x &amp;quot;$1&amp;quot; ;; *.</description>
@@ -180,10 +196,10 @@ For most cases, the following function can be plonked into your .bashrc or .zshr
     
     <item>
       <title>Bad comments</title>
-      <link>https://benp44.github.io/blog/posts/living-comments/</link>
+      <link>https://benp44.github.io/blog/blog/bad-comments/</link>
       <pubDate>Sat, 24 Jun 2017 09:15:09 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/living-comments/</guid>
+      <guid>https://benp44.github.io/blog/blog/bad-comments/</guid>
       <description>Have you ever noticed that comments usually appear greyed out or pale in most IDE colour schemes? This includes the markdown for this very post. I suspect that this is because in our collective consciousness as coders, we don&amp;rsquo;t think very much of comments. Comments are equivalent to a footnote in a book &amp;ndash; an optional extra that doesn&amp;rsquo;t really need to be read. I mean, almost the first thing a compiler does is remove all the comments.</description>
     </item>
     
@@ -200,19 +216,19 @@ All registered trademarks mentioned on this website belong to their rightful own
     
     <item>
       <title></title>
-      <link>https://benp44.github.io/blog/posts/acceptance-testing-first/</link>
+      <link>https://benp44.github.io/blog/blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/acceptance-testing-first/</guid>
+      <guid>https://benp44.github.io/blog/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://benp44.github.io/blog/posts/developer-creativity/</link>
+      <link>https://benp44.github.io/blog/blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/developer-creativity/</guid>
+      <guid>https://benp44.github.io/blog/blog/</guid>
       <description></description>
     </item>
     

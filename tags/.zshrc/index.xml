@@ -1,36 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>.zshrc on Unrecognized Escape Sequence</title>
+    <title>.Zshrc on Unrecognized Escape Sequence</title>
     <link>https://benp44.github.io/blog/tags/.zshrc/</link>
-    <description>Recent content in .zshrc on Unrecognized Escape Sequence</description>
+    <description>Recent content in .Zshrc on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 17 Nov 2018 17:22:35 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/tags/.zshrc/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Sat, 17 Nov 2018 17:22:35 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/.zshrc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Using and meddling with fzf</title>
-      <link>https://benp44.github.io/blog/posts/fzf/</link>
+      <link>https://benp44.github.io/blog/blog/using-and-meddling-with-fzf/</link>
       <pubDate>Sat, 17 Nov 2018 17:22:35 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/fzf/</guid>
+      <guid>https://benp44.github.io/blog/blog/using-and-meddling-with-fzf/</guid>
       <description>What is fzf? If you&amp;rsquo;re a linux terminal user and not familiar with fzf, I would highly recommend giving it a try. I&amp;rsquo;m not going to go to great lengths to explain the functionality here, as that information is available on the tool&amp;rsquo;s github page. But in short, fzf a search tool used for listing and browsing files,directories, command histories and other things. While this might not sound revolutionary, the clean, efficient way in which fzf makes this happen can really speed up your use of the terminal.</description>
     </item>
     
     <item>
       <title>Somafm in the terminal</title>
-      <link>https://benp44.github.io/blog/posts/somafm-in-terminal/</link>
+      <link>https://benp44.github.io/blog/blog/somafm-in-the-terminal/</link>
       <pubDate>Sat, 03 Nov 2018 14:38:35 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/somafm-in-terminal/</guid>
+      <guid>https://benp44.github.io/blog/blog/somafm-in-the-terminal/</guid>
       <description>Recently I&amp;rsquo;ve been working at home with a loud infant in the next room. As a result, I&amp;rsquo;ve needed to wear headphones to concentrate. This raises the issue of finding a good source of continuous, ambient, non-commercial and enjoyable music. On this front, I&amp;rsquo;m a big fan of somafm, which meets exactly those criteria. Soma is ad-free on the basis that it&amp;rsquo;s funded by donations, so if you enjoy, I hope you&amp;rsquo;ll find time to donate yourself and keep this awesome service going.</description>
     </item>
     
     <item>
       <title>Painless file extraction</title>
-      <link>https://benp44.github.io/blog/posts/extracting-files-in-linux/</link>
+      <link>https://benp44.github.io/blog/blog/painless-file-extraction/</link>
       <pubDate>Fri, 01 Sep 2017 15:44:30 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/extracting-files-in-linux/</guid>
+      <guid>https://benp44.github.io/blog/blog/painless-file-extraction/</guid>
       <description>Obligatory xkcd on the difficulties working with archives in Linux:
 For most cases, the following function can be plonked into your .bashrc or .zshrc etc. to make extracting files a little easier.
 # ------------------------------------------------------------------------------------------ # Extract function # ------------------------------------------------------------------------------------------ function extract() { if [ -f &amp;quot;$1&amp;quot; ] ; then case &amp;quot;$1&amp;quot; in *.tar.bz2) tar xvjf &amp;quot;$1&amp;quot; ;; *.tar.gz) tar xvzf &amp;quot;$1&amp;quot; ;; *.bz2) bunzip2 &amp;quot;$1&amp;quot; ;; *.rar) unrar x &amp;quot;$1&amp;quot; ;; *.</description>

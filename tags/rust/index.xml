@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rust on Unrecognized Escape Sequence</title>
@@ -6,24 +6,29 @@
     <description>Recent content in Rust on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 18 Apr 2023 15:05:19 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Tue, 18 Apr 2023 15:05:19 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Building services in Rust with the Actix framework</title>
-      <link>https://benp44.github.io/blog/posts/actix-actor-framework/</link>
+      <link>https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/</link>
       <pubDate>Tue, 18 Apr 2023 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/actix-actor-framework/</guid>
+      <guid>https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/</guid>
       <description>Actix is a Rust crate that provides a framework for developing service-style programs using the Actor Model, a popular design pattern for writing complex concurrent applications. I have found it a useful abstraction due to the way it allows you to decompose your service into discrete actors, each responsible for some subset of the service logic, and communicate between these with strongly-typed messages.
 In particular I think this kind of abstraction is useful in Rust as it allows you to avoid some of the noise that comes with managing synchronisation of shared resource by hand.</description>
     </item>
     
     <item>
       <title>Rust: Results, Options and Combinators</title>
-      <link>https://benp44.github.io/blog/posts/useful-rust-combinators/</link>
+      <link>https://benp44.github.io/blog/blog/rust-results-options-and-combinators/</link>
       <pubDate>Sun, 01 Mar 2020 15:05:19 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/useful-rust-combinators/</guid>
-      <description>As you start to write Rust code, you find yourself regularly using the match syntax. This comes up due to Rust&amp;rsquo;s error handling pattern, specifically the Result and Option types. Personally, I found that writing matches got old quite quickly. Rust is a concise language in general, so the match-blocks feels verbose, and I start to feel uncomfortable with the indented blocks of code that often end up inside the match.</description>
+      <guid>https://benp44.github.io/blog/blog/rust-results-options-and-combinators/</guid>
+      <description>As I started to write Rust code, I found myself regularly using the match syntax. This comes up due to Rust&amp;rsquo;s error handling pattern, specifically the Result and Option types. Personally, I found that writing matches got old quite quickly. Rust is a concise language in general, so the match-blocks feels verbose, and I start to feel uncomfortable with the indented blocks of code that often end up inside the match.</description>
     </item>
     
   </channel>

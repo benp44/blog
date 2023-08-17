@@ -6,6 +6,7 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="description" content="An increasingly grumpy blog about software engineering">
 
 
@@ -36,13 +37,8 @@
 
 <style media="screen">
   @font-face {
-  font-family: 'Nunito';
-  src: url('https://benp44.github.io/blog/fonts/Nunito-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Droid Sans Mono';
-  src: url('https://benp44.github.io/blog/fonts/Droid-Sans-Mono.otf');
+  font-family: 'Nexa Bold';
+  src: url('https://benp44.github.io/blog/fonts/Nexa Bold.otf');
 }
 
 html, body, div, span, applet, object, iframe,
@@ -207,7 +203,7 @@ div.header .container .logo {
 div.header .name {
   padding-top: 20px;
   font-size: 28px;
-  font-family: 'Nunito', 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   
   text-transform: uppercase;
@@ -242,7 +238,7 @@ div.header nav ul li:last-child {
 div.header nav ul a {
   color: #555555;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
   text-transform: uppercase;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
@@ -327,9 +323,9 @@ div.main .content .posts {
   
 }
 div.main .content .page-heading {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
-  font-family: 'Nunito';
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   text-transform: uppercase;
   -moz-osx-font-smoothing: grayscale;
@@ -391,6 +387,7 @@ div.main .content .front-matter .tags ul li:hover {
 div.main .content .front-matter .tags ul li a {
   color: #666666;
 }
+
 div.main .container.f04 {
   -webkit-justify-content: center;
   -moz-justify-content: center;
@@ -439,12 +436,10 @@ div.main .container .content .post-item {
   list-style: disc inside;
 }
 div.main .container .content .post-item .meta {
-  font-size: 15px;
+  font-size: 14px;
   color: #666666;
   display: none;
   min-width: 100px;
-  text-align: right;
-  margin-right: 20px;  
 }
 div.main .container .content .see-more {
   font-style: italic;
@@ -491,23 +486,15 @@ a:hover {
 img {
   max-width: 100%;
 }
-
-img[alt$="20%"] {
-  width: 20% !important;
-}
-
-img[alt$="50%"] {
-  width: 50% !important;
-}
-
 div.main .content {
     width: 100%;
 }
 div.main .content .markdown {
   font-size: 1.1em;
-  line-height: 1.2em;
+  line-height: 1.75em;
   color: #313537;
   font-family: serif;
+  font-weight: 300;
 }
 div.main .content .markdown h1,
 div.main .content .markdown h2,
@@ -547,14 +534,14 @@ div.main .content .markdown h6 {
 }
 div.main .content .markdown code,
 div.main .content .markdown pre {
-  font-family: 'Droid Sans Mono', monospace;
+  font-family: 'Menlo', monospace;
   font-size: 0.98rem;
-  background-color: #e9e9e9;
+  background-color: #f7f7f7;
 }
 div.main .content .markdown code {
   /* enclosed by single backtick (`) */
   padding: .15em .5em;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 div.main .content .markdown pre {
   /* Hugo specific: consider using the 'highlight' shortcode */
@@ -566,7 +553,6 @@ div.main .content .markdown pre {
   white-space: pre;
   word-break: break-all;
   word-wrap: break-word;
-  border-radius: 3px;
 }
 div.main .content .markdown pre code {
   /* enclosed by 4 backticks (````) */
@@ -599,7 +585,7 @@ div.main .content .markdown dd {
   margin-bottom: .5rem;
 }
 div.main .content .markdown ul {
-  list-style-type: square;
+  list-style-type: disc;
   list-style-position: outside;
   margin-bottom: 1.25rem;
 }
@@ -609,7 +595,6 @@ div.main .content .markdown ol {
 }
 div.main .content .markdown li {
   margin-left: 2em;
-  padding-left: 0.5em;
 }
 div.main .content .markdown em {
   font-style: italic;
@@ -637,7 +622,7 @@ div.main .content .markdown abbr[title] {
 div.main .content .markdown blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: #4a4a4a;
+  color: #7a7a7a;
   border-left: .25rem solid #e5e5e5;
 }
 div.main .content .markdown blockquote p:last-child {
@@ -780,16 +765,16 @@ kbd {
 .wf-raleway-n7-active div.main .content .markdown h4,
 .wf-raleway-n7-active div.main .content .markdown h5,
 .wf-raleway-n7-active div.main .content .markdown h6 {
-      font-family: 'Nunito';
+      font-family: 'Raleway';
 }
 
-.wf-nunito-n3-active div.main .content .markdown {
-      font-family: 'Nunito';
+.wf-merriweather-n3-active div.main .content .markdown {
+      font-family: 'Merriweather';
 }
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';      
+      font-family: 'Ubuntu Mono';
 }
 
 
@@ -809,13 +794,13 @@ padding: 0 16px;
 margin-left: 100px;
 margin-right: 100px;
 
-max-width: 850px;
+max-width: 750px;
 
 }
 div.column {
 padding: 0 16px;
 
-max-width: 850px;
+max-width: 750px;
 
 }
 div.header {
@@ -970,7 +955,7 @@ margin-left: -4%;
 
 <noscript>
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
 </noscript>
 
@@ -982,7 +967,8 @@ margin-left: -4%;
 
 
   <style type="text/css" media="screen">
-    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);animation:a .5s both}@keyframes a{0%{filter:blur(20px)}to{filter:blur(0)}}
+
   </style>
 
 
@@ -999,6 +985,11 @@ margin-left: -4%;
 
 >
 
+
+
+  <link href="https://benp44.github.io/blog/tags/tools/index.xml" rel="alternate" type="application/rss+xml" title="Unrecognized Escape Sequence" />
+
+
 </head>
 
 
@@ -1013,14 +1004,13 @@ margin-left: -4%;
         
         <div class="content">
             <a href="../../"><div class="name"><h1>Unrecognized Escape Sequence</h1></div></a>
-            <h2 style="padding-bottom: 10px; font-size: 13pt">An increasingly grumpy blog about software engineering</h2>
             <nav>
                 <ul>
                     
+                            <li><a href="../../blog/">Blog</a></li>
+                    
                     
                         
-                            
-                            <li><a href="../../posts">posts</a></li>
                             
                         
                     
@@ -1033,7 +1023,6 @@ margin-left: -4%;
                     
                 </ul>
             </nav>
-            
         </div>
     </div>
 </div>
@@ -1048,7 +1037,7 @@ margin-left: -4%;
                         <li class="post-item">
     <span class="meta">Jul 1, 2019</span>
     
-    <a href="../../posts/pre-commit/"><span>Improving your life with pre-commit</span></a>
+    <a href="../../blog/improving-your-life-with-pre-commit/"><span>Improving your life with pre-commit</span></a>
     
 </li>
 
@@ -1063,6 +1052,8 @@ margin-left: -4%;
 
         
 
+        
+
         <div class="copyright">
 
         
@@ -1073,6 +1064,8 @@ margin-left: -4%;
 
         </div>
         <div class="icons">
+
+        
 
         
 
@@ -1105,8 +1098,16 @@ margin-left: -4%;
         
 
         
+
+        
             <a href="mailto:ben.pring@gmail.com">
                 <img class="icon" src="https://benp44.github.io/blog/img/email.svg" alt="email" />
+            </a>
+        
+
+        
+            <a href="https://benp44.github.io/blog/index.xml">
+                <img class="icon" src="https://benp44.github.io/blog/img/rss.svg" alt="rss" />
             </a>
         
 
@@ -1119,7 +1120,7 @@ margin-left: -4%;
 <script>
   WebFont.load({
     google: {
-      families: ['Raleway:400,600,700', 'Nunito:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
     }
   });
 </script>

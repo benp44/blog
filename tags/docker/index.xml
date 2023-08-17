@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Unrecognized Escape Sequence</title>
+    <link>https://benp44.github.io/blog/tags/docker/</link>
+    <description>Recent content in Docker on Unrecognized Escape Sequence</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Wed, 01 Mar 2023 15:44:30 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker problems on a VPN</title>
+      <link>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</link>
+      <pubDate>Wed, 01 Mar 2023 15:44:30 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</guid>
+      <description>Ok, this is really a post to help my own memory as I&amp;rsquo;ve had these problems more than once and more than once had to solve from scratch :(
+The symptoms vary depending on what you&amp;rsquo;re trying to do of course, but the symptoms are that resources that are through a VPN tunnel are accessible outside of docker, but inside a container fail with DNS-related errors, for example:
+Failed to establish a new connection: [Error -3] Temporary failure in name resolution: https://something.</description>
+    </item>
+    
+  </channel>
+</rss>

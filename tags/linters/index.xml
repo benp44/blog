@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linters on Unrecognized Escape Sequence</title>
@@ -6,13 +6,18 @@
     <description>Recent content in Linters on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 01 Jul 2019 20:05:54 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/tags/linters/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Mon, 01 Jul 2019 20:05:54 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/linters/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Improving your life with pre-commit</title>
-      <link>https://benp44.github.io/blog/posts/pre-commit/</link>
+      <link>https://benp44.github.io/blog/blog/improving-your-life-with-pre-commit/</link>
       <pubDate>Mon, 01 Jul 2019 20:05:54 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/pre-commit/</guid>
+      <guid>https://benp44.github.io/blog/blog/improving-your-life-with-pre-commit/</guid>
       <description>What is pre-commit and how can it help me? If you&amp;rsquo;re not aware of pre-commit, it&amp;rsquo;s one of a variety of tools that you can use to run a series of tests and checks on your code at the point of committing to git. From the pre-commit site:
  [pre-commit] is a multi-language package manager for pre-commit hooks. You specify a list of hooks you want and pre-commit manages the installation and execution of any hook written in any language before every commit</description>
     </item>

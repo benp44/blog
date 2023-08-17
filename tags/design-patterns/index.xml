@@ -1,21 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Design patterns on Unrecognized Escape Sequence</title>
+    <title>Design Patterns on Unrecognized Escape Sequence</title>
     <link>https://benp44.github.io/blog/tags/design-patterns/</link>
-    <description>Recent content in Design patterns on Unrecognized Escape Sequence</description>
+    <description>Recent content in Design Patterns on Unrecognized Escape Sequence</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 01 Jun 2020 16:40:25 +0100</lastBuildDate><atom:link href="https://benp44.github.io/blog/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Mon, 01 Jun 2020 16:40:25 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>An on-going and unordered catalogue of useful Python stuff</title>
-      <link>https://benp44.github.io/blog/posts/lesser-known-python-tools/</link>
+      <link>https://benp44.github.io/blog/blog/an-on-going-and-unordered-catalogue-of-useful-python-stuff/</link>
       <pubDate>Mon, 01 Jun 2020 16:40:25 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/posts/lesser-known-python-tools/</guid>
+      <guid>https://benp44.github.io/blog/blog/an-on-going-and-unordered-catalogue-of-useful-python-stuff/</guid>
       <description>defaultdict A familiar problem with dictionaries:
-scores = {} def increment_score_for_user(username: str): if username not in scores: scores[username] = 0 scores[username] += 1 But if we can only remember the existance of the humble defaultdict, we can save ourselves the hassle:
-from collections import defaultdict scores = defaultdict(int) def increment_score_for_user(username: str): scores[username] += 1 The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</description>
+scores = {} def increment_score_for_user(username: str): if username not in scores: scores[username] = 0 scores[username] += 1  But if we can only remember the existance of the humble defaultdict, we can save ourselves the hassle:
+from collections import defaultdict scores = defaultdict(int) def increment_score_for_user(username: str): scores[username] += 1  The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</description>
     </item>
     
   </channel>

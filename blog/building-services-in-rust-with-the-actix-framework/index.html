@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="An increasingly grumpy blog about software engineering">
+
+
+    <meta property="twitter:site" content="@faltermeyer">
+
+<meta property="og:site_name" content="Unrecognized Escape Sequence" />
+<meta property="og:locale" content="en-US" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/" />
+<meta property="og:title" content="Building services in Rust with the Actix framework" />
+<meta property="twitter:title" content="Building services in Rust with the Actix framework">
+
+    <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://benp44.github.io/blog/img/banner.png">
+
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
+
+<title>
+
+
+     Unrecognized Escape Sequence - Building services in Rust with the Actix framework 
+
+</title>
+<link rel="canonical" href="https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/">
+
+
+<style media="screen">
+  @font-face {
+  font-family: 'Nexa Bold';
+  src: url('https://benp44.github.io/blog/fonts/Nexa Bold.otf');
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, div.column {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+a,
+a:visited,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  color: #111111;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility !important;
+}
+.icon {
+  text-rendering: geometricPrecision !important;
+}
+section {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+div.column {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  width: 100%;
+}
+div.header .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.header .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.header .container .logo {
+  
+  max-width: 100px;
+  
+  margin-left: -2em;
+}
+div.header .name {
+  padding-top: 20px;
+  font-size: 28px;
+  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  
+  text-transform: uppercase;
+  
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+}
+div.header nav {
+  margin-bottom: 16px;
+}
+div.header nav ul {
+  list-style: none;
+  text-align: center;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-inline-flex;
+  display: inline-flex;
+}
+div.header nav ul li {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+div.header nav ul li:first-child {
+  margin-left: 0;
+}
+div.header nav ul li:last-child {
+  margin-right: 0;
+}
+div.header nav ul a {
+  color: #555555;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.header nav ul a:hover {
+  color: #111111;
+}
+div.footer .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  text-align: center;
+}
+div.footer .container a {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 6px;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.footer .container a:first-child {
+  margin-left: 0;
+}
+div.footer .container a:last-child {
+  margin-right: 0;
+}
+div.footer .container a:hover {
+  opacity: 0.8;
+}
+div.footer .container a .icon {
+  width: 16px;
+  height: 16px;
+}
+div.footer .container .copyright {
+  flex-grow: 0.5;
+  text-align: start;
+}
+div.footer .container .icons {
+  flex-grow: 0.5;
+  text-align: end;
+}
+div.main .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+div.main .content {
+  color: #111111;
+  font-size: 16px;
+}
+div.main .content .title-container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+div.main .content .posts {
+  
+  
+}
+div.main .content .page-heading {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  text-transform: uppercase;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  margin-bottom: 16px;
+}
+div.main .content .front-matter .page-heading {
+  margin-bottom: 0;
+}
+div.main .content .front-matter .meta {
+  font-size: 14px;
+  color: #666666;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-bottom: 32px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+  display: none;
+}
+div.main .content .front-matter .middot:before {
+  font-size: 6px;
+  margin: 0 6px;
+  vertical-align: middle;
+  content: "•";
+}
+div.main .content .front-matter .tags ul {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .content .front-matter .tags ul li {
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.main .content .front-matter .tags ul li:hover {
+  opacity: 0.7;
+}
+div.main .content .front-matter .tags ul li a {
+  color: #666666;
+}
+
+div.main .container.f04 {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.main .container.f04 .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .container.f04 .content .num {
+  margin: 30px 0px 30px 0;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 50px;
+}
+div.main .container.f04 .content .detail {
+  margin-bottom: 40px;
+}
+div.main .container .content .groupby {
+  margin-top: 1em;
+  padding-left: 0.5em;
+}
+div.main .container .content .post-item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: list-item;
+  list-style: disc inside;
+}
+div.main .container .content .post-item .meta {
+  font-size: 14px;
+  color: #666666;
+  display: none;
+  min-width: 100px;
+}
+div.main .container .content .see-more {
+  font-style: italic;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+  color: #313537;
+}
+div.main .container .content .see-more:hover {
+  color: #666;
+}
+section {
+  padding: 0 16px;
+}
+div.column {
+  padding: 0 16px;
+}
+div.header {
+  padding-top: 10px;
+}
+div.header-home {
+  padding-top: 36px;
+}
+div.main {
+  padding-top: 32px;
+}
+div.main .container .content .post-item .meta {
+    display: block;
+}
+div.main .container .content .post-item {
+    display: flex;
+    list-style: none;
+}
+a {
+  color: #428bca;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+a:hover {
+  color: #2a6496;
+}
+img {
+  max-width: 100%;
+}
+div.main .content {
+    width: 100%;
+}
+div.main .content .markdown {
+  font-size: 1.1em;
+  line-height: 1.75em;
+  color: #313537;
+  font-family: serif;
+  font-weight: 300;
+}
+div.main .content .markdown h1,
+div.main .content .markdown h2,
+div.main .content .markdown h3,
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 22px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  font-weight: 700;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  text-transform: none;
+  margin-top: 1.75rem;
+}
+div.main .content .markdown h1 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+div.main .content .markdown h3 {
+  font-size: 1em;
+  margin-bottom: 1rem;
+}
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: none;
+}
+div.main .content .markdown code,
+div.main .content .markdown pre {
+  font-family: 'Menlo', monospace;
+  font-size: 0.98rem;
+  background-color: #f7f7f7;
+}
+div.main .content .markdown code {
+  /* enclosed by single backtick (`) */
+  padding: .15em .5em;
+  border-radius: 2px;
+}
+div.main .content .markdown pre {
+  /* Hugo specific: consider using the 'highlight' shortcode */
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  line-height: 1.5em;
+  white-space: pre;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+div.main .content .markdown pre code {
+  /* enclosed by 4 backticks (````) */
+  padding: 0;
+  font-size: 0.9rem;
+}
+div.main .content .markdown a code {
+  color: #428bca !important;
+}
+div.main .content .markdown a code:hover {
+  text-decoration: underline;
+}
+div.main .content .markdown p {
+  
+  text-align: left;
+  
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+div.main .content .markdown ul,
+div.main .content .markdown ol,
+div.main .content .markdown dl {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown dt {
+  font-weight: bold;
+}
+div.main .content .markdown dd {
+  margin-bottom: .5rem;
+}
+div.main .content .markdown ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown ol {
+  list-style-type: decimal;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown li {
+  margin-left: 2em;
+}
+div.main .content .markdown em {
+  font-style: italic;
+}
+div.main .content .markdown strong {
+  font-weight: 700;
+}
+div.main .content .markdown hr {
+  position: relative;
+  margin: 1.75rem 0;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-top: 1px solid #999999;
+}
+div.main .content .markdown abbr {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666666;
+  text-transform: uppercase;
+}
+div.main .content .markdown abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #808080;
+}
+div.main .content .markdown blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .25rem solid #e5e5e5;
+}
+div.main .content .markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+div.main .content .markdown figure {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 1em;
+}
+div.main .content .markdown figure img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  position: static;
+  margin: auto;
+}
+div.main .content .markdown table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+div.main .content .markdown td,
+div.main .content .markdown th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+div.main .content .markdown tbody tr:nth-child(odd) td,
+div.main .content .markdown tbody tr:nth-child(odd) th {
+  background-color: #f7f7f7;
+}
+div.main .content .markdown .footnotes ol {
+  list-style-type: decimal;
+  margin-left: 16px;
+}
+div.main .content .markdown .footnotes li {
+  list-style-type: unset;
+}
+div.main .content .markdown .footnote-ref {
+  font-size: 0.7em;
+}
+div.main .content .navigation {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 2em;
+}
+div.main .content .navigation div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-top: 1em;
+}
+div.main .content .navigation .icon {
+  width: 16px;
+  height: 16px;
+}
+div.main .content .navigation a {
+  width: 250px;
+  margin: 0 1em;
+  text-align: center;
+  font-style: italic;
+  color: #313537;
+}
+div.main .content .share, div.main .content .share div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+div.main .content .share {
+  background-color: rgba(152, 152, 152, 0.07);
+  padding: 1em 0;
+}
+div.main .content .share a {
+  margin: 0 6px;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Fonts */
+
+
+.wf-raleway-n4-active body, 
+.wf-raleway-n4-active div.header nav ul a,
+.wf-raleway-n7-active div.main .content .page-heading,
+.wf-raleway-n2-active div.main .container.f04 .content .num,
+.wf-raleway-n7-active div.main .content .markdown h1,
+.wf-raleway-n7-active div.main .content .markdown h2,
+.wf-raleway-n7-active div.main .content .markdown h3,
+.wf-raleway-n7-active div.main .content .markdown h4,
+.wf-raleway-n7-active div.main .content .markdown h5,
+.wf-raleway-n7-active div.main .content .markdown h6 {
+      font-family: 'Raleway';
+}
+
+.wf-merriweather-n3-active div.main .content .markdown {
+      font-family: 'Merriweather';
+}
+
+.wf-ubuntu-mono-n4-active div.main .content .markdown code,
+.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
+      font-family: 'Ubuntu Mono';
+}
+
+
+</style>
+<style media="(min-width: 600px)">
+  body {
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+justify-content: center;
+}
+.non-narrow.zero-top-spacing {
+padding-top: 0 !important;
+}
+section {
+padding: 0 16px;
+margin-left: 100px;
+margin-right: 100px;
+
+max-width: 750px;
+
+}
+div.column {
+padding: 0 16px;
+
+max-width: 750px;
+
+}
+div.header {
+background-color: transparent;
+}
+div.header .container {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.header .container .logo {
+margin: 0;
+}
+div.header-home .container .logo {
+max-width: 216px;
+margin-left: 24px;
+}
+div.header-home .name-home {
+padding-top: 30px;
+font-size: 40px;
+}
+div.header-home nav ul a {
+font-size: 18px;
+}
+div.header .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.header .name {
+color: #333333;
+}
+div.header nav {
+font-size: 14px;
+margin-bottom: 0;
+}
+div.header nav ul {
+text-align: left;
+}
+div.header nav ul a {
+color: #666666;
+}
+div.header nav ul a:hover {
+color: #333333;
+}
+div.footer {
+background-color: transparent;
+}
+div.footer .container {
+flex-direction: row;
+}
+div.footer .container a {
+margin-left: 3px;
+margin-right: 3px;
+color: #666666;
+}
+div.footer .container a:hover {
+color: #333333;
+}
+div.footer .container a .icon {
+font-size: 18px;
+}
+div.footer .container a .icon.larger {
+font-size: 20px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+display: initial;
+}
+div.main .container.f04 {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.main .container.f04 .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.main .container.f04 .content .num {
+margin: 0 0 10px 0;
+font-size: 32px;
+}
+div.main .container.f04 .content .detail {
+margin-bottom: 30px;
+}
+.container {
+padding: 0 30px;
+}
+div.header {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.footer {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.main {
+padding-top: 0;
+}
+div.main .content {
+  
+  font-size: 16px;
+  
+}
+div.main .container .content .post-item {
+display: flex;
+list-style: none;
+padding-left: 1.5em;
+}
+div.main .container .content .post-item .meta {
+display: block;
+}
+div.main .content .markdown blockquote {
+padding-right: 5rem;
+padding-left: 1.25rem;
+}
+div.main .content .navigation {
+-webkit-flex-direction: row;
+-moz-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+}
+div.main .content .navigation div {
+margin-top: 0em;
+}
+
+</style>
+<style media="(min-width: 769px)">
+  div.main .content .markdown figure {
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown img {
+max-width: 110%;
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown pre {
+width: 110%;
+margin-left: -4%;
+}
+
+</style>
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
+</noscript>
+
+
+  <style type="text/css" media="screen">
+    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);animation:a .5s both}@keyframes a{0%{filter:blur(20px)}to{filter:blur(0)}}
+
+  </style>
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="../../images/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body>
+
+
+<div class="header column">
+
+    <div class="container">
+        
+        <a href="https://benp44.github.io/blog/"><img class="logo" src="../../images/moe.png" alt="logo"></a>
+        
+        <div class="content">
+            <a href="../../"><div class="name"><h1>Unrecognized Escape Sequence</h1></div></a>
+            <nav>
+                <ul>
+                    
+                            <li><a href="../../blog/">Blog</a></li>
+                    
+                    
+                        
+                            
+                        
+                    
+                    
+                        
+                            <li><a href="../../about/">About</a></li>
+                        
+                    
+                        
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    
+    Building services in Rust with the Actix framework
+    
+
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue Apr 18 2023 15:05:19 &#43;0100">Apr 18, 2023</div>
+                    
+                        
+                    
+                    
+                    <div class="reading-time middot">9 minute read</div>
+                    
+                    
+                      <div class="tags">
+                    
+                        <ul>
+                          
+                            <li class="middot"><a href="../../tags/rust">Rust</a> </li>
+                          
+                            <li class="middot"><a href="../../tags/actix">Actix</a> </li>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>Actix is a Rust crate that provides a framework for developing service-style programs using the <a href="https://en.wikipedia.org/wiki/Actor_model">Actor Model</a>, a popular design pattern for writing complex concurrent applications. I have found it a useful abstraction due to the way it allows you to decompose your service into discrete <em>actors</em>, each responsible for some subset of the service logic, and communicate between these with strongly-typed messages.</p>
+
+<p>In particular I think this kind of abstraction is useful in Rust as it allows you to avoid some of the noise that comes with managing synchronisation of shared resource by hand.</p>
+
+<p>The Actix actor framework should not be confused with <a href="https://actix.rs/">Actix Web</a>, a web server framework developed by the same people, which was formerly based on Actix. Now it appears Actix-web has largely moved away from Actix, but I still think the actor framework part is useful and interesting for general purposes.</p>
+
+<p>There are many crates that provide actor model abstractions for rust, and I don&rsquo;t claim to know which is the best or most fully-featured. However, I can say that I have worked with Actix in anger and found it to be performant, flexible and relatively intuitive.</p>
+
+<p>In this post, I&rsquo;ll give a brief breakdown of the steps to build a simple Actix service and play with some different execution models provided by the framework.</p>
+
+<h2 id="1-getting-started">1. Getting started</h2>
+
+<p>Let&rsquo;s get started with a boilerplate Rust program, to which we&rsquo;ll add the Actix dependency.</p>
+
+<pre><code>cargo new actix-demo
+cd actix-demo
+cargo add actix
+</code></pre>
+
+<p>Great! Our <code>Cargo.toml</code> now looks like:</p>
+
+<pre><code>[package]
+name = &quot;actix-demo&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix = &quot;0.13.0&quot;
+</code></pre>
+
+<h2 id="2-creating-an-actor">2. Creating an Actor</h2>
+
+<p>Let&rsquo;s create our first actor, a very simple one that will provide some arithmetic operations.</p>
+
+<p>Alongside the <code>main.rs</code>, let&rsquo;s create <code>arithmetic_service.rs</code>:</p>
+
+<pre><code>use actix::{Actor, Context};
+
+pub(crate) struct ArithmeticService;
+
+impl Actor for ArithmeticService {
+    type Context = Context&lt;Self&gt;;
+
+    fn started(&amp;mut self, _context: &amp;mut Self::Context) {
+        println!(&quot;ArithmeticService is running&quot;);
+    }
+
+    fn stopped(&amp;mut self, _context: &amp;mut Self::Context) {
+        println!(&quot;ArithmeticService stopped&quot;);
+    }
+}
+</code></pre>
+
+<p>Implementing the <code>started</code> and <code>stopped</code> functions is optional, but seems useful in this context.</p>
+
+<p>To get this up and running, we need to decorate our <code>main</code> function with the <code>#[actix::main]</code> macro (which essentially just starts the async runtime); declare <code>main</code> as async (more on this later); and then start our service (requiring the <code>Actor</code> trait to be in scope):</p>
+
+<pre><code>mod arithmetic_service;
+
+use crate::arithmetic_service::{GreetingService};
+use actix::{Actor};
+
+#[actix::main]
+async fn main() {
+    ArithmeticService.start();
+}
+</code></pre>
+
+<p>And voila:</p>
+
+<pre><code>cargo run
+Finished dev [unoptimized + debuginfo] target(s) in 0.79s
+     Running `target/debug/actix-demo`
+ArithmeticService is running
+ArithmeticService stopped
+</code></pre>
+
+<h2 id="3-defining-a-message">3. Defining a message</h2>
+
+<p>Actix uses the concept of &ldquo;messages&rdquo; for communicating with actors. While more complex to setup and use than, say, a function call, messages are a big part of how the framework provides a separation of concerns and manages concurrency.</p>
+
+<p>To get us started, let&rsquo;s give our service functionality for returning the square of an input (*yawn*). We define messages as a struct with the <code>Message</code> derivation, and <code>rtype</code> macro to define a return type. We&rsquo;ll put these in <code>arithmetic_service.rs</code>, although message definitions might also be defined elsewhere and shared between services/actors. That the result type must be declared by name rather than as an actual type declaration is not something I&rsquo;m wildly keen on, but rest-assured the compiler complains if this string does not resolve as a valid type.</p>
+
+<pre><code>#[derive(Message)]
+#[rtype(result = &quot;i64&quot;)]
+pub(crate) struct Square{
+    pub input: i64,
+}
+</code></pre>
+
+<p>Now we make our service able to &ldquo;handle&rdquo; this type of message, by implementing the <code>Handler</code> trait:</p>
+
+<pre><code>impl Handler&lt;Square&gt; for ArithmeticService {
+    type Result = i64;
+
+    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
+        message.input * message.input
+    }
+}
+</code></pre>
+
+<h2 id="4-sending-a-message-to-the-service">4. Sending a message to the service</h2>
+
+<p>We can now send a <code>Square</code> message to the service from <code>main</code>. To do so, when we create the service actor, we need to keep a &ldquo;address&rdquo; for the service, which allows us to speak to the service.</p>
+
+<p>We send the message using the <code>send</code> function, which returns a promise so must be <code>await</code>ed. Send returns a <code>Result</code> because it might fail if, for example, the service is not running, or its message queue is full (topics for another day).</p>
+
+<p>Finally, to make things a little cleaner, I&rsquo;ll add the <a href="https://github.com/nrc/derive-new"><code>derive-new</code></a> crate and derive this for the <code>Square</code> struct to allow creating the message concisely.</p>
+
+<pre><code>#[actix::main]
+async fn main() {
+    let service_address = ArithmeticService.start();
+    let result = service_address.send(Square::new(5_i64)).await;
+
+    match result {
+        Ok(square) =&gt; println!(&quot;Square was: {}&quot;, square),
+        _ =&gt; println!(&quot;Communication with the actor has failed&quot;),
+    }
+}
+</code></pre>
+
+<p>And when we run we get:</p>
+
+<pre><code>ArithmeticService is running
+Square was: 25
+</code></pre>
+
+<p>Nice! A couple of points about this:</p>
+
+<ul>
+<li>Using the <code>send</code> function is only one option, there are also other options <code>do_send</code> and <code>try_send</code> which have different semantics around synchronicity and error handling.</li>
+<li>I was a little surprised to not see the <code>ArithmeticService stopped</code> message in the stderr; I see the stopped function invoked in other applications I&rsquo;ve written. For this post I&rsquo;m not too interested in investigating whether this is a bug in Actix, or whether there is something I&rsquo;m missing in the disposal of the resources. The documentation indicates that the service should be torn down when there are no addresses left active, but dropping the address used in <code>main</code> does not seem to help.</li>
+</ul>
+
+<h2 id="5-concurrency">5. Concurrency</h2>
+
+<p>To play with the concurrency of Actix, let&rsquo;s first modify our service to simulate a more interesting application than just calculating squares. If we add a delay and some logging into the <code>Square</code> message handler:</p>
+
+<pre><code>    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
+        println!(&quot;started processing Square({})&quot;, message.input);
+   
+        // Simulate some work being done by waiting for n seconds, where n is the input value
+        let delay_in_seconds = message.input.try_into().unwrap();
+        sleep(Duration::from_secs(delay_in_seconds));
+
+        println!(&quot;finished processing Square({})&quot;, message.input);
+
+        message.input * message.input
+    }
+</code></pre>
+
+<p>Note that I&rsquo;m using a call to <code>unwrap</code> in this code for brevity which I would certainly not do in a production application.</p>
+
+<p>Now let&rsquo;s send multiple messages to the service in <code>main</code>. I&rsquo;m going to do this by collecting the futures returned from calls to <code>send</code> and awaiting them out-of-order. The <code>FuturesUnordered</code> struct is a really nice tool for this purpose, essentially providing a mechanism for polling futures and responding to them as they complete:</p>
+
+<pre><code>    let mut futures = FuturesUnordered::new();
+    futures.push(service_address.send(Square::new(5_i64)));
+    futures.push(service_address.send(Square::new(2_i64)));
+    futures.push(service_address.send(Square::new(3_i64)));
+
+    while let Some(send_result) = futures.next().await {
+        match send_result {
+            Ok(square) =&gt; println!(&quot;Got square: {}&quot;, square),
+            Err(err) =&gt; println!(&quot;Error communicating with service: {}&quot;, err),
+        };
+    }
+</code></pre>
+
+<p>Now when we run we get:</p>
+
+<pre><code>ArithmeticService is running
+started processing Square(5)
+finished processing Square(5)
+started processing Square(2)
+finished processing Square(2)
+started processing Square(3)
+finished processing Square(3)
+Got square: 25
+Got square: 4
+Got square: 9
+</code></pre>
+
+<p>What&rsquo;s happening here? Actix uses a single-threaded asynchronous event-loop for all it&rsquo;s processing. This means that both the invocations of <code>handle</code> and the <code>main</code> function are all running on the same single thread. In particular, the blocking calls to <code>sleep</code> in the message handler are a problem for this processing model as they block the whole event loop.</p>
+
+<p>To help us see what&rsquo;s going on, let&rsquo;s capture some thread IDs in our logging by adding to <code>main</code>:</p>
+
+<pre><code>println!(&quot;Running main on thread: {:?}&quot;, thread::current().id());
+</code></pre>
+
+<p>And in <code>handle</code>:</p>
+
+<pre><code>    println!(
+        &quot;started processing Square({}), on {:?}&quot;,
+        message.input,
+        thread::current().id(),
+    );
+</code></pre>
+
+<p>To prevent this blocking behaviour we should perform our message handling asynchronously, so as not to block the event loop. If we change our <code>handle</code> function to use an asynchronous <code>sleep</code> from <code>tokio</code>, we can send this to the event loop and wait for it to complete without blocking:</p>
+
+<pre><code>    fn handle(&amp;mut self, message: Square, context: &amp;mut Self::Context) -&gt; Self::Result {
+        println!(
+            &quot;started processing Square({}), on {:?}&quot;,
+            message.input,
+            thread::current().id()
+        );
+
+        let processing_task = async move {
+            let delay_in_seconds = message.input.try_into().unwrap();
+            sleep(Duration::from_secs(delay_in_seconds)).await;
+        };
+
+        context.wait(processing_task.into_actor(self));
+
+        println!(&quot;finished processing Square({})&quot;, message.input);
+        message.input * message.input
+    }
+</code></pre>
+
+<p>The magic incantation here is <code>context.wait(processing_task.into_actor(self));</code> which executes <code>processing_task</code> on whatever execution environment is available to the actor context. This is nice as we don&rsquo;t need to know about the internals of this, we just tell Actix to run it. In fact, the execution environment in this case comes from what Actix terms an <em>Arbiter</em>. In this case, we are using the default <em>System Arbiter</em>, as we have not told Actix to do anything else.</p>
+
+<p>So how does our program behave now?</p>
+
+<pre><code>Running main on thread: ThreadId(1)
+ArithmeticService is running
+started processing Square(5) on ThreadId(1)
+finished processing Square(5)
+Got square: 25
+started processing Square(2) on ThreadId(1)
+finished processing Square(2)
+Got square: 4
+started processing Square(3) on ThreadId(1)
+finished processing Square(3)
+Got square: 9
+ArithmeticService stopped
+</code></pre>
+
+<p>Great! We get our message responses as soon as they are ready, and they are still guaranteed to be in-order, which may be a requirement of whatever system we are building. Notice also that everything is running on the same thread.</p>
+
+<h2 id="6-synchronous-processing-with-multiple-threads">6. Synchronous processing with multiple threads</h2>
+
+<p>As a final modification to this example, let&rsquo;s switch from using this single-threaded asynchronous execution environment to a multi-threaded synchronous one. This will change the behaviour such that messages are no longer responded to in FIFO order.</p>
+
+<p>To do this we can use the Actix <code>SyncArbiter</code> in place of the implicit system arbiter. When we create our actor using this, we can specify the number of threads to create for processing, each of which will have it&rsquo;s own <code>ArithmeticService</code> to process messages.</p>
+
+<p>In <code>main</code>, we swap out the way we create our service:</p>
+
+<pre><code>    let processing_threads = 3;
+    let service_address = SyncArbiter::start(processing_threads, || ArithmeticService);
+</code></pre>
+
+<p>And we change the type of <code>Context</code> used by our service:</p>
+
+<pre><code>    type Context = SyncContext&lt;Self&gt;;
+</code></pre>
+
+<p><code>SyncContext</code>, being a context designed for synchronous processing, does not allow us to <code>spawn</code> or <code>wait</code> for futures, so we replace our <code>tokio</code> sleep with a synchronous equivalent:</p>
+
+<pre><code>    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
+        println!(
+            &quot;started processing Square({}), on {:?}&quot;,
+            message.input,
+            thread::current().id(),
+        );
+
+        let delay_in_seconds = message.input.try_into().unwrap();
+        thread::sleep(Duration::from_secs(delay_in_seconds));
+
+        println!(&quot;finished processing Square({})&quot;, message.input);
+        message.input * message.input
+    }
+</code></pre>
+
+<p>And we&rsquo;re done. Let&rsquo;s see how this behaves:</p>
+
+<pre><code>Running main on thread: ThreadId(1)
+ArithmeticService is running
+ArithmeticService is running
+ArithmeticService is running
+started processing Square(5), on ThreadId(4)
+started processing Square(2), on ThreadId(3)
+started processing Square(3), on ThreadId(2)
+finished processing Square(2)
+Got square: 4
+finished processing Square(3)
+Got square: 9
+finished processing Square(5)
+Got square: 25
+ArithmeticService stopped
+ArithmeticService stopped
+ArithmeticService stopped
+</code></pre>
+
+<p>Presto. We see that three <code>ArithmeticService</code>s are started on separate threads, and each one processes one of the messages we send. All three messages are processed concurrently, and their responses are returned when ready, completing out-of-order.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>For those that have made it this far, hopefully this post has been a useful exploration of Actix and how it works, and the different ways in which it can operate.</p>
+
+<p>The final state of the source code for this project is on Github here: <a href="https://github.com/benp44/actix-demo">https://github.com/benp44/actix-demo</a>.</p>
+
+
+            </div>
+            
+            
+            
+
+            
+            
+
+            
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="footer column">
+    <div class="container">
+
+        
+
+        
+
+        <div class="copyright">
+
+        
+            
+                <a href="https://benp44.github.io/blog/license">Copyright © 2023 Ben Pring</a>
+            
+        
+
+        </div>
+        <div class="icons">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://github.com/benp44" rel=me target="_blank">
+                <img class="icon" src="https://benp44.github.io/blog/img/github.svg" alt="github" />
+            </a>
+        
+
+        
+            <a href="https://twitter.com/faltermeyer" rel=me target="_blank">
+                <img class="icon" src="https://benp44.github.io/blog/img/twitter.svg" alt="twitter" />
+            </a>
+        
+
+        
+            <a href="https://www.linkedin.com/in/benp44" rel=me target="_blank">
+                <img class="icon" src="https://benp44.github.io/blog/img/linkedin.svg" alt="linkedin" />
+            </a>
+        
+
+        
+
+        
+
+        
+            <a href="mailto:ben.pring@gmail.com">
+                <img class="icon" src="https://benp44.github.io/blog/img/email.svg" alt="email" />
+            </a>
+        
+
+        
+            <a href="https://benp44.github.io/blog/index.xml">
+                <img class="icon" src="https://benp44.github.io/blog/img/rss.svg" alt="rss" />
+            </a>
+        
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+    }
+  });
+</script>
+
+
+
+  <script src="https://benp44.github.io/blog/js/highlight.min.js" defer></script>
+  
+
+
+
+  <script src="https://benp44.github.io/blog/js/progressively.min.js" defer></script>
+
+
+
+
+
+
+
+
+<script>
+  window.onload = function() {
+    
+      hljs.initHighlighting();
+    
+    
+      progressively.init({delay: 30, throttle: 50});
+    
+    
+  };
+</script>
+
+
+
+
+</body>
+</html>
+
