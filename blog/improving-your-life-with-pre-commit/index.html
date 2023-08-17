@@ -1102,14 +1102,14 @@ margin-left: -4%;
 
 <p>As simple as:</p>
 
-<pre><code>$ sudo pip3 install pre-commit
+<pre><code class="language-bash">$ sudo pip3 install pre-commit
 </code></pre></li>
 
 <li><p><strong>Configuring pre-commit</strong></p>
 
 <p>In each of my git repositories, setup the pre-commit hook, and create a sample configuration file:</p>
 
-<pre><code>$ pre-commit install
+<pre><code class="language-bash">$ pre-commit install
 $ pre-commit sample-config &gt; .pre-commit-config.yaml
 </code></pre></li>
 
@@ -1117,7 +1117,7 @@ $ pre-commit sample-config &gt; .pre-commit-config.yaml
 
 <p>Now we can run pre-commit and see what it thinks of the code in the repo:</p>
 
-<pre><code>$ pre-commit run --all-files
+<pre><code class="language-bash">$ pre-commit run --all-files
 [INFO] Initializing environment for https://github.com/pre-commit/pre-commit-hooks.
 [INFO] Installing environment for https://github.com/pre-commit/pre-commit-hooks.
 [INFO] Once installed this environment will be reused.
@@ -1160,7 +1160,7 @@ Check for added large files..............................................Passed
 
 <p>The current, default config file looks like this:**</p>
 
-<p>```</p>
+<p>```yaml</p>
 
 <h1 id="see-https-pre-commit-com-for-more-information">See <a href="https://pre-commit.com">https://pre-commit.com</a> for more information</h1>
 
@@ -1186,7 +1186,7 @@ hooks:
 
 <p>The repo I&rsquo;m working with is mostly Python code, with a handful of utility shell scripts, so let&rsquo;s add some stuff to lint those files:</p>
 
-<pre><code># See https://pre-commit.com for more information
+<pre><code class="language-yaml"># See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
@@ -1221,7 +1221,7 @@ repos:
 
 <p>Now when I run pre-commit I get some more stuff going on:</p>
 
-<pre><code>$ pre-commit run --all-files
+<pre><code class="language-bash">$ pre-commit run --all-files
 Trim Trailing Whitespace.................................................Passed
 Fix End of Files.........................................................Passed
 Check Yaml...............................................................Passed
@@ -1259,7 +1259,7 @@ Files were modified by this hook.
 
 <p>So here&rsquo;s my workaround for this. I&rsquo;ve reconfigured the PEP8 linter to give my unit tests a little more slack than the production code, by running <code>autopep8</code> in two diffent modes. The default (strict) settings are used on my production code, and then slightly relaxed settings are used for the files containing unit tests.</p>
 
-<pre><code>-   repo: https://github.com/pre-commit/mirrors-autopep8
+<pre><code class="language-yaml">-   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.4.4
     hooks:
     - id: autopep8

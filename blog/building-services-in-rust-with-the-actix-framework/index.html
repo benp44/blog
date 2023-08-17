@@ -1089,14 +1089,14 @@ margin-left: -4%;
 
 <p>Let&rsquo;s get started with a boilerplate Rust program, to which we&rsquo;ll add the Actix dependency.</p>
 
-<pre><code>cargo new actix-demo
+<pre><code class="language-bash">cargo new actix-demo
 cd actix-demo
 cargo add actix
 </code></pre>
 
 <p>Great! Our <code>Cargo.toml</code> now looks like:</p>
 
-<pre><code>[package]
+<pre><code class="language-toml">[package]
 name = &quot;actix-demo&quot;
 version = &quot;0.1.0&quot;
 edition = &quot;2021&quot;
@@ -1113,7 +1113,7 @@ actix = &quot;0.13.0&quot;
 
 <p>Alongside the <code>main.rs</code>, let&rsquo;s create <code>arithmetic_service.rs</code>:</p>
 
-<pre><code>use actix::{Actor, Context};
+<pre><code class="language-rust">use actix::{Actor, Context};
 
 pub(crate) struct ArithmeticService;
 
@@ -1134,7 +1134,7 @@ impl Actor for ArithmeticService {
 
 <p>To get this up and running, we need to decorate our <code>main</code> function with the <code>#[actix::main]</code> macro (which essentially just starts the async runtime); declare <code>main</code> as async (more on this later); and then start our service (requiring the <code>Actor</code> trait to be in scope):</p>
 
-<pre><code>mod arithmetic_service;
+<pre><code class="language-rust">mod arithmetic_service;
 
 use crate::arithmetic_service::{GreetingService};
 use actix::{Actor};
@@ -1147,7 +1147,7 @@ async fn main() {
 
 <p>And voila:</p>
 
-<pre><code>cargo run
+<pre><code class="language-rust">cargo run
 Finished dev [unoptimized + debuginfo] target(s) in 0.79s
      Running `target/debug/actix-demo`
 ArithmeticService is running
@@ -1160,7 +1160,7 @@ ArithmeticService stopped
 
 <p>To get us started, let&rsquo;s give our service functionality for returning the square of an input (*yawn*). We define messages as a struct with the <code>Message</code> derivation, and <code>rtype</code> macro to define a return type. We&rsquo;ll put these in <code>arithmetic_service.rs</code>, although message definitions might also be defined elsewhere and shared between services/actors. That the result type must be declared by name rather than as an actual type declaration is not something I&rsquo;m wildly keen on, but rest-assured the compiler complains if this string does not resolve as a valid type.</p>
 
-<pre><code>#[derive(Message)]
+<pre><code class="language-rust">#[derive(Message)]
 #[rtype(result = &quot;i64&quot;)]
 pub(crate) struct Square{
     pub input: i64,
@@ -1169,7 +1169,7 @@ pub(crate) struct Square{
 
 <p>Now we make our service able to &ldquo;handle&rdquo; this type of message, by implementing the <code>Handler</code> trait:</p>
 
-<pre><code>impl Handler&lt;Square&gt; for ArithmeticService {
+<pre><code class="language-rust">impl Handler&lt;Square&gt; for ArithmeticService {
     type Result = i64;
 
     fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
@@ -1186,7 +1186,7 @@ pub(crate) struct Square{
 
 <p>Finally, to make things a little cleaner, I&rsquo;ll add the <a href="https://github.com/nrc/derive-new"><code>derive-new</code></a> crate and derive this for the <code>Square</code> struct to allow creating the message concisely.</p>
 
-<pre><code>#[actix::main]
+<pre><code class="language-rust">#[actix::main]
 async fn main() {
     let service_address = ArithmeticService.start();
     let result = service_address.send(Square::new(5_i64)).await;
@@ -1200,7 +1200,7 @@ async fn main() {
 
 <p>And when we run we get:</p>
 
-<pre><code>ArithmeticService is running
+<pre><code class="language-bash">ArithmeticService is running
 Square was: 25
 </code></pre>
 
@@ -1215,7 +1215,7 @@ Square was: 25
 
 <p>To play with the concurrency of Actix, let&rsquo;s first modify our service to simulate a more interesting application than just calculating squares. If we add a delay and some logging into the <code>Square</code> message handler:</p>
 
-<pre><code>    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
+<pre><code class="language-rust">    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
         println!(&quot;started processing Square({})&quot;, message.input);
    
         // Simulate some work being done by waiting for n seconds, where n is the input value
@@ -1232,7 +1232,7 @@ Square was: 25
 
 <p>Now let&rsquo;s send multiple messages to the service in <code>main</code>. I&rsquo;m going to do this by collecting the futures returned from calls to <code>send</code> and awaiting them out-of-order. The <code>FuturesUnordered</code> struct is a really nice tool for this purpose, essentially providing a mechanism for polling futures and responding to them as they complete:</p>
 
-<pre><code>    let mut futures = FuturesUnordered::new();
+<pre><code class="language-rust">    let mut futures = FuturesUnordered::new();
     futures.push(service_address.send(Square::new(5_i64)));
     futures.push(service_address.send(Square::new(2_i64)));
     futures.push(service_address.send(Square::new(3_i64)));
@@ -1247,7 +1247,7 @@ Square was: 25
 
 <p>Now when we run we get:</p>
 
-<pre><code>ArithmeticService is running
+<pre><code class="language-bash">ArithmeticService is running
 started processing Square(5)
 finished processing Square(5)
 started processing Square(2)
@@ -1263,12 +1263,12 @@ Got square: 9
 
 <p>To help us see what&rsquo;s going on, let&rsquo;s capture some thread IDs in our logging by adding to <code>main</code>:</p>
 
-<pre><code>println!(&quot;Running main on thread: {:?}&quot;, thread::current().id());
+<pre><code class="language-rust">println!(&quot;Running main on thread: {:?}&quot;, thread::current().id());
 </code></pre>
 
 <p>And in <code>handle</code>:</p>
 
-<pre><code>    println!(
+<pre><code class="language-rust">    println!(
         &quot;started processing Square({}), on {:?}&quot;,
         message.input,
         thread::current().id(),
@@ -1277,7 +1277,7 @@ Got square: 9
 
 <p>To prevent this blocking behaviour we should perform our message handling asynchronously, so as not to block the event loop. If we change our <code>handle</code> function to use an asynchronous <code>sleep</code> from <code>tokio</code>, we can send this to the event loop and wait for it to complete without blocking:</p>
 
-<pre><code>    fn handle(&amp;mut self, message: Square, context: &amp;mut Self::Context) -&gt; Self::Result {
+<pre><code class="language-rust">    fn handle(&amp;mut self, message: Square, context: &amp;mut Self::Context) -&gt; Self::Result {
         println!(
             &quot;started processing Square({}), on {:?}&quot;,
             message.input,
@@ -1300,7 +1300,7 @@ Got square: 9
 
 <p>So how does our program behave now?</p>
 
-<pre><code>Running main on thread: ThreadId(1)
+<pre><code class="language-bash">Running main on thread: ThreadId(1)
 ArithmeticService is running
 started processing Square(5) on ThreadId(1)
 finished processing Square(5)
@@ -1324,18 +1324,18 @@ ArithmeticService stopped
 
 <p>In <code>main</code>, we swap out the way we create our service:</p>
 
-<pre><code>    let processing_threads = 3;
+<pre><code class="language-rust">    let processing_threads = 3;
     let service_address = SyncArbiter::start(processing_threads, || ArithmeticService);
 </code></pre>
 
 <p>And we change the type of <code>Context</code> used by our service:</p>
 
-<pre><code>    type Context = SyncContext&lt;Self&gt;;
+<pre><code class="language-rust">    type Context = SyncContext&lt;Self&gt;;
 </code></pre>
 
 <p><code>SyncContext</code>, being a context designed for synchronous processing, does not allow us to <code>spawn</code> or <code>wait</code> for futures, so we replace our <code>tokio</code> sleep with a synchronous equivalent:</p>
 
-<pre><code>    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
+<pre><code class="language-rust">    fn handle(&amp;mut self, message: Square, _context: &amp;mut Self::Context) -&gt; Self::Result {
         println!(
             &quot;started processing Square({}), on {:?}&quot;,
             message.input,
@@ -1352,7 +1352,7 @@ ArithmeticService stopped
 
 <p>And we&rsquo;re done. Let&rsquo;s see how this behaves:</p>
 
-<pre><code>Running main on thread: ThreadId(1)
+<pre><code class="language-bash">Running main on thread: ThreadId(1)
 ArithmeticService is running
 ArithmeticService is running
 ArithmeticService is running

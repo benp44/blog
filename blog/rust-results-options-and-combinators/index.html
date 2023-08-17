@@ -1091,7 +1091,7 @@ margin-left: -4%;
 
 <p>So we go from this:</p>
 
-<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+<pre><code class="language-rust">fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
     // Match to see if the file was created
 
     let mut file = match File::create(&quot;file.txt&quot;) {
@@ -1111,7 +1111,7 @@ margin-left: -4%;
 
 <p>To this:</p>
 
-<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+<pre><code class="language-rust">fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
     let mut file = File::create(&quot;file.txt&quot;)?;
     file.write_all(value.as_bytes())?;
 
@@ -1127,7 +1127,7 @@ margin-left: -4%;
 
 <p>A common situation is evaluating an <code>Option</code> which effectively defines the result of a function. I.e. if the option is <code>None</code>, then the function should return. For example:</p>
 
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre><code class="language-rust">fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = match LANGUAGES.get(id as usize) {
         Some(value) =&gt; value,
         None =&gt; return Err(format!(&quot;No language found for id: {}&quot;, id).to_string()),
@@ -1139,7 +1139,7 @@ margin-left: -4%;
 
 <p>Here, a useful combinator is <code>ok_or()</code>, which effectively turns the <code>Option</code> into a <code>Result</code>, and allows you to specify the error message:</p>
 
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre><code class="language-rust">fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = LANGUAGES.get(id as usize)
                           .ok_or(format!(&quot;No language found for id: {}&quot;, id)
                           .to_string())?;
@@ -1152,7 +1152,7 @@ margin-left: -4%;
 
 <p>Similarly, another nice tool is the <code>unwrap_or</code> combinator that returns a default value when an Option is <code>None</code>:</p>
 
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre><code class="language-rust">fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = LANGUAGES.get(id as usize).unwrap_or(&amp;UNKNOWN_LANGUAGE_NAME);
 
     Ok(result)  
@@ -1163,7 +1163,7 @@ margin-left: -4%;
 
 <p>Note that you can also use <code>unwrap_or</code> on a <code>Result</code> to &ldquo;have another go&rdquo; in case of an error. Here, if the initial file creation fails, we attempt to create the file with another name (terrible looking code I know, but sometimes real-world examples are tricky to come up with):</p>
 
-<pre><code>fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
+<pre><code class="language-rust">fn write_to_file(value: &amp;str) -&gt; io::Result&lt;()&gt; {
     let mut file = File::create(&quot;log.txt&quot;).unwrap_or(File::create(&quot;log01.txt&quot;)?);
     file.write_all(value.as_bytes())?;
 
@@ -1175,7 +1175,7 @@ margin-left: -4%;
 
 <p>Some combinators, including those above also have an <em>_else</em> version, so <code>ok_or_else</code>, <code>unwrap_or_else</code>, etc. These do the same thing as their counterparts, but take a closure instead of a value. The important detail with these is that the logic in the closures are lazily-evaluated. Thus, were you to perform any serious memory allocation or processing in the error cases, these are a useful option to avoid that unless necessary:</p>
 
-<pre><code>fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
+<pre><code class="language-rust">fn get_language_name_by_id(id: i64) -&gt; Result&lt;&amp;'static str, String&gt; {
     let result = LANGUAGES
         .get(id as usize)
         .unwrap_or_else(|| return &amp;UNKNOWN_LANGUAGE_NAME);

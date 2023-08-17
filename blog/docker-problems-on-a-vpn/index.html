@@ -1086,14 +1086,14 @@ margin-left: -4%;
 
 <p>The solution to this is to tell the docker daemon about these (assuming they have a fixed IP address) by providing details in <code>/etc/docker/daemon.json</code>:</p>
 
-<pre><code>{
+<pre><code class="language-json">{
     &quot;dns&quot;: [&quot;173.33.0.22&quot;]
 }
 </code></pre>
 
 <p>Obviously replacing the IP address above with the DNS server on your VPN. If you&rsquo;re not sure what this is, you should be able to find it using a command similar to:</p>
 
-<pre><code>resolvectl status
+<pre><code class="language-bash">resolvectl status
 </code></pre>
 
 <p>Typically VPN clients (such as OpenVPN) use the <code>tun0</code> interface.</p>

@@ -1089,7 +1089,7 @@ margin-left: -4%;
 
 <p>To get started, here&rsquo;s the test case <code>setUp</code> method:</p>
 
-<pre><code>import unittest
+<pre><code class="language-python">import unittest
 from unittest.mock import patch, call, Mock
 from update_controller import UpdateController
 
@@ -1124,7 +1124,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 
 <p>But it gets better. Let&rsquo;s look a our first test, which can be described as: <em>&ldquo;If an internet connection is available, but we&rsquo;ve already checked for updates today, we don&rsquo;t check again.&rdquo;</em></p>
 
-<pre><code>
+<pre><code class="language-python">
     def test_checks_for_updates_only_if_not_checked_so_far_today(self):
 
         # Setup
@@ -1154,7 +1154,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 
 <p>Let&rsquo;s look at a slightly more complicated example. The controller contains a method called <code>wait_or_exit</code> which is similar to a <code>sleep</code> but allows the program to handle signals (for example to exit) while execution is paused. We don&rsquo;t really want to do this in our tests, so as a special case, we <em>patch</em> this method in <code>setUp</code>:</p>
 
-<pre><code>    def setUp(self):
+<pre><code class="language-python">    def setUp(self):
 
         ...
 
@@ -1172,7 +1172,7 @@ class UpdateControllerTestCase(unittest.TestCase):
 
 <p>Now we can test as follows:</p>
 
-<pre><code>    def test_if_no_internet_checks_again_after_ten_seconds(self):
+<pre><code class="language-python">    def test_if_no_internet_checks_again_after_ten_seconds(self):
 
         # Setup
 

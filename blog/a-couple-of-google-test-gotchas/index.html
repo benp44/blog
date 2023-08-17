@@ -1081,19 +1081,19 @@ margin-left: -4%;
 
 <p>Situation: You want to test that a method of your mocked dependency is called multiple times with different parameters. For example, in the following code snippets we are testing that a method <code>setProperty</code> is called twice from within the method being tested. As we typically want to check only one thing per test, we would have two tests which <code>EXPECT_CALL</code> these calls:</p>
 
-<pre><code>EXPECT_CALL(*m_mockScreen, setProperty(&quot;searchBox&quot;, &quot;text&quot;, &quot;some text&quot;)).Times(Exactly(1));
+<pre><code class="language-cpp">EXPECT_CALL(*m_mockScreen, setProperty(&quot;searchBox&quot;, &quot;text&quot;, &quot;some text&quot;)).Times(Exactly(1));
 </code></pre>
 
-<pre><code>EXPECT_CALL(*m_mockScreen, setProperty(&quot;comboBox&quot;, &quot;text&quot;, &quot;some text&quot;)).Times(Exactly(1));
+<pre><code class="language-cpp">EXPECT_CALL(*m_mockScreen, setProperty(&quot;comboBox&quot;, &quot;text&quot;, &quot;some text&quot;)).Times(Exactly(1));
 </code></pre>
 
 <p>However, both these tests fail. The framework doesn&rsquo;t know which of the two calls is the one we&rsquo;re actually testing in each case, and as two two calls have different parameters, a failure is reasonable. In this case, we need to tell the testing framework to expect the other call, otherwise it quite reasonably fails:</p>
 
-<pre><code>EXPECT_CALL(*m_mockScreen, setProperty(_, _, _)).Times(Exactly(1));
+<pre><code class="language-cpp">EXPECT_CALL(*m_mockScreen, setProperty(_, _, _)).Times(Exactly(1));
 EXPECT_CALL(*m_mockScreen, setProperty(&quot;searchBox&quot;, &quot;text&quot;, &quot;some text&quot;)).Times(Exactly(1));
 </code></pre>
 
-<pre><code>EXPECT_CALL(*m_mockScreen, setProperty(_, _, _)).Times(Exactly(1));
+<pre><code class="language-cpp">EXPECT_CALL(*m_mockScreen, setProperty(_, _, _)).Times(Exactly(1));
 EXPECT_CALL(*m_mockScreen, setProperty(&quot;comboBox&quot;, &quot;text&quot;, &quot;some text&quot;)).Times(Exactly(1));
 </code></pre>
 
@@ -1101,17 +1101,17 @@ EXPECT_CALL(*m_mockScreen, setProperty(&quot;comboBox&quot;, &quot;text&quot;, &
 
 <p>The following test fails to compile because the <code>runCommand</code> method is overloaded in the interface implemented by <code>m_mockOsHelper</code>, and the compiler doesn&rsquo;t know which overload to apply given that some of the parameters are undefined <code>_</code>.</p>
 
-<pre><code>EXPECT_CALL(*m_mockOsHelper, runCommand(&quot;/usr/bin/some_command&quot;, _, _)).Times(Exactly(1));
+<pre><code class="language-cpp">EXPECT_CALL(*m_mockOsHelper, runCommand(&quot;/usr/bin/some_command&quot;, _, _)).Times(Exactly(1));
 </code></pre>
 
 <p>So we need to provide <em>typed</em> undefined parameters, such as:</p>
 
-<pre><code>EXPECT_CALL(*m_mockOsHelper, runCommand(&quot;/usr/bin/some_command&quot;, A&lt;int&gt;(), _)).Times(Exactly(1));
+<pre><code class="language-cpp">EXPECT_CALL(*m_mockOsHelper, runCommand(&quot;/usr/bin/some_command&quot;, A&lt;int&gt;(), _)).Times(Exactly(1));
 </code></pre>
 
 <p>Kindly, the good folks down at Google also added the <code>An&lt;&gt;()</code> variant of this, so we can get our grammar in order!</p>
 
-<pre><code>EXPECT_CALL(*m_mockOsHelper, runCommand(&quot;/usr/bin/some_command&quot;, An&lt;int&gt;(), _)).Times(Exactly(1));
+<pre><code class="language-cpp">EXPECT_CALL(*m_mockOsHelper, runCommand(&quot;/usr/bin/some_command&quot;, An&lt;int&gt;(), _)).Times(Exactly(1));
 </code></pre>
 
 

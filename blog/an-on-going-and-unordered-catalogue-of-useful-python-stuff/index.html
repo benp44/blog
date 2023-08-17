@@ -1079,7 +1079,7 @@ margin-left: -4%;
 
 <p>A familiar problem with dictionaries:</p>
 
-<pre><code>scores = {}
+<pre><code class="language-python">scores = {}
 
 def increment_score_for_user(username: str):    
     if username not in scores:
@@ -1089,7 +1089,7 @@ def increment_score_for_user(username: str):
 
 <p>But if we can only remember the existance of the humble <code>defaultdict</code>, we can save ourselves the hassle:</p>
 
-<pre><code>from collections import defaultdict
+<pre><code class="language-python">from collections import defaultdict
 
 scores = defaultdict(int)
 
@@ -1099,7 +1099,7 @@ def increment_score_for_user(username: str):
 
 <p>The argument on the constructor is a function that defines the value to use if the provided key is not present in the dictionary:</p>
 
-<pre><code>from collections import defaultdict
+<pre><code class="language-python">from collections import defaultdict
 
 starting_score = 15
 scores = defaultdict(lambda: starting_score)
@@ -1111,30 +1111,30 @@ assert scores[&quot;some unknown user&quot;] == 15
 
 <p>An example of a list comprehension, getting the length of each line in a file:</p>
 
-<pre><code>def get_line_lengths(filename):
+<pre><code class="language-python">def get_line_lengths(filename):
     return [len(line) for line in open(filename)]
 </code></pre>
 
 <p>But then someone goes and does something like:</p>
 
-<pre><code>get_line_lengths(&quot;gigabyte-file.txt&quot;)
+<pre><code class="language-python">get_line_lengths(&quot;gigabyte-file.txt&quot;)
 </code></pre>
 
 <p>So we replace the list comprehension with a <em>generator expression</em> (in this case by simply replacing the square brackets with round):</p>
 
-<pre><code>def get_line_lengths(filename):
+<pre><code class="language-python">def get_line_lengths(filename):
     return (len(line) for line in open(filename))
 </code></pre>
 
 <p>Which returns a generator, which we can iterate over using <code>next</code>:</p>
 
-<pre><code>g = get_line_lengths(&quot;gigabyte-file.txt&quot;)                                                    
+<pre><code class="language-python">g = get_line_lengths(&quot;gigabyte-file.txt&quot;)                                                    
 next(g)
 </code></pre>
 
 <p>Note that this is equivalent to the generator function, which in a context like this might be considered clearer:</p>
 
-<pre><code>def get_line_lengths(filename):
+<pre><code class="language-python">def get_line_lengths(filename):
     for line in open(filename):
         yield len(line)
 </code></pre>
@@ -1143,7 +1143,7 @@ next(g)
 
 <p>An example of how to write your own decorators:</p>
 
-<pre><code>from functools import wraps
+<pre><code class="language-python">from functools import wraps
 import sys
 
 def trace(func):
@@ -1163,14 +1163,14 @@ def something(name: str):
 
 <p>The ugliness of accessing tuples by index makes my eyes bleed:</p>
 
-<pre><code>old_speckled_hen = ('Old Speckled Hen', &quot;Ale&quot;, &quot;500ml&quot;)
+<pre><code class="language-python">old_speckled_hen = ('Old Speckled Hen', &quot;Ale&quot;, &quot;500ml&quot;)
 
 assert old_speckled_hen[2] == &quot;500ml&quot;
 </code></pre>
 
 <p>So save yourself a trip to the optometrist and use <code>namedtuple</code>:</p>
 
-<pre><code>from collections import namedtuple
+<pre><code class="language-python">from collections import namedtuple
 
 Beer = namedtuple('Beer', 'name type amount')
 
@@ -1186,7 +1186,7 @@ assert  old_speckled_hen.amount == &quot;500ml&quot;
 
 <p>Obviously only for deterministic code.</p>
 
-<pre><code>from functools import lru_cache
+<pre><code class="language-python">from functools import lru_cache
 
 @lru_cache
 def process_file(filename: str):
