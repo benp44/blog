@@ -1067,7 +1067,7 @@ margin-left: -4%;
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Wed Mar 1 2023 15:44:30 &#43;0100">Mar 1, 2023</div>
+                    <div class="date" title="Tue Nov 1 2022 15:44:30 &#43;0100">Nov 1, 2022</div>
                     
                         
                     
@@ -1110,18 +1110,27 @@ margin-left: -4%;
 <p>The solution to this is to tell the docker daemon about these (assuming they have a fixed IP address) by providing details in <code>/etc/docker/daemon.json</code>:</p>
 
 <pre><code class="language-json">{
-    &quot;dns&quot;: [&quot;173.33.0.22&quot;]
+    &quot;dns&quot;: [&quot;173.33.0.22&quot;, &quot;8.8.8.8&quot;]
 }
 </code></pre>
 
-<p>Obviously replacing the IP address above with the DNS server on your VPN. If you&rsquo;re not sure what this is, you should be able to find it using a command similar to:</p>
+<p>Obviously replacing the IP address above with the DNS server on your VPN, and other DNS servers you might want to also include (I&rsquo;ve included the Google DNS server IP here).</p>
+
+<p>The results of this change are translated into your <code>/etc/resolv.conf</code> file in the running container:</p>
+
+<pre><code class="language-bash">docker run bash:latest cat /etc/resolv.conf
+nameserver 173.33.0.22
+nameserver 8.8.8.8
+</code></pre>
+
+<p>If you&rsquo;re not sure of the address of your VPN DNS server, you should be able to find it using a command similar to:</p>
 
 <pre><code class="language-bash">resolvectl status
 </code></pre>
 
-<p>Typically VPN clients (such as OpenVPN) use the <code>tun0</code> interface.</p>
+<p>I&rsquo;ve found that most VPN clients (such as those based on OpenVPN) use the <code>tun0</code> interface.</p>
 
-<p>Hopefully this is helpful to someone out there. I suspect <a href="https://podman.io/">podman</a> doesn&rsquo;t have such problems without the docker daemon, but always feels like spitting into the wind.</p>
+<p>Hopefully this is helpful to someone out there. I suspect <a href="https://podman.io/">podman</a> doesn&rsquo;t have such problems without the docker daemon, but as much as I want to just throw out docker in favour of this, it always feels a little too much like spitting into the wind&hellip;</p>
 
 
             </div>
