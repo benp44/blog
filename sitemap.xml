@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://benp44.github.io/blog/blog/using-scrum-wip-limits/</loc>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/</loc>
     <lastmod>2023-04-18T15:05:19+01:00</lastmod>
   </url>
@@ -10,11 +15,6 @@
   <url>
     <loc>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</loc>
     <lastmod>2023-03-01T15:44:30+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://benp44.github.io/blog/blog/scrum-wip-limits/</loc>
-    <lastmod>2023-02-12T15:05:19+01:00</lastmod>
   </url>
   
   <url>
@@ -124,13 +124,13 @@
   
   <url>
     <loc>https://benp44.github.io/blog/tags/agile/</loc>
-    <lastmod>2023-02-12T15:05:19+01:00</lastmod>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://benp44.github.io/blog/blog/</loc>
-    <lastmod>2023-04-18T15:05:19+01:00</lastmod>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -225,7 +225,7 @@
   
   <url>
     <loc>https://benp44.github.io/blog/tags/scrum/</loc>
-    <lastmod>2023-02-12T15:05:19+01:00</lastmod>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -237,7 +237,7 @@
   
   <url>
     <loc>https://benp44.github.io/blog/tags/sprints/</loc>
-    <lastmod>2023-02-12T15:05:19+01:00</lastmod>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -249,7 +249,7 @@
   
   <url>
     <loc>https://benp44.github.io/blog/tags/teamwork/</loc>
-    <lastmod>2023-02-12T15:05:19+01:00</lastmod>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -273,7 +273,7 @@
   
   <url>
     <loc>https://benp44.github.io/blog/</loc>
-    <lastmod>2023-04-18T15:05:19+01:00</lastmod>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -285,7 +285,7 @@
   
   <url>
     <loc>https://benp44.github.io/blog/tags/wip/</loc>
-    <lastmod>2023-02-12T15:05:19+01:00</lastmod>
+    <lastmod>2023-05-12T15:05:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
