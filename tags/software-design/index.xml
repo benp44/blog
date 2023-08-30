@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software Design on Unrecognized Escape Sequence</title>
+    <link>https://benp44.github.io/blog/tags/software-design/</link>
+    <description>Recent content in Software Design on Unrecognized Escape Sequence</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>Copyright © 2023 Ben Pring</copyright>
+    <lastBuildDate>Sun, 24 Feb 2019 19:52:30 +0100</lastBuildDate>
+    
+	<atom:link href="https://benp44.github.io/blog/tags/software-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building without designing</title>
+      <link>https://benp44.github.io/blog/blog/building-without-designing/</link>
+      <pubDate>Sun, 24 Feb 2019 19:52:30 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/blog/building-without-designing/</guid>
+      <description>A quick one today, but an important one.
+When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
+I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&amp;rdquo; as an excuse to drop some of the less tangibly essential aspects of software development and &amp;ldquo;just smash out some code&amp;rdquo;.</description>
+    </item>
+    
+  </channel>
+</rss>

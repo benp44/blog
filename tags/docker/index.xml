@@ -13,11 +13,11 @@
     
     
     <item>
-      <title>Docker problems on a VPN</title>
-      <link>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</link>
+      <title>Docker DNS problems on a VPN</title>
+      <link>https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/</link>
       <pubDate>Tue, 01 Nov 2022 15:44:30 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</guid>
+      <guid>https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/</guid>
       <description>Ok, this is really a post to help my own memory as I&amp;rsquo;ve had these problems more than once and more than once had to solve from scratch :(
 The symptoms vary depending on what you&amp;rsquo;re trying to do of course, but the symptoms are that resources that are through a VPN tunnel are accessible outside of docker, but inside a container fail with DNS-related errors, for example:
 Failed to establish a new connection: [Error -3] Temporary failure in name resolution: https://something.</description>

@@ -18,8 +18,30 @@
       <pubDate>Fri, 12 May 2023 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/blog/using-scrum-wip-limits/</guid>
-      <description>The TLDR My team has recently been experimenting with various WIP (work in progress) limits. Actually we brought in the idea maybe a year ago, but I&amp;rsquo;ve only recently had some time to write about it with some hindsight.
+      <description>The TLDR; My team has recently been experimenting with various WIP (work in progress) limits. Actually we brought in the idea maybe a year ago, but I&amp;rsquo;ve only recently had some time to write about it with some hindsight.
 You can read on for quite a lot of (possibly uninteresting) detail, but the TLDR is that a WIP limit is a very valuable tool, which I would recommend any established Scrum team give a try.</description>
+    </item>
+    
+    <item>
+      <title>The Backlog Refinery</title>
+      <link>https://benp44.github.io/blog/blog/the-backlog-refinery/</link>
+      <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/blog/the-backlog-refinery/</guid>
+      <description>tldr  It can be helpful to separate a backlog into multiple sections, stratifying cards into different stages of refinement.
+ Cards start as raw, un-edited ideas and bugs in the first section, and proceed up to ready-to-code technical tasks in the last, with intermediate stages.
+ This makes it really easy to focus in sprint meetings on the goal at hand: moving cards from one section to the next by &amp;lsquo;refining&amp;rsquo; them.</description>
+    </item>
+    
+    <item>
+      <title>Building without designing</title>
+      <link>https://benp44.github.io/blog/blog/building-without-designing/</link>
+      <pubDate>Sun, 24 Feb 2019 19:52:30 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/blog/building-without-designing/</guid>
+      <description>A quick one today, but an important one.
+When working at startups and in small development teams, something I&amp;rsquo;ve seen a lot is the dangerous idea that it is possible to write any kind of non-trivial software without having given it some serious thought first.
+I suspect this often comes from the classic abuse of the term &amp;ldquo;agile&amp;rdquo; as an excuse to drop some of the less tangibly essential aspects of software development and &amp;ldquo;just smash out some code&amp;rdquo;.</description>
     </item>
     
   </channel>

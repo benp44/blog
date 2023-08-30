@@ -18,7 +18,7 @@
       <pubDate>Fri, 12 May 2023 15:05:19 +0100</pubDate>
       
       <guid>https://benp44.github.io/blog/blog/using-scrum-wip-limits/</guid>
-      <description>The TLDR My team has recently been experimenting with various WIP (work in progress) limits. Actually we brought in the idea maybe a year ago, but I&amp;rsquo;ve only recently had some time to write about it with some hindsight.
+      <description>The TLDR; My team has recently been experimenting with various WIP (work in progress) limits. Actually we brought in the idea maybe a year ago, but I&amp;rsquo;ve only recently had some time to write about it with some hindsight.
 You can read on for quite a lot of (possibly uninteresting) detail, but the TLDR is that a WIP limit is a very valuable tool, which I would recommend any established Scrum team give a try.</description>
     </item>
     
@@ -33,11 +33,11 @@ In particular I think this kind of abstraction is useful in Rust as it allows yo
     </item>
     
     <item>
-      <title>Docker problems on a VPN</title>
-      <link>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</link>
+      <title>Docker DNS problems on a VPN</title>
+      <link>https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/</link>
       <pubDate>Tue, 01 Nov 2022 15:44:30 +0100</pubDate>
       
-      <guid>https://benp44.github.io/blog/blog/docker-problems-on-a-vpn/</guid>
+      <guid>https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/</guid>
       <description>Ok, this is really a post to help my own memory as I&amp;rsquo;ve had these problems more than once and more than once had to solve from scratch :(
 The symptoms vary depending on what you&amp;rsquo;re trying to do of course, but the symptoms are that resources that are through a VPN tunnel are accessible outside of docker, but inside a container fail with DNS-related errors, for example:
 Failed to establish a new connection: [Error -3] Temporary failure in name resolution: https://something.</description>
@@ -93,7 +93,7 @@ from collections import defaultdict scores = defaultdict(int) def increment_scor
     </item>
     
     <item>
-      <title>The backlog refinery</title>
+      <title>The Backlog Refinery</title>
       <link>https://benp44.github.io/blog/blog/the-backlog-refinery/</link>
       <pubDate>Wed, 29 May 2019 08:49:08 +0100</pubDate>
       

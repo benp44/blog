@@ -15,9 +15,9 @@
 <meta property="og:site_name" content="Unrecognized Escape Sequence" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://benp44.github.io/blog/tags/kanban/" />
-<meta property="og:title" content="Kanban" />
-<meta property="twitter:title" content="Kanban">
+<meta property="og:url" content="https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/" />
+<meta property="og:title" content="Docker DNS problems on a VPN" />
+<meta property="twitter:title" content="Docker DNS problems on a VPN">
 
     <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -29,10 +29,10 @@
 <title>
 
 
-     Unrecognized Escape Sequence - Kanban 
+     Unrecognized Escape Sequence - Docker DNS problems on a VPN 
 
 </title>
-<link rel="canonical" href="https://benp44.github.io/blog/tags/kanban/">
+<link rel="canonical" href="https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/">
 
 
 <style media="screen">
@@ -325,8 +325,6 @@ div.main .content .title-container {
 }
 div.main .content .posts {
   
-  
-  margin-bottom: 4em;
   
 }
 div.main .content .page-heading {
@@ -1011,8 +1009,6 @@ margin-left: -4%;
 
 
 
-  <link href="https://benp44.github.io/blog/tags/kanban/index.xml" rel="alternate" type="application/rss+xml" title="Unrecognized Escape Sequence" />
-
 
 </head>
 
@@ -1020,7 +1016,7 @@ margin-left: -4%;
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1052,26 +1048,136 @@ margin-left: -4%;
     </div>
 </div>
 
-<div class="main column">
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts about Kanban</div>
-                <ul>
-                    
-                        <li class="post-item">
-    <span class="meta">May 29, 2019</span>
-    
-    <a href="../../blog/the-backlog-refinery/"><span>The Backlog Refinery</span></a>
-    
-</li>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
+    
+    Docker DNS problems on a VPN
+    
+
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue Nov 1 2022 15:44:30 &#43;0100">Nov 1, 2022</div>
                     
-                </ul>
+                        
+                    
+                    
+                    <div class="reading-time middot">2 minute read</div>
+                    
+                    
+                      <div class="tags">
+                    
+                        <ul>
+                          
+                            <li class="middot"><a href="../../tags/linux">Linux</a> </li>
+                          
+                            <li class="middot"><a href="../../tags/docker">Docker</a> </li>
+                          
+                            <li class="middot"><a href="../../tags/vpn">VPN</a> </li>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <div class="markdown">
+                
+    
+    <p>Ok, this is really a post to help my own memory as I&rsquo;ve had these problems more than once and more than once had to solve from scratch :(</p>
+
+<p>The symptoms vary depending on what you&rsquo;re trying to do of course, but the symptoms are that resources that are through a VPN tunnel are accessible outside of docker, but inside a container fail with DNS-related errors, for example:</p>
+
+<pre><code>Failed to establish a new connection: [Error -3] Temporary failure in
+name resolution: https://something.on.vpn.network/some/cool/resource
+</code></pre>
+
+<p>The reason for this is that when the docker daemon starts up, it seems to learn about DNS servers at that time, but will not be taught about other DNS servers that become available, for example those that are through the VPN tunnel and provide lookup for servers on the VPN.</p>
+
+<p>The solution to this is to tell the docker daemon about these (assuming they have a fixed IP address) by providing details in <code>/etc/docker/daemon.json</code>:</p>
+
+<pre><code class="language-json">{
+    &quot;dns&quot;: [&quot;173.33.0.22&quot;, &quot;8.8.8.8&quot;]
+}
+</code></pre>
+
+<p>Obviously replacing the IP address above with the DNS server on your VPN, and other DNS servers you might want to also include (I&rsquo;ve included the Google DNS server IP here).</p>
+
+<p>The results of this change are translated into your <code>/etc/resolv.conf</code> file in the running container:</p>
+
+<pre><code class="language-bash">&gt; docker run bash:latest cat /etc/resolv.conf
+nameserver 173.33.0.22
+nameserver 8.8.8.8
+</code></pre>
+
+<p>If you&rsquo;re not sure of the address of your VPN DNS server, you should be able to find it using a command similar to:</p>
+
+<pre><code class="language-bash">resolvectl status
+</code></pre>
+
+<p>I&rsquo;ve found that most VPN clients (such as those based on OpenVPN) use the <code>tun0</code> interface.</p>
+
+<p>Hopefully this is helpful to someone out there. I suspect <a href="https://podman.io/">podman</a> doesn&rsquo;t have such problems without the docker daemon, but as much as I want to just throw out docker in favour of this, it always feels a little too much like spitting into the wind&hellip;</p>
+
+
+            </div>
+            <div class="thanks-box">
+              <p>Thanks for reading! Please share this post if you found it useful, check out my <a href="../../">other posts</a>, and of course, consider <a href='https://ko-fi.com/W7W0OPRFR' target='_blank'>buying me a coffee!</a></p>
+            </div>
+            
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "unrecognise-escape-sequence" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
