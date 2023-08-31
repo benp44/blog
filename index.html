@@ -232,8 +232,8 @@ div.header nav ul {
   display: inline-flex;
 }
 div.header nav ul li {
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 div.header nav ul li:first-child {
   margin-left: 0;
@@ -765,7 +765,7 @@ div.thanks-box {
   background-position-x: 10px;
   background-position-y: center;
   background-repeat: no-repeat;
-  background-size: auto 70%;
+  background-size: auto 50px;
   border-radius: 15px;
   border: 2px dotted darkslategray;
   margin-bottom: 50px;
@@ -776,6 +776,8 @@ div.thanks-box {
   padding-left: 65px;
   padding-right: 5px;
   padding-top: 5px;
+  width: 90%;
+  min-height: 50px;
 }
 /* Fonts */
 
@@ -1031,8 +1033,9 @@ margin-left: -4%;
             <a href="./"><div class="name"><h1>Unrecognized Escape Sequence</h1></div></a>
             <nav>
                 <ul>
+                    <li><a href="./">Home</a></li>
                     
-                            <li><a href="./blog/">Blog</a></li>
+                            <li><a href="./blog/">All posts</a></li>
                     
                     
                         
@@ -1049,66 +1052,66 @@ margin-left: -4%;
                 </ul>
             </nav>
             
-            <div style="padding-top:14pt; text-align: left;text-justify: inter-word;" class="main">A blog about software engineering. Mostly thoughts and occasional rants about agile software development, coding tips (mostly Python and Rust), and a dumping ground for notes and ideas. Perhaps a few useful nuggets of advice for others who have the misfortune to stray down the same path.</div>
-            <h2 style="padding-top: 16pt; text-transform: uppercase; font-weight: 600; font-size: 12pt">Recent posts</h2>
-            <table>
+                <div style="padding-top:14pt; text-align: left;text-justify: inter-word;" class="main">A blog about software engineering. Mostly thoughts and occasional rants about agile software development, coding tips (mostly Python and Rust), and a dumping ground for notes and ideas. Perhaps a few useful nuggets of advice for others who have the misfortune to stray down the same path.</div>
+                <h2 style="padding-top: 16pt; text-transform: uppercase; font-weight: 600; font-size: 12pt">Recent posts</h2>
+                <table>
+                    
+                    
+                        <tr>
+                            <td style="text-align:right;">12/5/2023</td>
+                            <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/using-scrum-wip-limits/"> Using Scrum WIP Limits</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align:right;">18/4/2023</td>
+                            <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/"> Building services in Rust with the Actix framework</a></td>
+                        </tr>
+                    
+                        <tr>
+                            <td style="text-align:right;">1/11/2022</td>
+                            <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/"> Docker DNS problems on a VPN</a></td>
+                        </tr>
+                    
+                </table>
                 
                 
-                    <tr>
-                        <td style="text-align:right;">12/5/2023</td>
-                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/using-scrum-wip-limits/"> Using Scrum WIP Limits</a></td>
-                    </tr>
+                    <h2 style="padding-top: 16pt; text-transform: uppercase; font-weight: 600; font-size: 12pt">Popular posts</h2>
+                    <ul style="list-style-type: circle; padding-left: 15px">
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/using-scrum-wip-limits/"> Using Scrum WIP Limits</a></li>
+                        
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/putting-together-a-half-decent-merge/pull-request/"> Putting together a half-decent merge/pull request</a></li>
+                        
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/rust-results-options-and-combinators/"> Rust: Results, Options and Combinators</a></li>
+                        
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/improving-your-life-with-pre-commit/"> Improving your life with pre-commit</a></li>
+                        
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/the-backlog-refinery/"> The Backlog Refinery</a></li>
+                        
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/building-without-designing/"> Building without designing</a></li>
+                        
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/coding-styles/"> Coding styles</a></li>
+                        
+                    
+                        
+                        <li><a href="https://benp44.github.io/blog/blog/bad-comments/"> Bad comments</a></li>
+                        
+                    
+                    </ul>
                 
-                    <tr>
-                        <td style="text-align:right;">18/4/2023</td>
-                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/building-services-in-rust-with-the-actix-framework/"> Building services in Rust with the Actix framework</a></td>
-                    </tr>
-                
-                    <tr>
-                        <td style="text-align:right;">1/11/2022</td>
-                        <td style="padding-left: 10pt"><a href="https://benp44.github.io/blog/blog/docker-dns-problems-on-a-vpn/"> Docker DNS problems on a VPN</a></td>
-                    </tr>
-                
-            </table>
-            
-            
-                <h2 style="padding-top: 16pt; text-transform: uppercase; font-weight: 600; font-size: 12pt">Popular posts</h2>
-                <ul style="list-style-type: circle; padding-left: 15px">
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/using-scrum-wip-limits/"> Using Scrum WIP Limits</a></li>
-                    
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/putting-together-a-half-decent-merge/pull-request/"> Putting together a half-decent merge/pull request</a></li>
-                    
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/rust-results-options-and-combinators/"> Rust: Results, Options and Combinators</a></li>
-                    
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/improving-your-life-with-pre-commit/"> Improving your life with pre-commit</a></li>
-                    
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/the-backlog-refinery/"> The Backlog Refinery</a></li>
-                    
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/building-without-designing/"> Building without designing</a></li>
-                    
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/coding-styles/"> Coding styles</a></li>
-                    
-                
-                    
-                    <li><a href="https://benp44.github.io/blog/blog/bad-comments/"> Bad comments</a></li>
-                    
-                
-                </ul>
-            
             
         </div>
     </div>

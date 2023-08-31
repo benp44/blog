@@ -231,8 +231,8 @@ div.header nav ul {
   display: inline-flex;
 }
 div.header nav ul li {
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 div.header nav ul li:first-child {
   margin-left: 0;
@@ -762,7 +762,7 @@ div.thanks-box {
   background-position-x: 10px;
   background-position-y: center;
   background-repeat: no-repeat;
-  background-size: auto 70%;
+  background-size: auto 50px;
   border-radius: 15px;
   border: 2px dotted darkslategray;
   margin-bottom: 50px;
@@ -773,6 +773,8 @@ div.thanks-box {
   padding-left: 65px;
   padding-right: 5px;
   padding-top: 5px;
+  width: 90%;
+  min-height: 50px;
 }
 /* Fonts */
 
@@ -1026,8 +1028,9 @@ margin-left: -4%;
             <a href="../../"><div class="name"><h1>Unrecognized Escape Sequence</h1></div></a>
             <nav>
                 <ul>
+                    <li><a href="../../">Home</a></li>
                     
-                            <li><a href="../../blog/">Blog</a></li>
+                            <li><a href="../../blog/">All posts</a></li>
                     
                     
                         
@@ -1168,7 +1171,6 @@ Fixing &lt;filename not shown&gt;
 
 Check Yaml...........................................(no files to check)Skipped
 Check for added large files..............................................Passed
-
 </code></pre>
 
 <p>Yikes! So many issues. Thankfully they&rsquo;re relatively small-fry. But then all I&rsquo;m running here is the default sample set of linters. As you can see, what&rsquo;s being caught here are largely whitespace issues: I&rsquo;ve left trailing whitespace on some lines, and in some cases I&rsquo;m not ending my files with exactly one line break (a <a href="https://stackoverflow.com/a/729795/408642">Posix standard</a> if you weren&rsquo;t aware).</p>
@@ -1181,61 +1183,51 @@ Check for added large files..............................................Passed
 
 <p>Next let&rsquo;s modify the <code>.pre-commit-config.yaml</code> for this repo, and add some more specific linters.</p>
 
-<p>The current, default config file looks like this:**</p>
+<p>The current, default config file looks like this:</p>
 
-<p>```yaml</p>
-
-<h1 id="see-https-pre-commit-com-for-more-information">See <a href="https://pre-commit.com">https://pre-commit.com</a> for more information</h1>
-
-<h1 id="see-https-pre-commit-com-hooks-html-for-more-hooks">See <a href="https://pre-commit.com/hooks.html">https://pre-commit.com/hooks.html</a> for more hooks</h1>
-
-<p>repos:</p>
-
-<ul>
-<li>repo: <a href="https://github.com/pre-commit/pre-commit-hooks">https://github.com/pre-commit/pre-commit-hooks</a>
-rev: v2.2.1
-hooks:
-
-<ul>
-<li>id: trailing-whitespace</li>
-<li>id: end-of-file-fixer</li>
-<li>id: check-yaml</li>
-<li>id: check-added-large-files
-```</li>
-</ul></li>
-</ul>
+<pre><code class="language-yaml">    # See https://pre-commit.com for more information
+    # See https://pre-commit.com/hooks.html for more hooks
+    repos:
+    -   repo: https://github.com/pre-commit/pre-commit-hooks
+        rev: v2.2.1
+        hooks:
+        -   id: trailing-whitespace
+        -   id: end-of-file-fixer
+        -   id: check-yaml
+        -   id: check-added-large-files
+</code></pre>
 
 <p>You can see the whitespace-based linters that made the fixes to my code earlier.</p>
 
 <p>The repo I&rsquo;m working with is mostly Python code, with a handful of utility shell scripts, so let&rsquo;s add some stuff to lint those files:</p>
 
-<pre><code class="language-yaml"># See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
-repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.2.1
-    hooks:
-    - id: trailing-whitespace
-    - id: end-of-file-fixer
-    - id: check-yaml
-    - id: check-added-large-files
-    - id: check-symlinks
+<pre><code class="language-yaml">    # See https://pre-commit.com for more information
+    # See https://pre-commit.com/hooks.html for more hooks
+    repos:
+    -   repo: https://github.com/pre-commit/pre-commit-hooks
+        rev: v2.2.1
+        hooks:
+        - id: trailing-whitespace
+        - id: end-of-file-fixer
+        - id: check-yaml
+        - id: check-added-large-files
+        - id: check-symlinks
 
--   repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 1.11.0
-    hooks:
-    - id: shellcheck
-    - id: shfmt
+    -   repo: https://github.com/jumanjihouse/pre-commit-hooks
+        rev: 1.11.0
+        hooks:
+        - id: shellcheck
+        - id: shfmt
 
--   repo: git://github.com/detailyang/pre-commit-shell
-    rev: 1.0.4
-    hooks:
-    - id: shell-lint
+    -   repo: git://github.com/detailyang/pre-commit-shell
+        rev: 1.0.4
+        hooks:
+        - id: shell-lint
 
--   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.4.4
-    hooks:
-    - id: autopep8
+    -   repo: https://github.com/pre-commit/mirrors-autopep8
+        rev: v1.4.4
+        hooks:
+        - id: autopep8
 </code></pre>
 
 <p>I&rsquo;ve added a couple of shellscript linters, <code>shellcheck</code>, <code>shfmt</code> and <code>shell-lint</code>. I&rsquo;ve also added a symlink checker as the repo may end up with a few of those knocking around, and god knows they can cause havoc when they go awry.</p>
@@ -1282,19 +1274,19 @@ Files were modified by this hook.
 
 <p>So here&rsquo;s my workaround for this. I&rsquo;ve reconfigured the PEP8 linter to give my unit tests a little more slack than the production code, by running <code>autopep8</code> in two diffent modes. The default (strict) settings are used on my production code, and then slightly relaxed settings are used for the files containing unit tests.</p>
 
-<pre><code class="language-yaml">-   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.4.4
-    hooks:
-    - id: autopep8
-    name: autopep8-default
-    exclude: .*/tests/.*
+<pre><code class="language-yaml">    -   repo: https://github.com/pre-commit/mirrors-autopep8
+        rev: v1.4.4
+        hooks:
+        - id: autopep8
+        name: autopep8-default
+        exclude: .*/tests/.*
 
--   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.4.4
-    hooks:
-    - id: autopep8
-    name: autopep8-unit-tests
-    args: [&quot;-i&quot;, &quot;--ignore=E226,E24,W50,W690,E402&quot;]
+    -   repo: https://github.com/pre-commit/mirrors-autopep8
+        rev: v1.4.4
+        hooks:
+        - id: autopep8
+        name: autopep8-unit-tests
+        args: [&quot;-i&quot;, &quot;--ignore=E226,E24,W50,W690,E402&quot;]
 </code></pre>
 
 <p>Notice that the first entry excludes the <code>tests</code> directory, and the second entry ignores some of the default PEP8 warnings.</p>
