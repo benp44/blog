@@ -15,9 +15,9 @@
 <meta property="og:site_name" content="Unrecognized Escape Sequence" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://benp44.github.io/blog/tags/software-engineering/" />
-<meta property="og:title" content="Software Engineering" />
-<meta property="twitter:title" content="Software Engineering">
+<meta property="og:url" content="https://benp44.github.io/blog/blog/why-naming-is-hard-and-what-to-do-about-it/" />
+<meta property="og:title" content="Why naming is hard, and what to do about it" />
+<meta property="twitter:title" content="Why naming is hard, and what to do about it">
 
     <meta property="og:image" content="https://benp44.github.io/blog/img/banner.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -29,10 +29,10 @@
 <title>
 
 
-     Unrecognized Escape Sequence - Software Engineering 
+     Unrecognized Escape Sequence - Why naming is hard, and what to do about it 
 
 </title>
-<link rel="canonical" href="https://benp44.github.io/blog/tags/software-engineering/">
+<link rel="canonical" href="https://benp44.github.io/blog/blog/why-naming-is-hard-and-what-to-do-about-it/">
 
 
 <style media="screen">
@@ -325,8 +325,6 @@ div.main .content .title-container {
 }
 div.main .content .posts {
   
-  
-  margin-bottom: 4em;
   
 }
 div.main .content .page-heading {
@@ -1013,8 +1011,6 @@ margin-left: -4%;
 
 
 
-  <link href="https://benp44.github.io/blog/tags/software-engineering/index.xml" rel="alternate" type="application/rss+xml" title="Unrecognized Escape Sequence" />
-
 
 </head>
 
@@ -1022,7 +1018,7 @@ margin-left: -4%;
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1055,82 +1051,158 @@ margin-left: -4%;
     </div>
 </div>
 
-<div class="main column">
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts about Software Engineering</div>
-                <ul>
-                    
-                        <li class="post-item">
-    <span class="meta">Jun 3, 2018</span>
-    
-    <a href="../../blog/getting-started-with-google-test/"><span>Getting started with Google Test</span></a>
-    
-</li>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-                    
-                        <li class="post-item">
-    <span class="meta">Jul 20, 2018</span>
     
-    <a href="../../blog/coding-styles/"><span>Coding styles</span></a>
+    Why naming is hard, and what to do about it
     
-</li>
 
-                    
-                        <li class="post-item">
-    <span class="meta">Feb 24, 2019</span>
-    
-    <a href="../../blog/building-without-designing/"><span>Building without designing</span></a>
-    
-</li>
+</div>
 
+                </div>
+                <div class="meta">
+                    <div class="date" title="Thu May 1 2025 16:40:25 &#43;0100">May 1, 2025</div>
                     
-                        <li class="post-item">
-    <span class="meta">May 29, 2019</span>
-    
-    <a href="../../blog/the-backlog-refinery/"><span>The Backlog Refinery</span></a>
-    
-</li>
-
+                        
                     
-                        <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="../../blog/a-couple-of-google-test-gotchas/"><span>A couple of Google Test gotchas</span></a>
-    
-</li>
-
                     
-                        <li class="post-item">
-    <span class="meta">Jul 1, 2019</span>
-    
-    <a href="../../blog/improving-your-life-with-pre-commit/"><span>Improving your life with pre-commit</span></a>
-    
-</li>
-
+                    <div class="reading-time middot">6 minute read</div>
                     
-                        <li class="post-item">
-    <span class="meta">Jan 5, 2021</span>
-    
-    <a href="../../blog/putting-together-a-half-decent-merge/pull-request/"><span>Putting together a half-decent merge/pull request</span></a>
-    
-</li>
-
                     
-                        <li class="post-item">
-    <span class="meta">May 1, 2025</span>
-    
-    <a href="../../blog/why-naming-is-hard-and-what-to-do-about-it/"><span>Why naming is hard, and what to do about it</span></a>
-    
-</li>
-
+                      <div class="tags">
                     
-                </ul>
+                        <ul>
+                          
+                            <li class="middot"><a href="../../tags/software-engineering">Software Engineering</a> </li>
+                          
+                            <li class="middot"><a href="../../tags/python">Python</a> </li>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>Naming things is often complained about - usually glibly - as one of the &ldquo;hard&rdquo; problems of software engineering. I know I certainly encounter this problem most days coding, if only with simple variable and function names. But the questions that arise from these small issues can reveal larger uncertainties about the entire system.</p>
+
+<blockquote>
+<p>&ldquo;How can we encode the purpose of this <code>path</code> parameter in its name? Or put another way, how can we communicate to future consumers of our function what is going to happen to the path?</p>
+
+<p>But wait&hellip; is this a file or can it be a directory? Or can it in fact be a URI? Would this name change alone allow this tool to process web as well as file system resources?&rdquo;</p>
+</blockquote>
+
+<p>More philosophically (if you will indulge me once again), I think naming is hard because it can force us to reckon with one of the fundamental activities of software engineering: mapping the real world to a model. When we struggle to decide between two names, it&rsquo;s like an aliasing issue: the full concept is too complex to label, so we must simplify, and in doing so some resolution is lost. But choosing one simplification over another can be awkward - which concepts are more important to retain in the label? It&rsquo;s hard to write a heuristic for this because ideas and concepts are hard to quantify and compare.</p>
+
+<p>It can feel frustrating to have to pause to come up with a complex variable or function name. When writing code this can feel like a blockage in the creative process. But if the naming is genuinely a problem, then it is almost always an indication of a larger issue. Perhaps a function that should actually be two. Or state that should not exist. Or even some unrecognised or unresolved conflict in our system design.</p>
+
+<p>This is not an novel idea, but as I&rsquo;ve become more experienced, I find it really noticeable. And indeed I find I&rsquo;m quicker now at choosing good names, and conversely identifying when a naming issue points to some larger, underlying problem; and there are some rules of thumb I&rsquo;ve found that help.</p>
+
+<h2 id="1-stitches-in-time-and-naming-spades">1 / Stitches in time and naming spades</h2>
+
+<p>The most important rule is to try and name things what they are, when it is possible to do so. It sounds obvious, but it takes some practice to get more fluent at doing this, and recognising where names are deficient and can be improved in some simple way.</p>
+
+<pre><code class="language-python"># Why &quot;dir&quot; when &quot;directory&quot; is clearer and more universal?
+test_dir = Path(&quot;test-directory&quot;)
+
+# What is a file? Is a path to a file a file, or a string?
+test_file = test_dir / &quot;test-file.txt&quot;
+</code></pre>
+
+<pre><code class="language-python">test_directory_path = Path(&quot;test-directory&quot;)
+test_file_path = test_directory_path / &quot;test-file.txt&quot;
+
+# Avoid the ambiguity between paths and file &quot;handles&quot;
+with test_file_path.open() as test_file:
+    test_file.write(...)
+</code></pre>
+
+<p>Many naming issues are not hard, and indeed the correct name can be an arbitrarily simple choice. Choosing an unequivocal, unabbreviated, culturally neutral name over an ambiguous, abbreviated, shiboleth or culturally specific name may be just a case of typing some extra words. It&rsquo;s frustrating that sometimes this is the excuse given for poor naming: the number of characters to type.</p>
+
+<p>I&rsquo;m a big fan of expanding out abbreviations - and boy do you get push-back on this one. I will admit that some abbreviations are so universal that they can pass for words and have no need for expansion. But it can be surprising how &ldquo;universal&rdquo; these are, and where arguments can arise over what language is common-use and what is jargon. Try asking whether the abbreviations the same in other languages. And consider different levels of expertise - readers of the code with more and less experience in the domain. The old maxim of explicit over implicit seems safer to my mind.</p>
+
+<h2 id="2-identifying-interfaces">2 / Identifying interfaces</h2>
+
+<p>It&rsquo;s probably needless to say that the higher the name is in the hierarchy of concepts, the more important it is to try and get it right. A variable can be easily renamed, a function slightly less so. A module is awkward to rename, and system as a whole can be near impossible to rename without far-reaching consequences. Identifying interfaces is an important part of recognising this, and therefore attaching the appropriate level of attention to names.</p>
+
+<p>I think <em>parochialism</em> is a really common problem here, whereby an engineer, knee-deep in a specific problem, doesn&rsquo;t recognise that they are missing useful generalisations. For example, I was working recently (under pressure, in my defence!) on a server that runs a specific AI on an provided input. Slowly but surely language from that specific AI started to leak into naming in the service; before an aptly-timed code review brought to light that this was an over-specialisation. It was the name of a lowly configuration parameter that prompted the moment of clarity for the system as a whole.</p>
+
+<p>Perhaps worse, a lack of pause can lead to what one might term &ldquo;namespace overconsumption&rdquo;. That is, when a label takes up a whole category of which it really only represents part. A <code>ConfigurationSetting</code> struct may be better represented by something more specific, e.g. <code>UserConfigurationSetting</code>, leaving space for other future specialisations <code>DefaultConfigurationSetting</code>, <code>LocalConfigurationSetting</code>, <code>CustomConfigurationSetting</code>. But once our configuration is serialised to a file, we now have difficulty renaming.</p>
+
+<p>Explicitly separated abstract interfaces can really help with this. Defining the interface for a class, for example, in a header or interface definition, may give one pause for thought when adding a new function. It also draws the immediate attention for someone reviewing the code.</p>
+
+<p>Don&rsquo;t forget that interfaces can take many forms. We wouldn&rsquo;t hesitate to consider carefully (or call in a domain expert) when adding text to a end-user-inteface. But when adding a field to a database? What is a database schema if not the primary interface of the database? I worked on a project where for technical reasons a database interface was separated into a different repository from the rest of the database code. This meant that any changes to the schema was subject to much greater scrutiny than other changes, and we had a much cleaner data model as a result. As the database was the primary store of domain-centric data, this also gave our team real pause to check we understood the concepts being stored and that the schema was as future-proof as possible.</p>
+
+<h2 id="3-consistency-is-king">3 / Consistency is king</h2>
+
+<p>Another useful principle is to use the same name for a concept whenever it occurs. For example, when passing a variable into a function and then unmodified into a child function, there&rsquo;s a good chance the name should be the same. If not, then your brain has to do an implicit translation as you read the child function.</p>
+
+<p>This consistency makes reading and searching the code easier, and by following the simple rules aforementioned, consistency in naming becomes second nature, and you find that the same concepts get the same names unintentionally.</p>
+
+<p>Furthermore, by separating interfaces out, we can ensure that the naming and language is consistent across the interface. By using tools like swagger and interface definition languages for our APIs, we stand a much better chance of maintaining naming rules across the API.</p>
+
+
+            </div>
+            <div class="thanks-box">
+              <p>Thanks for reading! Please share this post if you found it useful, check out my <a href="../../">other posts</a>, and of course, consider <a href='https://ko-fi.com/W7W0OPRFR' target='_blank'>buying me a coffee!</a></p>
+            </div>
+            
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "unrecognise-escape-sequence" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 

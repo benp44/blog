@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Copyright © 2023 Ben Pring</copyright>
-    <lastBuildDate>Tue, 05 Jan 2021 21:21:01 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 May 2025 16:40:25 +0100</lastBuildDate>
     
 	<atom:link href="https://benp44.github.io/blog/tags/software-engineering/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Why naming is hard, and what to do about it</title>
+      <link>https://benp44.github.io/blog/blog/why-naming-is-hard-and-what-to-do-about-it/</link>
+      <pubDate>Thu, 01 May 2025 16:40:25 +0100</pubDate>
+      
+      <guid>https://benp44.github.io/blog/blog/why-naming-is-hard-and-what-to-do-about-it/</guid>
+      <description>Naming things is often complained about - usually glibly - as one of the &amp;ldquo;hard&amp;rdquo; problems of software engineering. I know I certainly encounter this problem most days coding, if only with simple variable and function names. But the questions that arise from these small issues can reveal larger uncertainties about the entire system.
+ &amp;ldquo;How can we encode the purpose of this path parameter in its name? Or put another way, how can we communicate to future consumers of our function what is going to happen to the path?</description>
+    </item>
     
     <item>
       <title>Putting together a half-decent merge/pull request</title>
